@@ -1,0 +1,8 @@
+{
+  "name": "Gallery INSO Pharmaceuticals — Corporate Portal",
+  "description": "Комплексный сервис для фармацевтических компаний, дистрибуция по стандартам GDP и портфель брендированных лекарственных средств в Узбекистане и Центральной Азии.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
