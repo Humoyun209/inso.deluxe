@@ -726,7 +726,7 @@ export default function InsopharmHomepage({
       <section
         id="top"
         ref={heroSectionRef}
-        className="relative min-h-[calc(100dvh-4.5rem)] max-h-[920px] flex flex-col justify-between overflow-hidden bg-[#04101E] text-white"
+        className="relative h-[calc(100dvh-4.5rem)] min-h-[560px] flex flex-col justify-between overflow-hidden bg-[#04101E] text-white"
       >
         {/* Full-Bleed Parallax Background Video + Refined Architectural Scrims */}
         <motion.div
@@ -753,11 +753,11 @@ export default function InsopharmHomepage({
         {/* Main Hero Foreground Content — Minimalist Editorial Typography */}
         <motion.div
           style={{ y: heroTextY, opacity: heroTextOpacity }}
-          className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-12 flex-1 flex flex-col justify-center"
+          className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 flex-1 flex flex-col justify-center"
         >
-          <div className="max-w-[660px]">
+          <div className="max-w-[760px] xl:max-w-[820px]">
             {/* Minimal Kicker with Expanding Accent Line */}
-            <div className="overflow-hidden mb-5">
+            <div className="overflow-hidden mb-3 sm:mb-4 lg:mb-5">
               <motion.div
                 initial={{ y: '100%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -780,7 +780,7 @@ export default function InsopharmHomepage({
                 initial={{ y: '38%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[clamp(2.35rem,4.6vw,4.1rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] text-balance"
+                className="text-[clamp(2.1rem,3.8vw,3.75rem)] font-bold tracking-[-0.025em] text-white leading-[1.08] text-balance"
               >
                 {t.heroHeadlineBefore}{' '}
                 <em className="font-serif italic font-normal text-teal-200 tracking-normal">
@@ -795,7 +795,7 @@ export default function InsopharmHomepage({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-6 text-base sm:text-lg text-slate-200/90 font-normal leading-relaxed max-w-[50ch]"
+              className="mt-3.5 sm:mt-4 lg:mt-5 text-sm sm:text-base lg:text-[17px] text-slate-200/90 font-normal leading-relaxed max-w-[54ch]"
             >
               {t.heroDescription}
             </motion.p>
@@ -805,11 +805,11 @@ export default function InsopharmHomepage({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8"
+              className="mt-5 sm:mt-6 lg:mt-7 flex flex-wrap items-center gap-5 sm:gap-7"
             >
               <Link
                 href={`/portfolio?lang=${lang}`}
-                className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
+                className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
               >
                 <span>{t.heroPrimaryBtn}</span>
                 <ArrowUpRight className="w-4 h-4 text-slate-950 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -817,7 +817,7 @@ export default function InsopharmHomepage({
 
               <a
                 href="#contacts"
-                className="group relative inline-flex items-center gap-2 py-2 text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
+                className="group relative inline-flex items-center gap-2 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
               >
                 <span>{t.heroSecondaryBtn}</span>
                 <ArrowUpRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -832,7 +832,7 @@ export default function InsopharmHomepage({
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 sm:mt-10 pt-5 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-300/80 font-medium"
+              className="mt-5 sm:mt-6 lg:mt-7 pt-3.5 sm:pt-4 border-t border-white/15 flex flex-wrap items-center gap-x-3.5 sm:gap-x-4 gap-y-1.5 text-[11px] sm:text-xs text-slate-300/85 font-medium"
             >
               <div className="inline-flex items-center gap-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-teal-300 shrink-0" />
@@ -925,7 +925,7 @@ export default function InsopharmHomepage({
                   <Link
                     key={pillar.index}
                     href={pillar.href}
-                    className="group relative py-3.5 sm:py-4 px-3 sm:px-6 first:pl-0 hover:bg-white/[0.04] transition-colors block"
+                    className="group relative py-2.5 sm:py-3 px-3 sm:px-5 first:pl-0 hover:bg-white/[0.04] transition-colors block"
                   >
                     {inner}
                   </Link>
@@ -933,7 +933,7 @@ export default function InsopharmHomepage({
                   <a
                     key={pillar.index}
                     href={pillar.href}
-                    className="group relative py-3.5 sm:py-4 px-3 sm:px-6 first:pl-0 hover:bg-white/[0.04] transition-colors block"
+                    className="group relative py-2.5 sm:py-3 px-3 sm:px-5 first:pl-0 hover:bg-white/[0.04] transition-colors block"
                   >
                     {inner}
                   </a>
@@ -942,7 +942,7 @@ export default function InsopharmHomepage({
             </div>
 
             {/* Minimal Video Play/Pause Indicator */}
-            <div className="hidden sm:flex items-center pl-6 border-l border-white/12 py-3.5">
+            <div className="hidden sm:flex items-center pl-5 border-l border-white/12 py-2.5 sm:py-3">
               <button
                 type="button"
                 onClick={toggleHeroVideo}
