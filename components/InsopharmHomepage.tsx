@@ -30,9 +30,13 @@ import {
   Compass,
   Play,
   Pause,
+  Globe,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import {
   PRODUCTS,
+  SUBBRANDS,
   CORE_VALUES,
   RESEARCH_ITEMS,
   FAQ_ITEMS,
@@ -303,6 +307,7 @@ export default function InsopharmHomepage({
   const [openFaqId, setOpenFaqId] = useState<string>(FAQ_ITEMS[0].id);
   const [showBehavioralValues, setShowBehavioralValues] = useState<boolean>(false);
   const [showSubbrandsSection, setShowSubbrandsSection] = useState<boolean>(false);
+  const [showHeroSubbrands, setShowHeroSubbrands] = useState<boolean>(true);
   const heroSectionRef = useRef<HTMLElement | null>(null);
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true);
@@ -434,7 +439,7 @@ export default function InsopharmHomepage({
     '';
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-[family-name:var(--font-jakarta)]">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
       {/* Mandatory Demo Key Quota Banner (Section 8 Case A) */}
       {gmpQuotaExceeded && (
         <div className="bg-amber-50 border-b border-amber-200 text-amber-900 px-4 py-2.5 text-xs md:text-sm text-center sticky top-0 z-50 shadow-sm">
@@ -750,195 +755,334 @@ export default function InsopharmHomepage({
           <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/85 via-transparent to-[#04101E]/25" />
         </motion.div>
 
-        {/* Main Hero Foreground Content — Minimalist Editorial Typography */}
+        {/* Main Hero Foreground Content — Minimalist Editorial Typography + Collapsible 6 Subbrands Demo */}
         <motion.div
           style={{ y: heroTextY, opacity: heroTextOpacity }}
-          className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 flex-1 flex flex-col justify-center"
+          className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 lg:py-6 flex-1 flex flex-col justify-center"
         >
-          <div className="max-w-[760px] xl:max-w-[820px]">
-            {/* Minimal Kicker with Expanding Accent Line */}
-            <div className="overflow-hidden mb-3 sm:mb-4 lg:mb-5">
-              <motion.div
-                initial={{ y: '100%', opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                className="inline-flex items-center gap-3 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-teal-300"
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
+            {/* Left Column: Primary Typography & CTAs (Clean, Breathable Editorial) */}
+            <div className={`transition-all duration-500 ${showHeroSubbrands ? 'max-w-[660px]' : 'max-w-[780px]'}`}>
+              {/* Minimal Kicker with Expanding Accent Line */}
+              <div className="overflow-hidden mb-2.5 sm:mb-3.5">
+                <motion.div
+                  initial={{ y: '100%', opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-flex items-center gap-3 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-teal-300"
+                >
+                  <motion.span
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-8 h-[1.5px] bg-teal-400 origin-left inline-block"
+                  />
+                  <span>{t.sinceBadge}</span>
+                </motion.div>
+              </div>
+
+              {/* Statement Display Headline with Signature Synthon Italic Accent */}
+              <div className="overflow-hidden">
+                <motion.h1
+                  initial={{ y: '38%', opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-[clamp(2.05rem,3.5vw,3.6rem)] font-bold tracking-normal text-white leading-[1.08] text-balance"
+                >
+                  {t.heroHeadlineBefore}{' '}
+                  <em className="font-serif italic font-normal text-teal-200 tracking-normal">
+                    {t.heroHeadlineItalic}
+                  </em>
+                  {t.heroHeadlineAfter ? ` ${t.heroHeadlineAfter}` : ''}
+                </motion.h1>
+              </div>
+
+              {/* Single-Breath Sub-line */}
+              <motion.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-3 sm:mt-4 text-sm sm:text-base text-slate-200/90 font-normal leading-relaxed max-w-[52ch]"
               >
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-8 h-[1.5px] bg-teal-400 origin-left inline-block"
-                />
-                <span>{t.sinceBadge}</span>
+                {t.heroDescription}
+              </motion.p>
+
+              {/* Actions: Primary Button + Minimalist Text Link with ArrowUpRight */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-5 sm:mt-6 flex flex-wrap items-center gap-5 sm:gap-7"
+              >
+                <Link
+                  href={`/portfolio?lang=${lang}`}
+                  className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
+                >
+                  <span>{t.heroPrimaryBtn}</span>
+                  <ArrowUpRight className="w-4 h-4 text-slate-950 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+
+                <a
+                  href="#contacts"
+                  className="group relative inline-flex items-center gap-2 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
+                >
+                  <span>{t.heroSecondaryBtn}</span>
+                  <ArrowUpRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
+                    <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                  </span>
+                </a>
               </motion.div>
             </div>
 
-            {/* Statement Display Headline with Signature Synthon Italic Accent */}
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{ y: '38%', opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[clamp(2.1rem,3.8vw,3.75rem)] font-bold tracking-[-0.025em] text-white leading-[1.08] text-balance"
-              >
-                {t.heroHeadlineBefore}{' '}
-                <em className="font-serif italic font-normal text-teal-200 tracking-normal">
-                  {t.heroHeadlineItalic}
-                </em>
-                {t.heroHeadlineAfter ? ` ${t.heroHeadlineAfter}` : ''}
-              </motion.h1>
+            {/* Right Column: 6 Sub-brands Demo Module (Collapsible with One-Click Hide/Show) */}
+            <div className="hidden lg:block shrink-0">
+              <AnimatePresence mode="wait">
+                {showHeroSubbrands ? (
+                  <motion.div
+                    key="subbrands-card"
+                    initial={{ opacity: 0, x: 24, scale: 0.98 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: 24, scale: 0.98 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-[410px] xl:w-[440px] rounded-3xl bg-[#04101E]/70 backdrop-blur-xl border border-white/15 p-4 sm:p-5 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.6)]"
+                  >
+                    {/* Header: Title + Hide/Collapse Demo Button */}
+                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                      <div className="flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
+                        <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-teal-300">
+                          {lang === 'ru'
+                            ? '6 суббрендов холдинга'
+                            : lang === 'uz'
+                            ? '6 ta xolding sub-brendi'
+                            : '6 Holding Sub-brands'}
+                        </span>
+                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-[family-name:var(--font-mono)]">
+                          DEMO
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setShowHeroSubbrands(false)}
+                        className="group inline-flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-white/10 text-[11px] text-slate-300 hover:text-white transition-colors cursor-pointer"
+                        title={lang === 'ru' ? 'Скрыть панель суббрендов (Демо)' : 'Hide subbrands panel (Demo)'}
+                      >
+                        <EyeOff className="w-3.5 h-3.5 text-slate-400 group-hover:text-teal-300 transition-colors" />
+                        <span>{lang === 'ru' ? 'Скрыть' : lang === 'uz' ? 'Yashirish' : 'Hide'}</span>
+                      </button>
+                    </div>
+
+                    {/* 6 Sub-brands Quick Grid */}
+                    <div className="grid grid-cols-2 gap-2 pt-3">
+                      {SUBBRANDS.map((sb) => {
+                        const directionLabel =
+                          sb.directionType === 'distribution'
+                            ? lang === 'ru'
+                              ? 'Дистрибуция'
+                              : 'Distribyutsiya'
+                            : sb.directionType === 'promotion'
+                            ? lang === 'ru'
+                              ? 'Медпромоция'
+                              : 'Targʻibot'
+                            : lang === 'ru'
+                            ? 'Сервисы'
+                            : 'Xizmatlar';
+
+                        return (
+                          <Link
+                            key={sb.id}
+                            href={`/portfolio?subbrand=${sb.id}&lang=${lang}`}
+                            className="group p-2.5 rounded-xl border border-white/8 bg-white/[0.03] hover:bg-white/[0.08] hover:border-teal-400/40 transition-all duration-200 block"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className="font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300">
+                                {sb.shortCode}
+                              </span>
+                              <span className="text-[9px] text-white/50 group-hover:text-teal-300 transition-colors font-medium">
+                                {sb.skuCountLabel[lang] || sb.skuCountLabel.ru}
+                              </span>
+                            </div>
+                            <div className="mt-1 font-semibold text-xs text-white/95 group-hover:text-teal-200 truncate transition-colors">
+                              {sb.name}
+                            </div>
+                            <div className="mt-0.5 text-[10px] text-slate-400 truncate">
+                              {directionLabel}
+                            </div>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.button
+                    key="subbrands-pill"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => setShowHeroSubbrands(true)}
+                    className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#04101E]/80 backdrop-blur-md border border-white/20 hover:border-teal-400 text-xs font-semibold text-white shadow-xl transition-all cursor-pointer"
+                  >
+                    <span className="w-2 h-2 rounded-full bg-teal-400" />
+                    <span>
+                      {lang === 'ru'
+                        ? '6 суббрендов холдинга'
+                        : lang === 'uz'
+                        ? '6 ta xolding sub-brendi'
+                        : '6 Holding Sub-brands'}
+                    </span>
+                    <span className="text-teal-300 text-xs group-hover:translate-x-0.5 transition-transform">
+                      ➔
+                    </span>
+                  </motion.button>
+                )}
+              </AnimatePresence>
             </div>
-
-            {/* Single-Breath Sub-line */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-3.5 sm:mt-4 lg:mt-5 text-sm sm:text-base lg:text-[17px] text-slate-200/90 font-normal leading-relaxed max-w-[54ch]"
-            >
-              {t.heroDescription}
-            </motion.p>
-
-            {/* Actions: Primary Button + Minimalist Text Link with ArrowUpRight */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 sm:mt-6 lg:mt-7 flex flex-wrap items-center gap-5 sm:gap-7"
-            >
-              <Link
-                href={`/portfolio?lang=${lang}`}
-                className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
-              >
-                <span>{t.heroPrimaryBtn}</span>
-                <ArrowUpRight className="w-4 h-4 text-slate-950 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-
-              <a
-                href="#contacts"
-                className="group relative inline-flex items-center gap-2 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
-              >
-                <span>{t.heroSecondaryBtn}</span>
-                <ArrowUpRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
-                  <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                </span>
-              </a>
-            </motion.div>
-
-            {/* Editorial Regulatory & Direct Import Note (Clean single-line pharma credibility) */}
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 sm:mt-6 lg:mt-7 pt-3.5 sm:pt-4 border-t border-white/15 flex flex-wrap items-center gap-x-3.5 sm:gap-x-4 gap-y-1.5 text-[11px] sm:text-xs text-slate-300/85 font-medium"
-            >
-              <div className="inline-flex items-center gap-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-teal-300 shrink-0" />
-                <span>{t.heroCertMhuz}</span>
-              </div>
-              <span className="text-white/25 hidden sm:inline">•</span>
-              <div className="inline-flex items-center gap-1.5">
-                <span>{t.heroCertGdp}</span>
-              </div>
-              <span className="text-white/25 hidden sm:inline">•</span>
-              <div className="inline-flex items-center gap-1.5 text-slate-300">
-                <span>{t.heroContractsCnIn}</span>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
 
-        {/* Bottom Interactive Architectural Anchor Bar (3 Chapters + Video Control) */}
+        {/* Bottom Interactive Regulatory & Trust Bar (3 Verified Pillars + Video Control) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 border-t border-white/15 bg-[#04101E]/40 backdrop-blur-md"
+          className="relative z-10 border-t border-white/15 bg-[#04101E]/55 backdrop-blur-md"
         >
           <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between">
-            {/* 3 Interactive Pillar Anchors with Hover Accent Sweep */}
-            <div className="grid grid-cols-3 divide-x divide-white/12 flex-1">
-              {[
-                {
-                  index: '01',
-                  href: '#subbrands',
-                  title:
-                    lang === 'ru'
-                      ? 'GDP-Дистрибуция'
-                      : lang === 'uz'
-                      ? 'GDP-Distribyutsiya'
-                      : 'GDP Distribution',
-                  meta: lang === 'ru' ? '10 000 м²' : '10,000 m²',
-                },
-                {
-                  index: '02',
-                  href: '#subbrands',
-                  title:
-                    lang === 'ru'
-                      ? 'Медпромоция'
-                      : lang === 'uz'
-                      ? 'Tibbiy targʻibot'
-                      : 'Medical Promotion',
-                  meta:
-                    lang === 'ru'
-                      ? '13 регионов'
-                      : lang === 'uz'
-                      ? '13 viloyat'
-                      : '13 Regions',
-                },
-                {
-                  index: '03',
-                  href: '/portfolio?lang=' + lang,
-                  isRoute: true,
-                  title:
-                    lang === 'ru'
-                      ? 'Портфель ЛС'
-                      : lang === 'uz'
-                      ? 'Preparatlar'
-                      : 'Portfolio',
-                  meta: '70+ SKU',
-                },
-              ].map((pillar) => {
-                const inner = (
-                  <>
-                    <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="font-[family-name:var(--font-mono)] text-[11px] font-semibold text-teal-300/90">
-                        {pillar.index}
-                      </span>
-                      <span className="font-[family-name:var(--font-mono)] tabular-nums text-[11px] text-white/60 group-hover:text-teal-300 transition-colors">
-                        {pillar.meta}
-                      </span>
+            {/* 3 Interactive Pillars with Hover Accent Sweep */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/12 flex-1">
+              {/* Pillar 01: License from Ministry of Health */}
+              <a
+                href="#contacts"
+                className="group relative py-2.5 sm:py-3 px-3 sm:px-6 first:pl-0 hover:bg-white/[0.04] transition-colors block"
+              >
+                <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                    <ShieldCheck className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+                    <span>
+                      {lang === 'ru'
+                        ? '01 · Госругуляторика'
+                        : lang === 'uz'
+                        ? '01 · Davlat regulyatorikasi'
+                        : '01 · Regulatory Affairs'}
+                    </span>
+                  </span>
+                  <span className="text-[10px] font-medium text-white/50 group-hover:text-teal-300 transition-colors">
+                    РУз
+                  </span>
+                </div>
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <div className="truncate">
+                    <div className="text-xs sm:text-sm font-semibold text-white/95 group-hover:text-white truncate">
+                      {lang === 'ru'
+                        ? 'Лицензия Минздрава РУз · Фармкомитет'
+                        : lang === 'uz'
+                        ? 'OʻzR SSV litsenziyasi · Farmkomitet'
+                        : 'MoH License & Pharma Committee'}
                     </div>
-                    <div className="mt-1 flex items-center justify-between gap-2">
-                      <span className="text-xs sm:text-sm font-semibold text-white/90 group-hover:text-white truncate">
-                        {pillar.title}
-                      </span>
-                      <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
+                    <div className="text-[11px] text-slate-300/70 truncate">
+                      {lang === 'ru'
+                        ? 'Официальный фармимпортёр и дистрибьютор'
+                        : lang === 'uz'
+                        ? 'Rasmiy farm-importyor va distribyutor'
+                        : 'Licensed Importer & Distributor'}
                     </div>
-                  </>
-                );
+                  </div>
+                  <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
+                </div>
+              </a>
 
-                return pillar.isRoute ? (
-                  <Link
-                    key={pillar.index}
-                    href={pillar.href}
-                    className="group relative py-2.5 sm:py-3 px-3 sm:px-5 first:pl-0 hover:bg-white/[0.04] transition-colors block"
-                  >
-                    {inner}
-                  </Link>
-                ) : (
-                  <a
-                    key={pillar.index}
-                    href={pillar.href}
-                    className="group relative py-2.5 sm:py-3 px-3 sm:px-5 first:pl-0 hover:bg-white/[0.04] transition-colors block"
-                  >
-                    {inner}
-                  </a>
-                );
-              })}
+              {/* Pillar 02: Standards GDP & WHO-GMP */}
+              <a
+                href="#about"
+                className="group relative py-2.5 sm:py-3 px-3 sm:px-6 hover:bg-white/[0.04] transition-colors block"
+              >
+                <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+                    <span>
+                      {lang === 'ru'
+                        ? '02 · Качество & Логистика'
+                        : lang === 'uz'
+                        ? '02 · Sifat va Logistika'
+                        : '02 · Quality & Logistics'}
+                    </span>
+                  </span>
+                  <span className="text-[10px] font-medium text-white/50 group-hover:text-teal-300 transition-colors">
+                    10 000 м²
+                  </span>
+                </div>
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <div className="truncate">
+                    <div className="text-xs sm:text-sm font-semibold text-white/95 group-hover:text-white truncate">
+                      {lang === 'ru'
+                        ? 'Стандарты GDP & WHO-GMP'
+                        : lang === 'uz'
+                        ? 'GDP & WHO-GMP standartlari'
+                        : 'GDP & WHO-GMP Standards'}
+                    </div>
+                    <div className="text-[11px] text-slate-300/70 truncate">
+                      {lang === 'ru'
+                        ? 'Холодовая цепь (+2…+8 °C) и EPAL-склад'
+                        : lang === 'uz'
+                        ? 'Sovuqlik zanjiri (+2…+8 °C) va EPAL ombor'
+                        : 'Validated Cold Chain & EPAL Hub'}
+                    </div>
+                  </div>
+                  <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
+                </div>
+              </a>
+
+              {/* Pillar 03: Direct Import China & India */}
+              <Link
+                href={`/portfolio?lang=${lang}`}
+                className="group relative py-2.5 sm:py-3 px-3 sm:px-6 hover:bg-white/[0.04] transition-colors block"
+              >
+                <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
+                <div className="flex items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                    <Globe className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+                    <span>
+                      {lang === 'ru'
+                        ? '03 · Прямой импорт'
+                        : lang === 'uz'
+                        ? '03 · Toʻgʻridan-toʻgʻri import'
+                        : '03 · Direct Factory Supply'}
+                    </span>
+                  </span>
+                  <div className="flex items-center gap-1.5 text-xs">
+                    <span title="Китай">🇨🇳</span>
+                    <span title="Индия">🇮🇳</span>
+                    <span className="text-[10px] font-medium text-white/50 group-hover:text-teal-300 transition-colors">
+                      70+ SKU
+                    </span>
+                  </div>
+                </div>
+                <div className="mt-1 flex items-center justify-between gap-2">
+                  <div className="truncate">
+                    <div className="text-xs sm:text-sm font-semibold text-white/95 group-hover:text-white truncate flex items-center gap-2">
+                      <span>
+                        {lang === 'ru'
+                          ? 'Прямые контракты: Китай и Индия'
+                          : lang === 'uz'
+                          ? 'Toʻgʻridan-toʻgʻri import: Xitoy va Hindiston'
+                          : 'Direct Import: China & India'}
+                      </span>
+                    </div>
+                    <div className="text-[11px] text-slate-300/70 truncate">
+                      {lang === 'ru'
+                        ? 'Оригинальные партии напрямую с заводов'
+                        : lang === 'uz'
+                        ? 'Zavodlardan toʻgʻridan-toʻgʻri partiyalar'
+                        : 'Original Batches Direct from Manufacturers'}
+                    </div>
+                  </div>
+                  <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
+                </div>
+              </Link>
             </div>
 
             {/* Minimal Video Play/Pause Indicator */}
@@ -1396,7 +1540,7 @@ export default function InsopharmHomepage({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative lg:col-span-7 min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden border border-slate-200/90 bg-[#04101E] flex flex-col justify-between shadow-lg"
+              className="group relative lg:col-span-7 min-h-[380px] sm:min-h-[440px] rounded-3xl overflow-hidden border border-slate-200/90 bg-[#04101E] flex flex-col justify-between shadow-lg"
             >
               <Image
                 src="/assets/photos/gdp-pallet-amgv.jpg"
@@ -1412,10 +1556,11 @@ export default function InsopharmHomepage({
                 referrerPolicy="no-referrer"
                 className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/95 via-[#04101E]/40 to-transparent" />
+              {/* Deep Legibility Scrim — ensures crystal clear text over bright cardboard boxes */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#04101E] via-[#04101E]/65 to-[#04101E]/20" />
 
               <div className="relative z-10 p-5 sm:p-6 flex items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#04101E]/80 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-teal-300">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#04101E]/85 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-teal-300">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
                   <span>GDP LOGISTICS HUB · 10 000 M²</span>
                 </span>
@@ -1424,21 +1569,28 @@ export default function InsopharmHomepage({
                 </span>
               </div>
 
-              <div className="relative z-10 p-6 sm:p-8 text-white space-y-2">
-                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-300">
+              <div className="relative z-10 p-6 sm:p-8 text-white space-y-2.5">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-300">
                   {lang === 'ru'
                     ? 'Собственная фармацевтическая инфраструктура'
                     : lang === 'uz'
                     ? 'Xususiy farmatsevtika infratuzilmasi'
                     : 'Proprietary Healthcare Infrastructure'}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug max-w-xl">
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-normal leading-snug">
                   {lang === 'ru'
-                    ? 'Складской комплекс 10 000 м² по стандарту GDP: адресное паллетное хранение и строгий партионный контроль'
+                    ? 'Складской комплекс 10 000 м² по стандарту GDP'
                     : lang === 'uz'
-                    ? 'GDP standartidagi 10 000 m² ombor: manzilli palletli saqlash va qatʼiy partiya nazorati'
-                    : '10,000 m² GDP Warehouse Hub: High-Bay Pallet Storage & Strict Batch Traceability'}
+                    ? 'GDP standartidagi 10 000 m² ombor majmuasi'
+                    : '10,000 m² GDP-Compliant Logistics Hub'}
                 </h3>
+                <p className="text-xs sm:text-sm text-slate-200/90 font-normal leading-relaxed max-w-xl">
+                  {lang === 'ru'
+                    ? 'Адресное высотное паллетное хранение, валидированная холодовая цепь (+2…+8 °C) и сквозной партионный контроль каждой серии.'
+                    : lang === 'uz'
+                    ? 'Manzilli baland palletli saqlash, validatsiyalangan sovuqlik zanjiri (+2…+8 °C) va har bir partiyaning toʻliq nazorati.'
+                    : 'High-bay pallet storage, continuous validated cold chain (+2…+8 °C), and strict batch-level quality tracking.'}
+                </p>
               </div>
             </motion.div>
 
@@ -1451,8 +1603,8 @@ export default function InsopharmHomepage({
               className="lg:col-span-5 rounded-3xl bg-[#0B3B60] text-white p-7 sm:p-9 flex flex-col justify-between shadow-xl space-y-8"
             >
               {/* Mission */}
-              <div className="space-y-3.5">
-                <div className="inline-flex items-center gap-2 text-xs font-extrabold text-teal-300 tracking-wider uppercase">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold text-teal-300 tracking-[0.16em] uppercase">
                   <Compass className="w-4 h-4" />
                   <span>
                     {lang === 'ru'
@@ -1462,25 +1614,52 @@ export default function InsopharmHomepage({
                       : 'Corporate Mission'}
                   </span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
-                  {lang === 'ru'
-                    ? '«Открываем людям доступ к качественным лекарствам и продуктам для здоровья: надёжно доводим их от проверенного мирового производителя до пациента.»'
-                    : lang === 'uz'
-                    ? '«Odamlarga sifatli dori vositalari va salomatlik mahsulotlariga yoʻl ochamiz: ularni jahon ishlab chiqaruvchisidan bemorgacha ishonchli yetkazamiz.»'
-                    : '“We expand access to quality medicines and health products: delivering them reliably from proven global manufacturers to the patient.”'}
-                </h3>
-                <p className="text-xs sm:text-sm text-teal-200/90 font-medium">
-                  {lang === 'ru'
-                    ? 'Слоган: «От производителя — до пациента.»'
-                    : lang === 'uz'
-                    ? 'Shior: «Ishlab chiqaruvchidan — bemorgacha.»'
-                    : 'Slogan: “From manufacturer to patient.”'}
-                </p>
+                <blockquote className="text-base sm:text-lg lg:text-xl font-normal text-slate-100 leading-relaxed">
+                  «
+                  {lang === 'ru' ? (
+                    <>
+                      Открываем людям доступ к{' '}
+                      <em className="font-serif italic font-normal text-teal-200">
+                        качественным лекарствам
+                      </em>{' '}
+                      и продуктам для здоровья: надёжно доводим их от мирового производителя до пациента.
+                    </>
+                  ) : lang === 'uz' ? (
+                    <>
+                      Odamlarga{' '}
+                      <em className="font-serif italic font-normal text-teal-200">
+                        sifatli dori vositalari
+                      </em>{' '}
+                      va salomatlik mahsulotlariga yoʻl ochamiz: ularni ishlab chiqaruvchidan bemorgacha yetkazamiz.
+                    </>
+                  ) : (
+                    <>
+                      We expand access to{' '}
+                      <em className="font-serif italic font-normal text-teal-200">
+                        quality medicines
+                      </em>{' '}
+                      and health products: delivering them reliably from manufacturer to patient.
+                    </>
+                  )}
+                  »
+                </blockquote>
+                <div className="pt-1">
+                  <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-xs text-xs font-medium text-teal-200 border border-white/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    <span>
+                      {lang === 'ru'
+                        ? 'Слоган: «От производителя — до пациента.»'
+                        : lang === 'uz'
+                        ? 'Shior: «Ishlab chiqaruvchidan — bemorgacha.»'
+                        : 'Slogan: “From manufacturer to patient.”'}
+                    </span>
+                  </span>
+                </div>
               </div>
 
               {/* Hairline Divider */}
               <div className="border-t border-white/15 pt-6 space-y-3.5">
-                <div className="inline-flex items-center gap-2 text-xs font-extrabold text-teal-300 tracking-wider uppercase">
+                <div className="inline-flex items-center gap-2 text-xs font-semibold text-teal-300 tracking-[0.16em] uppercase">
                   <TrendingUp className="w-4 h-4" />
                   <span>
                     {lang === 'ru'
@@ -1490,7 +1669,7 @@ export default function InsopharmHomepage({
                       : 'Vision 2029 · Strategic Horizon'}
                   </span>
                 </div>
-                <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-200/90 leading-relaxed font-normal">
                   {lang === 'ru'
                     ? 'К 2029 году — международный холдинг, который фармпроизводители выбирают первым для выхода на рынки Центральной Азии.'
                     : lang === 'uz'
@@ -1498,10 +1677,16 @@ export default function InsopharmHomepage({
                     : 'By 2029 — an international holding chosen first by global pharma manufacturers to enter Central Asian markets.'}
                 </p>
 
-                <div className="pt-2 flex items-center justify-between text-xs text-teal-300/90 font-[family-name:var(--font-mono)]">
-                  <span>2017 Ташкент</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                  <span>2029 Центральная Азия</span>
+                <div className="pt-2 flex items-center justify-between text-xs text-teal-300/90 font-[family-name:var(--font-mono)] border-t border-white/10 pt-3">
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                    <span>2017 Ташкент</span>
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-teal-300" />
+                  <span className="inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-teal-300" />
+                    <span>2029 Центральная Азия</span>
+                  </span>
                 </div>
               </div>
             </motion.div>

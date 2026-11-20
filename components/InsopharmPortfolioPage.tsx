@@ -385,7 +385,7 @@ export default function InsopharmPortfolioPage({
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-[family-name:var(--font-jakarta)]">
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
       {/* =====================================================================
           1. STICKY HEADER (Consistent 4-Item Navigation + Language Switcher)
          ===================================================================== */}

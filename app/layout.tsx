@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-jakarta',
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-sans',
   display: 'swap',
 });
 
@@ -36,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${jakarta.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+    <html lang="ru" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <body
         suppressHydrationWarning
         className="font-sans antialiased bg-[#F8FAFC] text-[#0F172A] selection:bg-[#0B4F6C] selection:text-white"
