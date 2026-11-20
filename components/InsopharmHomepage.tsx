@@ -9,6 +9,7 @@ import {
   ChevronDown,
   Phone,
   ArrowRight,
+  ArrowUpRight,
   ShieldCheck,
   CheckCircle2,
   MapPin,
@@ -105,9 +106,13 @@ const UI_COPY = {
     ctaContact: 'Связаться с нами',
     menuOpen: 'Меню',
     menuClose: 'Закрыть',
-    sinceBadge: 'INSO GROUP · С 2017 ГОДА',
+    sinceBadge: 'КАЧЕСТВО · ДОВЕРИЕ · ДОСТУПНОСТЬ · С 2017 ГОДА',
+    heroHeadlineBefore: 'Один из ведущих',
+    heroHeadlineItalic: 'фармацевтических холдингов',
+    heroHeadlineAfter: 'Узбекистана',
     heroHeadline: 'Один из ведущих фармхолдингов Узбекистана',
-    heroDescription: 'Дистрибуция, промоция и вывод препаратов на рынок. От производителя — до пациента.',
+    heroDescription:
+      'Прямая дистрибуция по стандартам GDP, национальная промоция и портфель препаратов от заводов Китая и Индии. От производителя — до пациента.',
     heroPrimaryBtn: 'Каталог препаратов',
     heroSecondaryBtn: 'Стать партнёром',
     filterCardio: 'Кардиология',
@@ -166,9 +171,13 @@ const UI_COPY = {
     ctaContact: 'Bog‘lanish',
     menuOpen: 'Menyu',
     menuClose: 'Yopish',
-    sinceBadge: 'INSO GROUP · 2017-YILDAN BUYON',
+    sinceBadge: 'SIFAT · ISHONCH · HAMYONBOPLIK · 2017-YILDAN BUYON',
+    heroHeadlineBefore: 'Oʻzbekistonning yetakchi',
+    heroHeadlineItalic: 'farmatsevtika xoldingi',
+    heroHeadlineAfter: '',
     heroHeadline: 'Oʻzbekistonning yetakchi farmxoldinglaridan biri',
-    heroDescription: 'Distribyutsiya, targʻibot va preparatlarni bozorga olib chiqish. Ishlab chiqaruvchidan — bemorgacha.',
+    heroDescription:
+      'GDP standartidagi toʻgʻridan-toʻgʻri taʼminot, milliy targʻibot va Xitoy hamda Hindiston zavodlaridan preparatlar portfeli. Ishlab chiqaruvchidan — bemorgacha.',
     heroPrimaryBtn: 'Dori vositalari katalogi',
     heroSecondaryBtn: 'Hamkor boʻlish',
     filterCardio: 'Kardiologiya',
@@ -227,9 +236,13 @@ const UI_COPY = {
     ctaContact: 'Partner With Us',
     menuOpen: 'Menu',
     menuClose: 'Close',
-    sinceBadge: 'INSO GROUP · SINCE 2017',
+    sinceBadge: 'SCIENCE · TRUST · AFFORDABILITY · SINCE 2017',
+    heroHeadlineBefore: 'One of Uzbekistan’s leading',
+    heroHeadlineItalic: 'pharmaceutical holdings',
+    heroHeadlineAfter: '',
     heroHeadline: 'One of Uzbekistan’s Leading Pharma Holdings',
-    heroDescription: 'Distribution, promotion, and turnkey market entry. From manufacturer to patient.',
+    heroDescription:
+      'Direct GDP distribution, nationwide medical promotion, and a portfolio of pharmaceuticals from plants in China and India. From manufacturer to patient.',
     heroPrimaryBtn: 'Explore Portfolio',
     heroSecondaryBtn: 'Partner With Us',
     filterCardio: 'Cardiology',
@@ -761,15 +774,19 @@ export default function InsopharmHomepage({
               </motion.div>
             </div>
 
-            {/* Statement Display Headline (Curtain Mask Reveal) */}
+            {/* Statement Display Headline with Signature Synthon Italic Accent */}
             <div className="overflow-hidden">
               <motion.h1
                 initial={{ y: '38%', opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[clamp(2.25rem,4.4vw,3.9rem)] font-bold tracking-[-0.02em] text-white leading-[1.06] text-balance"
+                className="text-[clamp(2.35rem,4.6vw,4.1rem)] font-bold tracking-[-0.025em] text-white leading-[1.05] text-balance"
               >
-                {t.heroHeadline}
+                {t.heroHeadlineBefore}{' '}
+                <em className="font-serif italic font-normal text-teal-200 tracking-normal">
+                  {t.heroHeadlineItalic}
+                </em>
+                {t.heroHeadlineAfter ? ` ${t.heroHeadlineAfter}` : ''}
               </motion.h1>
             </div>
 
@@ -778,12 +795,12 @@ export default function InsopharmHomepage({
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-5 text-base sm:text-lg text-slate-200/90 font-normal leading-relaxed max-w-[48ch]"
+              className="mt-6 text-base sm:text-lg text-slate-200/90 font-normal leading-relaxed max-w-[50ch]"
             >
               {t.heroDescription}
             </motion.p>
 
-            {/* Actions: Primary Button + Animated Underline Link */}
+            {/* Actions: Primary Button + Minimalist Text Link with ArrowUpRight */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -792,12 +809,10 @@ export default function InsopharmHomepage({
             >
               <Link
                 href={`/portfolio?lang=${lang}`}
-                className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
+                className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
               >
                 <span>{t.heroPrimaryBtn}</span>
-                <span className="w-6 h-6 rounded-full bg-slate-950/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">
-                  <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
-                </span>
+                <ArrowUpRight className="w-4 h-4 text-slate-950 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
 
               <a
@@ -805,7 +820,7 @@ export default function InsopharmHomepage({
                 className="group relative inline-flex items-center gap-2 py-2 text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
               >
                 <span>{t.heroSecondaryBtn}</span>
-                <ArrowRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+                <ArrowUpRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
                   <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                 </span>
@@ -901,7 +916,7 @@ export default function InsopharmHomepage({
                       <span className="text-xs sm:text-sm font-semibold text-white/90 group-hover:text-white truncate">
                         {pillar.title}
                       </span>
-                      <ArrowRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-1 transition-all duration-300 shrink-0" />
+                      <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
                     </div>
                   </>
                 );
