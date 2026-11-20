@@ -29,10 +29,6 @@ import {
   Compass,
   Play,
   Pause,
-  ThermometerSnowflake,
-  Award,
-  Globe2,
-  Truck,
 } from 'lucide-react';
 import {
   PRODUCTS,
@@ -155,22 +151,8 @@ const UI_COPY = {
     partnerCardSubtitle:
       'Ваш надёжный партнёр в фармацевтической индустрии Центральной Азии с 2017 года',
     heroCertMhuz: 'Лицензия Минздрава РУз · Фармкомитет',
-    heroCertGdp: 'Стандарт GDP & WHO-GMP',
-    heroContractsCnIn: 'Прямые контракты: Китай & Индия',
-    heroLiveHubBadge: 'LIVE · GDP HUB TASHKENT',
-    heroHubClassA: 'КЛАСС А · EPAL',
-    heroHubAreaVal: '10 000 м²',
-    heroHubAreaDesc: 'Собственный GDP-складской комплекс в Ташкенте',
-    heroColdChainTitle: 'Холодовая цепь (+2…+8 °C)',
-    heroColdChainVal: '+3.8 °C',
-    heroColdChainStatus: 'Валидировано · Без разрывов цепи',
-    heroContractsTitle: 'Прямые контракты с заводами',
-    heroContractsVal: 'Китай 🇨🇳 · Индия 🇮🇳',
-    heroContractsStatus: 'Оригинальные партии EU / WHO GMP',
-    heroLogisticsTitle: 'Национальное покрытие',
-    heroLogisticsVal: '14 регионов РУз · 24–48 ч',
-    heroLogisticsStatus: 'Собственный рефрижераторный автопарк',
-    heroDashboardCta: 'Запросить условия дистрибуции и лицензии',
+    heroCertGdp: 'Стандарты GDP & WHO-GMP',
+    heroContractsCnIn: 'Прямой импорт: Китай 🇨🇳 и Индия 🇮🇳',
   },
   uz: {
     navAbout: 'Kompaniya haqida',
@@ -231,21 +213,7 @@ const UI_COPY = {
       '2017-yildan buyon Markaziy Osiyo farmatsevtika sanoatidagi ishonchli hamkoringiz',
     heroCertMhuz: 'OʻzR Sogʻliqni saqlash vazirligi litsenziyasi',
     heroCertGdp: 'GDP va WHO-GMP standartlari',
-    heroContractsCnIn: 'Toʻgʻridan-toʻgʻri shartnomalar: Xitoy & Hindiston',
-    heroLiveHubBadge: 'LIVE · TASHKENT GDP HUB',
-    heroHubClassA: 'A TOIFASI · EPAL',
-    heroHubAreaVal: '10 000 m²',
-    heroHubAreaDesc: 'Toshkentdagi xususiy GDP-ombor majmuasi',
-    heroColdChainTitle: 'Sovuq zanjir (+2…+8 °C)',
-    heroColdChainVal: '+3.8 °C',
-    heroColdChainStatus: 'Tasdiqlangan · Uzluksiz harorat nazorati',
-    heroContractsTitle: 'Zavodlar bilan toʻgʻridan-toʻgʻri shartnomalar',
-    heroContractsVal: 'Xitoy 🇨🇳 · Hindiston 🇮🇳',
-    heroContractsStatus: 'EU / WHO GMP original partiyalari',
-    heroLogisticsTitle: 'Respublika boʻylab qamrov',
-    heroLogisticsVal: '14 ta hudud · 24–48 soat',
-    heroLogisticsStatus: 'Xususiy refrijerator avtoparki',
-    heroDashboardCta: 'Distribyutsiya shartlari va litsenziyalarni soʻrash',
+    heroContractsCnIn: 'Toʻgʻridan-toʻgʻri import: Xitoy 🇨🇳 va Hindiston 🇮🇳',
   },
   en: {
     navAbout: 'About Us',
@@ -304,23 +272,9 @@ const UI_COPY = {
     emailLabel: 'Departmental Email Contacts',
     partnerCardSubtitle:
       'Your trusted pharmaceutical commercialization partner in Central Asia since 2017',
-    heroCertMhuz: 'Ministry of Health of Uzbekistan License',
+    heroCertMhuz: 'Ministry of Health License · Uzbekistan',
     heroCertGdp: 'GDP & WHO-GMP Compliant',
-    heroContractsCnIn: 'Direct Contracts: China & India',
-    heroLiveHubBadge: 'LIVE · TASHKENT GDP HUB',
-    heroHubClassA: 'CLASS A · EPAL',
-    heroHubAreaVal: '10,000 m²',
-    heroHubAreaDesc: 'Proprietary GDP warehouse complex in Tashkent',
-    heroColdChainTitle: 'Cold Chain (+2…+8 °C)',
-    heroColdChainVal: '+3.8 °C',
-    heroColdChainStatus: 'Validated · Continuous Temperature Log',
-    heroContractsTitle: 'Direct Manufacturer Contracts',
-    heroContractsVal: 'China 🇨🇳 · India 🇮🇳',
-    heroContractsStatus: 'Authentic EU / WHO GMP batches',
-    heroLogisticsTitle: 'National Distribution Coverage',
-    heroLogisticsVal: '14 Regions · 24–48 hrs',
-    heroLogisticsStatus: 'Temperature-controlled fleet',
-    heroDashboardCta: 'Request Distribution Kit & Licenses',
+    heroContractsCnIn: 'Direct Import: China 🇨🇳 & India 🇮🇳',
   },
 };
 
@@ -759,7 +713,7 @@ export default function InsopharmHomepage({
       <section
         id="top"
         ref={heroSectionRef}
-        className="relative min-h-[calc(100dvh-4.5rem)] flex flex-col justify-between overflow-hidden bg-[#04101E] text-white"
+        className="relative min-h-[calc(100dvh-4.5rem)] max-h-[920px] flex flex-col justify-between overflow-hidden bg-[#04101E] text-white"
       >
         {/* Full-Bleed Parallax Background Video + Refined Architectural Scrims */}
         <motion.div
@@ -778,266 +732,104 @@ export default function InsopharmHomepage({
             preload="metadata"
             className="w-full h-full object-cover object-center"
           />
-          {/* Subtle Architectural Scrims — optimized for dual column layout with live telemetry */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#04101E]/95 via-[#04101E]/80 to-[#04101E]/65" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/95 via-transparent to-[#04101E]/40" />
+          {/* Subtle Architectural Vignette — keeps Warehouse open, airy and bright on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#04101E]/88 via-[#04101E]/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/85 via-transparent to-[#04101E]/25" />
         </motion.div>
 
-        {/* Main Hero Foreground Content — Two Column High-Tech B2B Pharma Layout */}
+        {/* Main Hero Foreground Content — Minimalist Editorial Typography */}
         <motion.div
           style={{ y: heroTextY, opacity: heroTextOpacity }}
-          className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-12 flex-1 flex flex-col justify-center"
+          className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-28 pb-12 flex-1 flex flex-col justify-center"
         >
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
-            {/* Left Column: Mission Statement, Typography & Regulatory Trust Bar */}
-            <div className="lg:col-span-7 xl:col-span-7 space-y-6">
-              {/* Minimal Kicker with Expanding Accent Line */}
-              <div className="overflow-hidden">
-                <motion.div
-                  initial={{ y: '100%', opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-flex items-center gap-3 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-teal-300"
-                >
-                  <motion.span
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-8 h-[1.5px] bg-teal-400 origin-left inline-block"
-                  />
-                  <span>{t.sinceBadge}</span>
-                </motion.div>
-              </div>
-
-              {/* Statement Display Headline */}
-              <div className="overflow-hidden">
-                <motion.h1
-                  initial={{ y: '38%', opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[clamp(2.1rem,4.2vw,3.8rem)] font-bold tracking-[-0.02em] text-white leading-[1.08] text-balance"
-                >
-                  {t.heroHeadline}
-                </motion.h1>
-              </div>
-
-              {/* Single-Breath Sub-line */}
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="text-base sm:text-lg text-slate-200/90 font-normal leading-relaxed max-w-[54ch]"
-              >
-                {t.heroDescription}
-              </motion.p>
-
-              {/* Actions: Primary Button + Secondary Underline Link */}
+          <div className="max-w-[660px]">
+            {/* Minimal Kicker with Expanding Accent Line */}
+            <div className="overflow-hidden mb-5">
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-wrap items-center gap-5 sm:gap-7 pt-1"
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-3 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-teal-300"
               >
-                <Link
-                  href={`/portfolio?lang=${lang}`}
-                  className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
-                >
-                  <span>{t.heroPrimaryBtn}</span>
-                  <span className="w-6 h-6 rounded-full bg-slate-950/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
-                  </span>
-                </Link>
-
-                <a
-                  href="#contacts"
-                  className="group relative inline-flex items-center gap-2 py-2 text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
-                >
-                  <span>{t.heroSecondaryBtn}</span>
-                  <ArrowRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
-                  <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
-                    <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                  </span>
-                </a>
-              </motion.div>
-
-              {/* Regulatory Trust Badges Strip (Лицензия Минздрава РУз · GDP · Прямые контракты Китай и Индия) */}
-              <motion.div
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
-                className="pt-2 sm:pt-4 border-t border-white/12 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3"
-              >
-                {/* Badge 1: Лицензия Минздрава РУз (тестовый маркер сертификации) */}
-                <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.06] border border-teal-400/25 backdrop-blur-xs">
-                  <div className="w-7 h-7 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center shrink-0">
-                    <Award className="w-4 h-4" />
-                  </div>
-                  <div className="leading-tight overflow-hidden">
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-teal-300 font-[family-name:var(--font-mono)]">
-                      Минздрав РУз
-                    </div>
-                    <div className="text-xs font-bold text-white/95 truncate">
-                      {t.heroCertMhuz}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Badge 2: GDP & WHO-GMP */}
-                <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.06] border border-sky-400/25 backdrop-blur-xs">
-                  <div className="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0">
-                    <ShieldCheck className="w-4 h-4" />
-                  </div>
-                  <div className="leading-tight overflow-hidden">
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-sky-300 font-[family-name:var(--font-mono)]">
-                      Стандарт
-                    </div>
-                    <div className="text-xs font-bold text-white/95 truncate">
-                      {t.heroCertGdp}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Badge 3: Китай и Индия контракты */}
-                <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-xl bg-white/[0.06] border border-emerald-400/25 backdrop-blur-xs">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">
-                    <Globe2 className="w-4 h-4" />
-                  </div>
-                  <div className="leading-tight overflow-hidden">
-                    <div className="text-[10px] uppercase tracking-wider font-semibold text-emerald-300 font-[family-name:var(--font-mono)]">
-                      Импорт 🇨🇳 🇮🇳
-                    </div>
-                    <div className="text-xs font-bold text-white/95 truncate">
-                      {t.heroContractsCnIn}
-                    </div>
-                  </div>
-                </div>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-8 h-[1.5px] bg-teal-400 origin-left inline-block"
+                />
+                <span>{t.sinceBadge}</span>
               </motion.div>
             </div>
 
-            {/* Right Column: High-Tech B2B Operational Live Dashboard */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.94, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 xl:col-span-5"
+            {/* Statement Display Headline (Curtain Mask Reveal) */}
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: '38%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(2.25rem,4.4vw,3.9rem)] font-bold tracking-[-0.02em] text-white leading-[1.06] text-balance"
+              >
+                {t.heroHeadline}
+              </motion.h1>
+            </div>
+
+            {/* Single-Breath Sub-line */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-5 text-base sm:text-lg text-slate-200/90 font-normal leading-relaxed max-w-[48ch]"
             >
-              <div className="relative rounded-3xl bg-gradient-to-br from-[#07182E]/92 via-[#092240]/85 to-[#04101E]/95 border border-teal-500/30 p-5 sm:p-7 backdrop-blur-xl shadow-[0_24px_50px_-12px_rgba(0,0,0,0.65)] space-y-5 overflow-hidden">
-                {/* Decorative Subtle Ambient Glow */}
-                <div className="pointer-events-none absolute -right-16 -top-16 w-48 h-48 rounded-full bg-teal-500/15 blur-2xl" />
-                <div className="pointer-events-none absolute -left-16 -bottom-16 w-48 h-48 rounded-full bg-sky-500/15 blur-2xl" />
+              {t.heroDescription}
+            </motion.p>
 
-                {/* Header Row: Live Telemetry Pulse & Classification Chip */}
-                <div className="relative z-10 flex items-center justify-between gap-2 pb-4 border-b border-white/10">
-                  <div className="flex items-center gap-2.5">
-                    <span className="relative flex h-2.5 w-2.5">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-                    </span>
-                    <span className="font-[family-name:var(--font-mono)] text-[11px] font-bold tracking-wider uppercase text-emerald-300">
-                      {t.heroLiveHubBadge}
-                    </span>
-                  </div>
-                  <span className="px-2.5 py-1 rounded-md bg-white/10 font-[family-name:var(--font-mono)] text-[10px] font-bold tracking-wider text-slate-200 border border-white/10">
-                    {t.heroHubClassA}
-                  </span>
-                </div>
+            {/* Actions: Primary Button + Animated Underline Link */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 sm:mt-10 flex flex-wrap items-center gap-6 sm:gap-8"
+            >
+              <Link
+                href={`/portfolio?lang=${lang}`}
+                className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
+              >
+                <span>{t.heroPrimaryBtn}</span>
+                <span className="w-6 h-6 rounded-full bg-slate-950/10 flex items-center justify-center transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1">
+                  <ArrowRight className="w-3.5 h-3.5 text-slate-950" />
+                </span>
+              </Link>
 
-                {/* Main Facility Capacity */}
-                <div className="relative z-10 flex items-baseline justify-between gap-4">
-                  <div>
-                    <div className="text-[11px] font-semibold text-teal-300/90 uppercase tracking-wider">
-                      {lang === 'ru'
-                        ? 'Складской комплекс'
-                        : lang === 'uz'
-                        ? 'Ombor majmuasi'
-                        : 'Proprietary Complex'}
-                    </div>
-                    <div className="font-[family-name:var(--font-mono)] text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-none mt-1">
-                      {t.heroHubAreaVal}
-                    </div>
-                  </div>
-                  <div className="text-right max-w-[170px]">
-                    <div className="text-xs text-slate-300 leading-snug">
-                      {t.heroHubAreaDesc}
-                    </div>
-                  </div>
-                </div>
+              <a
+                href="#contacts"
+                className="group relative inline-flex items-center gap-2 py-2 text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
+              >
+                <span>{t.heroSecondaryBtn}</span>
+                <ArrowRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+                <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
+                  <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                </span>
+              </a>
+            </motion.div>
 
-                {/* 3 Telemetry Blocks: Cold Chain + Direct Import + Regional Logistics */}
-                <div className="relative z-10 space-y-2.5 pt-1">
-                  {/* Block 1: Validated Cold Chain */}
-                  <div className="p-3 sm:p-3.5 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-teal-400/40 transition-colors flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-xl bg-sky-500/20 text-sky-300 flex items-center justify-center shrink-0">
-                        <ThermometerSnowflake className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white leading-tight">
-                          {t.heroColdChainTitle}
-                        </div>
-                        <div className="text-[11px] text-slate-300 mt-0.5">
-                          {t.heroColdChainStatus}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="font-[family-name:var(--font-mono)] tabular-nums text-sm font-bold text-emerald-300 shrink-0">
-                      {t.heroColdChainVal}
-                    </div>
-                  </div>
-
-                  {/* Block 2: Direct Contracts with China and India */}
-                  <div className="p-3 sm:p-3.5 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-teal-400/40 transition-colors flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-xl bg-teal-500/20 text-teal-300 flex items-center justify-center shrink-0">
-                        <Globe2 className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white leading-tight">
-                          {t.heroContractsTitle}
-                        </div>
-                        <div className="text-[11px] text-slate-300 mt-0.5">
-                          {t.heroContractsStatus}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-xs font-bold text-teal-200 shrink-0 font-[family-name:var(--font-mono)]">
-                      {t.heroContractsVal}
-                    </div>
-                  </div>
-
-                  {/* Block 3: National Coverage */}
-                  <div className="p-3 sm:p-3.5 rounded-2xl bg-white/[0.05] border border-white/10 hover:border-teal-400/40 transition-colors flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-300 flex items-center justify-center shrink-0">
-                        <Truck className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <div className="text-xs font-bold text-white leading-tight">
-                          {t.heroLogisticsTitle}
-                        </div>
-                        <div className="text-[11px] text-slate-300 mt-0.5">
-                          {t.heroLogisticsStatus}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-xs font-bold text-slate-100 shrink-0 font-[family-name:var(--font-mono)]">
-                      24–48 ч
-                    </div>
-                  </div>
-                </div>
-
-                {/* Dashboard Bottom CTA to Contact/Distribution */}
-                <div className="relative z-10 pt-2">
-                  <a
-                    href="#contacts"
-                    onClick={() => setContactTopic('distribution')}
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-teal-500/20 hover:bg-teal-500 text-teal-200 hover:text-slate-950 border border-teal-400/40 text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs"
-                  >
-                    <Award className="w-4 h-4 shrink-0" />
-                    <span className="truncate">{t.heroDashboardCta}</span>
-                    <ArrowRight className="w-3.5 h-3.5 shrink-0" />
-                  </a>
-                </div>
+            {/* Editorial Regulatory & Direct Import Note (Clean single-line pharma credibility) */}
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 sm:mt-10 pt-5 border-t border-white/15 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-slate-300/80 font-medium"
+            >
+              <div className="inline-flex items-center gap-2">
+                <ShieldCheck className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+                <span>{t.heroCertMhuz}</span>
+              </div>
+              <span className="text-white/25 hidden sm:inline">•</span>
+              <div className="inline-flex items-center gap-1.5">
+                <span>{t.heroCertGdp}</span>
+              </div>
+              <span className="text-white/25 hidden sm:inline">•</span>
+              <div className="inline-flex items-center gap-1.5 text-slate-300">
+                <span>{t.heroContractsCnIn}</span>
               </div>
             </motion.div>
           </div>
