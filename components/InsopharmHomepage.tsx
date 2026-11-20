@@ -28,11 +28,11 @@ import {
   Users,
   TrendingUp,
   Compass,
+  FileText,
   Play,
   Pause,
   Globe,
-  Eye,
-  EyeOff,
+  ChevronUp,
 } from 'lucide-react';
 import {
   PRODUCTS,
@@ -44,7 +44,6 @@ import {
   Language,
 } from '@/lib/insopharm-data';
 import {
-  InsoOrbitalMark,
   MedicalAmbientBackground,
   AnimatedMetricValue,
 } from '@/components/InsoBrandGraphics';
@@ -99,6 +98,7 @@ function LanguageFlag({ code, size = 'md' }: { code: Language; size?: 'sm' | 'md
 
 const UI_COPY = {
   ru: {
+    navCatalogShort: 'Каталог',
     navAbout: 'О компании',
     navSubbrands: 'Субренды',
     navNews: 'Новости',
@@ -112,8 +112,8 @@ const UI_COPY = {
     menuClose: 'Закрыть',
     sinceBadge: 'КАЧЕСТВО · ДОВЕРИЕ · ДОСТУПНОСТЬ · С 2017 ГОДА',
     heroHeadlineBefore: 'Один из ведущих',
-    heroHeadlineItalic: 'фармацевтических холдингов',
-    heroHeadlineAfter: 'Узбекистана',
+    heroHeadlineItalic: 'фармацевтических',
+    heroHeadlineAfter: 'холдингов Узбекистана',
     heroHeadline: 'Один из ведущих фармхолдингов Узбекистана',
     heroDescription:
       'Прямая дистрибуция по стандартам GDP, национальная промоция и портфель препаратов от заводов Китая и Индии. От производителя — до пациента.',
@@ -164,6 +164,7 @@ const UI_COPY = {
     heroContractsCnIn: 'Прямой импорт: Китай 🇨🇳 и Индия 🇮🇳',
   },
   uz: {
+    navCatalogShort: 'Katalog',
     navAbout: 'Kompaniya haqida',
     navSubbrands: 'Sub-brendlar',
     navNews: 'Yangiliklar',
@@ -229,6 +230,7 @@ const UI_COPY = {
     heroContractsCnIn: 'Toʻgʻridan-toʻgʻri import: Xitoy 🇨🇳 va Hindiston 🇮🇳',
   },
   en: {
+    navCatalogShort: 'Catalog',
     navAbout: 'About Us',
     navSubbrands: 'Subbrands',
     navNews: 'News',
@@ -295,6 +297,121 @@ const UI_COPY = {
   },
 };
 
+// 6 Key Holding Sub-brands showcased in Hero Brand Strip
+const HERO_BRAND_ITEMS = [
+  { id: 'inom', displayName: 'INSO Inom' },
+  { id: 'hb', displayName: 'INSO Health Business' },
+  { id: 'lps', displayName: 'Life Pharm Systems' },
+  { id: 'greenwell', displayName: 'Greenwell' },
+  { id: 'nl', displayName: 'Neues Leben' },
+  { id: 'service', displayName: 'INSO Service' },
+] as const;
+
+// Verified Company Licenses & Regulatory Documents
+interface CompanyLicenseDoc {
+  id: string;
+  title: {
+    ru: string;
+    uz: string;
+    en: string;
+  };
+  authority: {
+    ru: string;
+    uz: string;
+    en: string;
+  };
+  details: {
+    ru: string;
+    uz: string;
+    en: string;
+  };
+  fileUrl?: string;
+  fileSize?: string;
+  statusLabel?: {
+    ru: string;
+    uz: string;
+    en: string;
+  };
+}
+
+const COMPANY_LICENSES: CompanyLicenseDoc[] = [
+  {
+    id: 'gdp-cert',
+    title: {
+      ru: 'Сертификат соответствия стандартам GDP',
+      uz: 'GDP standartlariga muvofiqlik sertifikati',
+      en: 'GDP Compliance Certificate',
+    },
+    authority: {
+      ru: 'Надлежащая дистрибьюторская практика · Фарминспекция',
+      uz: 'Tegishli distribyutorlik amaliyoti · Farminspeksiya',
+      en: 'Good Distribution Practice (GDP)',
+    },
+    details: {
+      ru: 'Фармацевтический складской комплекс 10 000 м² (г. Ташкент), валидированная холодовая цепь (+2…+8 °C и +15…+25 °C), сертифицированный спецтранспорт.',
+      uz: '10 000 m² farmatsevtika ombor majmuasi (Toshkent), tasdiqlangan sovuqlik zanjiri (+2…+8 °C va +15…+25 °C), maxsus refrijerator transporti.',
+      en: 'Pharmaceutical warehouse complex 10,000 m² (Tashkent), validated cold chain (+2…+8 °C & +15…+25 °C) and certified refrigerated transport.',
+    },
+    fileUrl: '/license/inso_gdp.pdf',
+    fileSize: 'PDF · 230 КБ',
+    statusLabel: {
+      ru: 'Действующий сертификат',
+      uz: 'Amaldagi sertifikat',
+      en: 'Active Certificate',
+    },
+  },
+  {
+    id: 'moh-license',
+    title: {
+      ru: 'Лицензия Минздрава РУз на фармацевтическую деятельность',
+      uz: 'OʻzR SSV farmatsevtik faoliyat litsenziyasi',
+      en: 'MoH Uzbekistan Pharmaceutical Activity License',
+    },
+    authority: {
+      ru: 'Министерство здравоохранения Республики Узбекистан · Фармкомитет',
+      uz: 'Oʻzbekiston Respublikasi Sogʻliqni saqlash vazirligi · Farmkomitet',
+      en: 'Ministry of Health of the Republic of Uzbekistan · Pharma Committee',
+    },
+    details: {
+      ru: 'Официальный допуск на оптовую реализацию, хранение и прямой импорт лекарственных средств и изделий медицинского назначения.',
+      uz: 'Dori vositalari va tibbiy buyumlarni ulgurji sotish, saqlash va toʻgʻridan-toʻgʻri import qilish uchun rasmiy ruxsatnoma.',
+      en: 'State authorization for wholesale distribution, storage and direct pharmaceutical import.',
+    },
+    fileUrl: '/license/inso_gdp.pdf',
+    fileSize: 'Госрегуляторика',
+    statusLabel: {
+      ru: 'Бессрочная лицензия',
+      uz: 'Muddatsiz litsenziya',
+      en: 'Permanent License',
+    },
+  },
+  {
+    id: 'gmp-partners',
+    title: {
+      ru: 'Сертификаты GMP & WHO-GMP заводов-производителей',
+      uz: 'Ishlab chiqaruvchi zavodlarning GMP & WHO-GMP sertifikatlari',
+      en: 'Manufacturer GMP & WHO-GMP Partner Certificates',
+    },
+    authority: {
+      ru: 'Прямые контракты с фармзаводами Китая 🇨🇳 и Индии 🇮🇳',
+      uz: 'Xitoy 🇨🇳 va Hindiston 🇮🇳 zavodlari bilan toʻgʻridan-toʻgʻri shartnomalar',
+      en: 'Direct factory supply contracts · China 🇨🇳 & India 🇮🇳',
+    },
+    details: {
+      ru: 'Официальные серии препаратов с подтверждённым контролем качества по международным стандартам ВОЗ (70+ наименований в каталоге).',
+      uz: 'JSST xalqaro standartlari boʻyicha tasdiqlangan sifat nazoratiga ega rasmiy dori partiyalari (katalogda 70+ mahsulot).',
+      en: 'Original batches manufactured under strict WHO-GMP compliance with verified quality control (70+ SKUs).',
+    },
+    fileUrl: '/portfolio?lang=ru',
+    fileSize: '70+ SKU',
+    statusLabel: {
+      ru: 'Стандарты ВОЗ',
+      uz: 'JSST standartlari',
+      en: 'WHO Standards',
+    },
+  },
+];
+
 export default function InsopharmHomepage({
   googleMapsApiKey = '',
 }: {
@@ -307,10 +424,38 @@ export default function InsopharmHomepage({
   const [openFaqId, setOpenFaqId] = useState<string>(FAQ_ITEMS[0].id);
   const [showBehavioralValues, setShowBehavioralValues] = useState<boolean>(false);
   const [showSubbrandsSection, setShowSubbrandsSection] = useState<boolean>(false);
-  const [showHeroSubbrands, setShowHeroSubbrands] = useState<boolean>(true);
+  const [activeBrandPopover, setActiveBrandPopover] = useState<string | null>(null);
+  const [mobileBrandsDrawerOpen, setMobileBrandsDrawerOpen] = useState<boolean>(false);
+  const [mobileAccordionBrand, setMobileAccordionBrand] = useState<string | null>('inom');
+  const [licensesModalOpen, setLicensesModalOpen] = useState<boolean>(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true);
   const heroSectionRef = useRef<HTMLElement | null>(null);
   const heroVideoRef = useRef<HTMLVideoElement | null>(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(true);
+
+  // Keyboard accessibility: Escape key closes active popovers, drawers and modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveBrandPopover(null);
+        setMobileBrandsDrawerOpen(false);
+        setLicensesModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const toggleHeroVideo = () => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      void video.play();
+      setIsVideoPlaying(true);
+    } else {
+      video.pause();
+      setIsVideoPlaying(false);
+    }
+  };
 
   // Smooth scroll-linked parallax transitions for Main Hero (Synthon-style depth)
   const { scrollYProgress: heroScrollProgress } = useScroll({
@@ -338,18 +483,6 @@ export default function InsopharmHomepage({
       setIsVideoPlaying(false);
     }
   }, []);
-
-  const toggleHeroVideo = () => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      void video.play();
-      setIsVideoPlaying(true);
-    } else {
-      video.pause();
-      setIsVideoPlaying(false);
-    }
-  };
 
   const handleSetLang = (nextLang: Language) => {
     setLang(nextLang);
@@ -463,28 +596,56 @@ export default function InsopharmHomepage({
          ===================================================================== */}
       <header className="sticky top-0 z-40 h-18 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-colors">
         <div className="max-w-[1280px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 lg:gap-6">
-          {/* Zone 1: Brand Lockup — Prominent "INSO" + Secondary "GROUP" */}
-          <a
+          {/* Zone 1: Two-line Brand Lockup (36x36px Round Mark + INSO Group) */}
+          <motion.a
             href="#top"
             onClick={() => setMobileMenuOpen(false)}
-            className="inline-flex items-center gap-2.5 sm:gap-3 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
+            aria-label="INSO Group"
+            whileHover="hover"
+            initial="idle"
+            className="group inline-flex items-center gap-[10px] shrink-0 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
           >
-            <InsoOrbitalMark size="md" />
-            <div className="flex flex-col leading-none">
-              <span className="text-xl sm:text-2xl font-extrabold tracking-[0.14em] text-[#0B3B60]">
+            {/* Round Mark (36 × 36 px) */}
+            <motion.div
+              variants={{
+                idle: { y: 0, rotate: 0, scale: 1 },
+                hover: { y: -0.5, rotate: [0, -2, 2, 0], scale: 1.05 },
+              }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="relative w-[36px] h-[36px] shrink-0 flex items-center justify-center"
+            >
+              <Image
+                src="/assets/photos/inso-mark.webp"
+                alt="INSO Mark"
+                width={36}
+                height={36}
+                priority
+                className="w-[36px] h-[36px] object-contain"
+              />
+            </motion.div>
+
+            {/* Two-line Text: INSO (26px) + GROUP (10px), aligned to common left edge */}
+            <div className="flex flex-col items-start gap-[2px] justify-center leading-none">
+              <span className="font-['Instrument_Sans',sans-serif] font-bold text-[24px] leading-none text-[#0B3B60] tracking-[0.02em] transition-colors group-hover:text-[#082B47]">
                 INSO
               </span>
-              <span className="mt-1 text-[9px] sm:text-[10px] font-bold tracking-[0.22em] text-[#0D9488] uppercase">
+              <span className="font-['Instrument_Sans',sans-serif] font-semibold text-[8px] leading-none text-[#0D9488] tracking-[0.18em] uppercase transition-colors group-hover:text-[#0F766E]">
                 GROUP
               </span>
             </div>
-          </a>
+          </motion.a>
 
-          {/* Zone 2: Main Menu on Header (Strictly: About Us, Subbrands, News, Career) */}
+          {/* Zone 2: Main Menu on Header */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-700"
+            className="hidden lg:flex items-center gap-8 text-[16px] font-semibold text-slate-700"
           >
+            <Link
+              href={`/portfolio?lang=${lang}`}
+              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+            >
+              {t.navCatalogShort}
+            </Link>
             <a
               href="#about"
               className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
@@ -583,7 +744,7 @@ export default function InsopharmHomepage({
             {/* Desktop Primary CTA */}
             <a
               href="#contacts"
-              className="hidden sm:inline-flex items-center gap-2 h-10 px-4 text-xs font-semibold text-white bg-[#0B3B60] hover:bg-[#082B47] rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-xs"
+              className="hidden sm:inline-flex items-center gap-2 h-10 px-4 text-[14px] font-semibold text-white bg-[#0B3B60] hover:bg-[#082B47] rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-xs"
             >
               <Phone className="w-3.5 h-3.5 text-teal-300" />
               <span>{t.ctaContact}</span>
@@ -750,375 +911,743 @@ export default function InsopharmHomepage({
             preload="metadata"
             className="w-full h-full object-cover object-center"
           />
-          {/* Subtle Architectural Vignette — keeps Warehouse open, airy and bright on the right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#04101E]/88 via-[#04101E]/45 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/85 via-transparent to-[#04101E]/25" />
+          {/* Subtle Architectural Vignette — dense dark on left for high typography readability, smooth fade to transparent on right so warehouse is open */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#04101E]/95 via-[#04101E]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/80 via-transparent to-[#04101E]/20" />
         </motion.div>
 
-        {/* Main Hero Foreground Content — Minimalist Editorial Typography + Collapsible 6 Subbrands Demo */}
+        {/* Main Hero Foreground Content — Minimalist Editorial Typography */}
         <motion.div
           style={{ y: heroTextY, opacity: heroTextOpacity }}
           className="relative z-10 max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-5 lg:py-6 flex-1 flex flex-col justify-center"
         >
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-10">
-            {/* Left Column: Primary Typography & CTAs (Clean, Breathable Editorial) */}
-            <div className={`transition-all duration-500 ${showHeroSubbrands ? 'max-w-[660px]' : 'max-w-[780px]'}`}>
-              {/* Minimal Kicker with Expanding Accent Line */}
-              <div className="overflow-hidden mb-2.5 sm:mb-3.5">
-                <motion.div
-                  initial={{ y: '100%', opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                  className="inline-flex items-center gap-3 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-teal-300"
-                >
-                  <motion.span
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-8 h-[1.5px] bg-teal-400 origin-left inline-block"
-                  />
-                  <span>{t.sinceBadge}</span>
-                </motion.div>
-              </div>
-
-              {/* Statement Display Headline with Signature Synthon Italic Accent */}
-              <div className="overflow-hidden">
-                <motion.h1
-                  initial={{ y: '38%', opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[clamp(2.05rem,3.5vw,3.6rem)] font-bold tracking-normal text-white leading-[1.08] text-balance"
-                >
-                  {t.heroHeadlineBefore}{' '}
-                  <em className="font-serif italic font-normal text-teal-200 tracking-normal">
-                    {t.heroHeadlineItalic}
-                  </em>
-                  {t.heroHeadlineAfter ? ` ${t.heroHeadlineAfter}` : ''}
-                </motion.h1>
-              </div>
-
-              {/* Single-Breath Sub-line */}
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-3 sm:mt-4 text-sm sm:text-base text-slate-200/90 font-normal leading-relaxed max-w-[52ch]"
-              >
-                {t.heroDescription}
-              </motion.p>
-
-              {/* Actions: Primary Button + Minimalist Text Link with ArrowUpRight */}
+          {/* Left Column: Primary Typography & CTAs (Clean, Breathable Editorial) */}
+          <div className="max-w-[720px] lg:max-w-[840px] xl:max-w-[880px]">
+            {/* Minimal Kicker with Expanding Accent Line */}
+            <div className="overflow-hidden mb-2.5 sm:mb-3.5">
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-5 sm:mt-6 flex flex-wrap items-center gap-5 sm:gap-7"
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-flex items-center gap-3 text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-teal-300"
               >
-                <Link
-                  href={`/portfolio?lang=${lang}`}
-                  className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
-                >
-                  <span>{t.heroPrimaryBtn}</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-950 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </Link>
-
-                <a
-                  href="#contacts"
-                  className="group relative inline-flex items-center gap-2 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
-                >
-                  <span>{t.heroSecondaryBtn}</span>
-                  <ArrowUpRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
-                    <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
-                  </span>
-                </a>
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-8 h-[1.5px] bg-teal-400 origin-left inline-block"
+                />
+                <span>{t.sinceBadge}</span>
               </motion.div>
             </div>
 
-            {/* Right Column: 6 Sub-brands Demo Module (Collapsible with One-Click Hide/Show) */}
-            <div className="hidden lg:block shrink-0">
-              <AnimatePresence mode="wait">
-                {showHeroSubbrands ? (
-                  <motion.div
-                    key="subbrands-card"
-                    initial={{ opacity: 0, x: 24, scale: 0.98 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: 24, scale: 0.98 }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-[410px] xl:w-[440px] rounded-3xl bg-[#04101E]/70 backdrop-blur-xl border border-white/15 p-4 sm:p-5 shadow-[0_24px_50px_-12px_rgba(0,0,0,0.6)]"
-                  >
-                    {/* Header: Title + Hide/Collapse Demo Button */}
-                    <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                      <div className="flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse" />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-teal-300">
-                          {lang === 'ru'
-                            ? '6 суббрендов холдинга'
-                            : lang === 'uz'
-                            ? '6 ta xolding sub-brendi'
-                            : '6 Holding Sub-brands'}
-                        </span>
-                        <span className="text-[9px] px-2 py-0.5 rounded-full bg-white/10 text-slate-300 font-[family-name:var(--font-mono)]">
-                          DEMO
-                        </span>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setShowHeroSubbrands(false)}
-                        className="group inline-flex items-center gap-1.5 px-2 py-1 rounded-lg hover:bg-white/10 text-[11px] text-slate-300 hover:text-white transition-colors cursor-pointer"
-                        title={lang === 'ru' ? 'Скрыть панель суббрендов (Демо)' : 'Hide subbrands panel (Demo)'}
-                      >
-                        <EyeOff className="w-3.5 h-3.5 text-slate-400 group-hover:text-teal-300 transition-colors" />
-                        <span>{lang === 'ru' ? 'Скрыть' : lang === 'uz' ? 'Yashirish' : 'Hide'}</span>
-                      </button>
-                    </div>
-
-                    {/* 6 Sub-brands Quick Grid */}
-                    <div className="grid grid-cols-2 gap-2 pt-3">
-                      {SUBBRANDS.map((sb) => {
-                        const directionLabel =
-                          sb.directionType === 'distribution'
-                            ? lang === 'ru'
-                              ? 'Дистрибуция'
-                              : 'Distribyutsiya'
-                            : sb.directionType === 'promotion'
-                            ? lang === 'ru'
-                              ? 'Медпромоция'
-                              : 'Targʻibot'
-                            : lang === 'ru'
-                            ? 'Сервисы'
-                            : 'Xizmatlar';
-
-                        return (
-                          <Link
-                            key={sb.id}
-                            href={`/portfolio?subbrand=${sb.id}&lang=${lang}`}
-                            className="group p-2.5 rounded-xl border border-white/8 bg-white/[0.03] hover:bg-white/[0.08] hover:border-teal-400/40 transition-all duration-200 block"
-                          >
-                            <div className="flex items-center justify-between">
-                              <span className="font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300">
-                                {sb.shortCode}
-                              </span>
-                              <span className="text-[9px] text-white/50 group-hover:text-teal-300 transition-colors font-medium">
-                                {sb.skuCountLabel[lang] || sb.skuCountLabel.ru}
-                              </span>
-                            </div>
-                            <div className="mt-1 font-semibold text-xs text-white/95 group-hover:text-teal-200 truncate transition-colors">
-                              {sb.name}
-                            </div>
-                            <div className="mt-0.5 text-[10px] text-slate-400 truncate">
-                              {directionLabel}
-                            </div>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </motion.div>
+            {/* Statement Display Headline with Signature Synthon Italic Accent (up to 64px on wide screens) */}
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: '38%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[clamp(2.1rem,4.2vw,64px)] font-bold tracking-normal text-white leading-[1.08] lg:leading-[1.06]"
+              >
+                <span className="block">{t.heroHeadlineBefore}</span>
+                <span className="block font-serif italic font-normal text-teal-200 tracking-normal">
+                  {t.heroHeadlineItalic}
+                </span>
+                {t.heroHeadlineAfter ? (
+                  <span className="block lg:whitespace-nowrap">
+                    {t.heroHeadlineAfter}
+                  </span>
                 ) : (
-                  <motion.button
-                    key="subbrands-pill"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: 20 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => setShowHeroSubbrands(true)}
-                    className="group inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-[#04101E]/80 backdrop-blur-md border border-white/20 hover:border-teal-400 text-xs font-semibold text-white shadow-xl transition-all cursor-pointer"
-                  >
-                    <span className="w-2 h-2 rounded-full bg-teal-400" />
-                    <span>
-                      {lang === 'ru'
-                        ? '6 суббрендов холдинга'
-                        : lang === 'uz'
-                        ? '6 ta xolding sub-brendi'
-                        : '6 Holding Sub-brands'}
-                    </span>
-                    <span className="text-teal-300 text-xs group-hover:translate-x-0.5 transition-transform">
-                      ➔
-                    </span>
-                  </motion.button>
+                  ''
                 )}
-              </AnimatePresence>
+              </motion.h1>
             </div>
+
+            {/* Single-Breath Sub-line (18px / 27px with elevated contrast) */}
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-3.5 sm:mt-4 text-sm sm:text-base lg:text-[18px] leading-relaxed lg:leading-[27px] text-white/95 sm:text-slate-100 font-normal max-w-[56ch]"
+            >
+              {t.heroDescription}
+            </motion.p>
+
+            {/* Actions: Primary Button + Minimalist Text Link with ArrowUpRight */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-5 sm:mt-6 flex flex-wrap items-center gap-5 sm:gap-7"
+            >
+              <Link
+                href={`/portfolio?lang=${lang}`}
+                className="group relative inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 text-xs sm:text-sm font-semibold text-slate-950 bg-white hover:bg-teal-300 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] whitespace-nowrap shadow-[0_14px_34px_-10px_rgba(255,255,255,0.28)]"
+              >
+                <span>{t.heroPrimaryBtn}</span>
+                <ArrowUpRight className="w-4 h-4 text-slate-950 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+
+              <a
+                href="#contacts"
+                className="group relative inline-flex items-center gap-2 py-2 text-xs sm:text-sm font-semibold text-white/90 hover:text-white transition-colors whitespace-nowrap"
+              >
+                <span>{t.heroSecondaryBtn}</span>
+                <ArrowUpRight className="w-4 h-4 text-teal-300 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <span className="absolute inset-x-0 bottom-0 h-px bg-white/30 overflow-hidden">
+                  <span className="block w-full h-full bg-teal-300 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                </span>
+              </a>
+            </motion.div>
+
+            {/* Secondary Quick Action: Company Licenses Link (mt-4 ~16px below buttons) */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.85, delay: 0.44, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-4"
+            >
+              <button
+                type="button"
+                onClick={() => setLicensesModalOpen(true)}
+                className="group inline-flex items-center gap-2 text-[14px] sm:text-[15px] font-medium text-slate-300/90 hover:text-white transition-colors cursor-pointer"
+              >
+                <FileText className="w-4 h-4 text-teal-300/90 group-hover:text-teal-300 transition-colors" />
+                <span className="group-hover:underline underline-offset-4 decoration-teal-400/60">
+                  {lang === 'ru'
+                    ? 'Лицензии компании →'
+                    : lang === 'uz'
+                    ? 'Kompaniya litsenziyalari →'
+                    : 'Company Licenses →'}
+                </span>
+              </button>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* Bottom Interactive Regulatory & Trust Bar (3 Verified Pillars + Video Control) */}
+        {/* Floating Compact Video Play/Pause Toggle in bottom-right corner above Brand Bar */}
+        <div className="absolute bottom-[58px] sm:bottom-[62px] right-4 sm:right-6 lg:right-8 z-20">
+          <button
+            type="button"
+            onClick={toggleHeroVideo}
+            aria-label={
+              isVideoPlaying
+                ? lang === 'ru'
+                  ? 'Приостановить фоновое видео'
+                  : lang === 'uz'
+                  ? 'Videoni toʻxtatish'
+                  : 'Pause background video'
+                : lang === 'ru'
+                ? 'Воспроизвести фоновое видео'
+                : lang === 'uz'
+                ? 'Videoni ijro etish'
+                : 'Play background video'
+            }
+            className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#04101E]/75 hover:bg-[#04101E]/90 backdrop-blur-md border border-white/20 hover:border-teal-400 text-xs text-white/85 hover:text-white transition-all duration-200 cursor-pointer shadow-lg"
+          >
+            <span className="w-5 h-5 rounded-full bg-white/10 group-hover:bg-teal-400/20 flex items-center justify-center transition-colors">
+              {isVideoPlaying ? (
+                <Pause className="w-2.5 h-2.5 text-teal-300" />
+              ) : (
+                <Play className="w-2.5 h-2.5 text-teal-300 ml-0.5" />
+              )}
+            </span>
+            <span className="text-[11px] font-[family-name:var(--font-mono)] uppercase tracking-wider text-slate-300 group-hover:text-teal-200 hidden sm:inline">
+              {isVideoPlaying
+                ? lang === 'ru'
+                  ? 'Пауза'
+                  : lang === 'uz'
+                  ? 'Toʻxtatish'
+                  : 'Pause'
+                : lang === 'ru'
+                ? 'Видео'
+                : lang === 'uz'
+                ? 'Ijro'
+                : 'Play'}
+            </span>
+          </button>
+        </div>
+
+        {/* Transparent Click-Catcher (closes popovers outside without dimming screen or interrupting video) */}
+        {activeBrandPopover && (
+          <div
+            className="fixed inset-0 z-30 pointer-events-auto"
+            onClick={() => setActiveBrandPopover(null)}
+          />
+        )}
+
+        {/* Bottom Brands Bar (Semi-transparent dark-navy pinned to bottom of Hero) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.85, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-          className="relative z-10 border-t border-white/15 bg-[#04101E]/55 backdrop-blur-md"
+          className="relative z-30 border-t border-white/15 bg-[#04101E]/75 backdrop-blur-md"
         >
-          <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between">
-            {/* 3 Interactive Pillars with Hover Accent Sweep */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/12 flex-1">
-              {/* Pillar 01: License from Ministry of Health */}
-              <a
-                href="#contacts"
-                className="group relative py-2.5 sm:py-3 px-3 sm:px-6 first:pl-0 hover:bg-white/[0.04] transition-colors block"
-              >
-                <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
-                    <ShieldCheck className="w-3.5 h-3.5 text-teal-300 shrink-0" />
-                    <span>
-                      {lang === 'ru'
-                        ? '01 · Госругуляторика'
-                        : lang === 'uz'
-                        ? '01 · Davlat regulyatorikasi'
-                        : '01 · Regulatory Affairs'}
-                    </span>
-                  </span>
-                  <span className="text-[10px] font-medium text-white/50 group-hover:text-teal-300 transition-colors">
-                    РУз
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Desktop View (>= 1024px): "Наши бренды" + 6 clickable names in one row */}
+            <div className="hidden lg:flex items-center justify-between py-3">
+              <div className="flex items-center gap-4 xl:gap-6 w-full min-w-0">
+                <div className="flex items-center gap-2 shrink-0 pr-4 border-r border-white/15">
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-300 font-[family-name:var(--font-mono)] whitespace-nowrap">
+                    {lang === 'ru'
+                      ? 'Наши бренды'
+                      : lang === 'uz'
+                      ? 'Bizning brendlar'
+                      : 'Our Brands'}
                   </span>
                 </div>
-                <div className="mt-1 flex items-center justify-between gap-2">
-                  <div className="truncate">
-                    <div className="text-xs sm:text-sm font-semibold text-white/95 group-hover:text-white truncate">
-                      {lang === 'ru'
-                        ? 'Лицензия Минздрава РУз · Фармкомитет'
-                        : lang === 'uz'
-                        ? 'OʻzR SSV litsenziyasi · Farmkomitet'
-                        : 'MoH License & Pharma Committee'}
-                    </div>
-                    <div className="text-[11px] text-slate-300/70 truncate">
-                      {lang === 'ru'
-                        ? 'Официальный фармимпортёр и дистрибьютор'
-                        : lang === 'uz'
-                        ? 'Rasmiy farm-importyor va distribyutor'
-                        : 'Licensed Importer & Distributor'}
-                    </div>
-                  </div>
-                  <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
-                </div>
-              </a>
 
-              {/* Pillar 02: Standards GDP & WHO-GMP */}
-              <a
-                href="#about"
-                className="group relative py-2.5 sm:py-3 px-3 sm:px-6 hover:bg-white/[0.04] transition-colors block"
-              >
-                <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-teal-300 shrink-0" />
-                    <span>
-                      {lang === 'ru'
-                        ? '02 · Качество & Логистика'
-                        : lang === 'uz'
-                        ? '02 · Sifat va Logistika'
-                        : '02 · Quality & Logistics'}
-                    </span>
-                  </span>
-                  <span className="text-[10px] font-medium text-white/50 group-hover:text-teal-300 transition-colors">
-                    10 000 м²
-                  </span>
-                </div>
-                <div className="mt-1 flex items-center justify-between gap-2">
-                  <div className="truncate">
-                    <div className="text-xs sm:text-sm font-semibold text-white/95 group-hover:text-white truncate">
-                      {lang === 'ru'
-                        ? 'Стандарты GDP & WHO-GMP'
-                        : lang === 'uz'
-                        ? 'GDP & WHO-GMP standartlari'
-                        : 'GDP & WHO-GMP Standards'}
-                    </div>
-                    <div className="text-[11px] text-slate-300/70 truncate">
-                      {lang === 'ru'
-                        ? 'Холодовая цепь (+2…+8 °C) и EPAL-склад'
-                        : lang === 'uz'
-                        ? 'Sovuqlik zanjiri (+2…+8 °C) va EPAL ombor'
-                        : 'Validated Cold Chain & EPAL Hub'}
-                    </div>
-                  </div>
-                  <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
-                </div>
-              </a>
+                {/* 6 Clickable Brand Names */}
+                <div className="flex items-center gap-1 xl:gap-2 flex-1 justify-between min-w-0">
+                  {HERO_BRAND_ITEMS.map((item, index) => {
+                    const isSelected = activeBrandPopover === item.id;
+                    const sb = SUBBRANDS.find((s) => s.id === item.id);
+                    if (!sb) return null;
 
-              {/* Pillar 03: Direct Import China & India */}
-              <Link
-                href={`/portfolio?lang=${lang}`}
-                className="group relative py-2.5 sm:py-3 px-3 sm:px-6 hover:bg-white/[0.04] transition-colors block"
-              >
-                <span className="absolute inset-x-0 top-0 h-[2px] bg-teal-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] origin-left" />
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
-                    <Globe className="w-3.5 h-3.5 text-teal-300 shrink-0" />
-                    <span>
-                      {lang === 'ru'
-                        ? '03 · Прямой импорт'
-                        : lang === 'uz'
-                        ? '03 · Toʻgʻridan-toʻgʻri import'
-                        : '03 · Direct Factory Supply'}
-                    </span>
-                  </span>
-                  <div className="flex items-center gap-1.5 text-xs">
-                    <span title="Китай">🇨🇳</span>
-                    <span title="Индия">🇮🇳</span>
-                    <span className="text-[10px] font-medium text-white/50 group-hover:text-teal-300 transition-colors">
-                      70+ SKU
-                    </span>
-                  </div>
+                    // Clamping popover to stay within viewport bounds:
+                    // First brand (inom) aligned left-0
+                    // Last brand (service) aligned right-0
+                    // Middle brands centered
+                    const alignmentClasses =
+                      index === 0
+                        ? 'left-0 origin-bottom-left'
+                        : index === HERO_BRAND_ITEMS.length - 1
+                        ? 'right-0 origin-bottom-right'
+                        : 'left-1/2 -translate-x-1/2 origin-bottom';
+
+                    return (
+                      <div key={item.id} className="relative">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveBrandPopover(isSelected ? null : item.id);
+                          }}
+                          className={`group relative py-1.5 px-2 xl:px-3 text-xs xl:text-sm font-semibold transition-all duration-200 cursor-pointer rounded-lg whitespace-nowrap ${
+                            isSelected
+                              ? 'text-white bg-white/[0.08]'
+                              : 'text-slate-300 hover:text-white hover:bg-white/[0.04]'
+                          }`}
+                        >
+                          <span>{item.displayName}</span>
+                          {/* Subtle teal underline for selected brand */}
+                          <span
+                            className={`absolute bottom-0 left-2 right-2 h-[2px] bg-teal-400 rounded-full transition-all duration-300 ${
+                              isSelected
+                                ? 'opacity-100 scale-x-100'
+                                : 'opacity-0 scale-x-0 group-hover:opacity-40 group-hover:scale-x-75'
+                            }`}
+                          />
+                        </button>
+
+                        {/* Compact Popover Card above the bar */}
+                        <AnimatePresence>
+                          {isSelected && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                              onClick={(e) => e.stopPropagation()}
+                              className={`absolute bottom-full mb-3 z-40 w-[320px] sm:w-[360px] max-w-[calc(100vw-2rem)] p-4 rounded-2xl bg-[#07182C]/95 backdrop-blur-xl border border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.65)] text-left ${alignmentClasses}`}
+                            >
+                              <div className="flex items-start justify-between gap-3 pb-2.5 border-b border-white/10">
+                                <div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                                      {sb.shortCode}
+                                    </span>
+                                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-teal-400/10 text-teal-200 border border-teal-400/20 font-medium">
+                                      {sb.badge[lang] || sb.badge.ru}
+                                    </span>
+                                  </div>
+                                  <h4 className="mt-1 text-sm font-bold text-white tracking-normal">
+                                    {item.displayName}
+                                  </h4>
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => setActiveBrandPopover(null)}
+                                  className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                                  aria-label={lang === 'ru' ? 'Закрыть' : 'Close'}
+                                >
+                                  <X className="w-4 h-4" />
+                                </button>
+                              </div>
+
+                              <p className="mt-2.5 text-xs text-slate-300 leading-relaxed line-clamp-3">
+                                {sb.description[lang] || sb.description.ru}
+                              </p>
+
+                              <div className="mt-3.5 pt-2.5 border-t border-white/10 flex items-center justify-between">
+                                <span className="text-[10px] text-slate-400 font-[family-name:var(--font-mono)]">
+                                  {sb.skuCountLabel[lang] || sb.skuCountLabel.ru}
+                                </span>
+                                <Link
+                                  href={`/portfolio?subbrand=${sb.id}&lang=${lang}`}
+                                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-300 hover:text-teal-200 transition-colors group/link"
+                                >
+                                  <span>
+                                    {lang === 'ru'
+                                      ? 'В портфель бренда'
+                                      : lang === 'uz'
+                                      ? 'Brend portfeli'
+                                      : 'Brand Portfolio'}
+                                  </span>
+                                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                                </Link>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
                 </div>
-                <div className="mt-1 flex items-center justify-between gap-2">
-                  <div className="truncate">
-                    <div className="text-xs sm:text-sm font-semibold text-white/95 group-hover:text-white truncate flex items-center gap-2">
-                      <span>
-                        {lang === 'ru'
-                          ? 'Прямые контракты: Китай и Индия'
-                          : lang === 'uz'
-                          ? 'Toʻgʻridan-toʻgʻri import: Xitoy va Hindiston'
-                          : 'Direct Import: China & India'}
-                      </span>
-                    </div>
-                    <div className="text-[11px] text-slate-300/70 truncate">
-                      {lang === 'ru'
-                        ? 'Оригинальные партии напрямую с заводов'
-                        : lang === 'uz'
-                        ? 'Zavodlardan toʻgʻridan-toʻgʻri partiyalar'
-                        : 'Original Batches Direct from Manufacturers'}
-                    </div>
-                  </div>
-                  <ArrowUpRight className="hidden md:block w-3.5 h-3.5 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
-                </div>
-              </Link>
+              </div>
             </div>
 
-            {/* Minimal Video Play/Pause Indicator */}
-            <div className="hidden sm:flex items-center pl-5 border-l border-white/12 py-2.5 sm:py-3">
+            {/* Mobile / Tablet Responsive Mode (< 1024px): Single Button */}
+            <div className="flex lg:hidden items-center justify-start py-2.5">
               <button
                 type="button"
-                onClick={toggleHeroVideo}
-                aria-label={
-                  isVideoPlaying
-                    ? lang === 'ru'
-                      ? 'Пауза фонового видео'
-                      : lang === 'uz'
-                      ? 'Fon videosini toʻxtatish'
-                      : 'Pause background video'
-                    : lang === 'ru'
-                    ? 'Воспроизвести фоновое видео'
-                    : lang === 'uz'
-                    ? 'Fon videosini ijro etish'
-                    : 'Play background video'
-                }
-                className="group inline-flex items-center gap-2.5 text-xs font-medium text-white/75 hover:text-white transition-colors cursor-pointer whitespace-nowrap"
+                onClick={() => setMobileBrandsDrawerOpen(true)}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-xs font-semibold text-white transition-colors cursor-pointer"
               >
-                <span className="w-7 h-7 rounded-full border border-white/25 group-hover:border-teal-300 flex items-center justify-center transition-colors">
-                  {isVideoPlaying ? (
-                    <Pause className="w-3 h-3 text-teal-300" />
-                  ) : (
-                    <Play className="w-3 h-3 text-teal-300 ml-0.5" />
-                  )}
+                <span className="w-2 h-2 rounded-full bg-teal-400" />
+                <span>
+                  {lang === 'ru'
+                    ? 'Бренды холдинга · 6'
+                    : lang === 'uz'
+                    ? 'Xolding brendlari · 6'
+                    : 'Holding Brands · 6'}
                 </span>
-                <span className="font-[family-name:var(--font-mono)] text-[11px] tracking-wider uppercase">
-                  {isVideoPlaying ? 'Warehouse 1' : 'Paused'}
-                </span>
+                <ChevronUp className="w-3.5 h-3.5 text-teal-300" />
               </button>
             </div>
           </div>
         </motion.div>
+      </section>
+
+      {/* Mobile / Tablet Brands Drawer (Bottom Sheet) */}
+      <AnimatePresence>
+        {mobileBrandsDrawerOpen && (
+          <>
+            {/* Dimmed backdrop for mobile bottom sheet */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileBrandsDrawerOpen(false)}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
+            />
+
+            {/* Slide-up Sheet */}
+            <motion.div
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-0 bottom-0 z-50 max-h-[85vh] flex flex-col rounded-t-3xl bg-[#07182C] border-t border-white/20 text-white shadow-2xl lg:hidden overflow-hidden"
+            >
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-4 sm:p-5 border-b border-white/10 shrink-0">
+                <div className="flex items-center gap-2.5">
+                  <span className="w-2 h-2 rounded-full bg-teal-400" />
+                  <h3 className="text-sm sm:text-base font-bold text-white">
+                    {lang === 'ru'
+                      ? 'Бренды холдинга INSO'
+                      : lang === 'uz'
+                      ? 'INSO xolding brendlari'
+                      : 'INSO Holding Brands'}
+                  </h3>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-teal-400/10 text-teal-300 border border-teal-400/20 font-[family-name:var(--font-mono)]">
+                    6
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setMobileBrandsDrawerOpen(false)}
+                  className="p-1.5 rounded-xl bg-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                  aria-label={lang === 'ru' ? 'Закрыть' : 'Close'}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Drawer Accordion Body */}
+              <div className="p-4 sm:p-5 overflow-y-auto divide-y divide-white/10">
+                {HERO_BRAND_ITEMS.map((item) => {
+                  const isExpanded = mobileAccordionBrand === item.id;
+                  const sb = SUBBRANDS.find((s) => s.id === item.id);
+                  if (!sb) return null;
+
+                  return (
+                    <div key={item.id} className="py-3 first:pt-0 last:pb-0">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileAccordionBrand(isExpanded ? null : item.id)
+                        }
+                        className="w-full flex items-center justify-between py-1 text-left cursor-pointer"
+                      >
+                        <div className="flex items-center gap-2.5">
+                          <span className="font-[family-name:var(--font-mono)] text-[11px] font-bold text-teal-300 w-14 shrink-0">
+                            {sb.shortCode}
+                          </span>
+                          <span
+                            className={`text-sm font-semibold transition-colors ${
+                              isExpanded ? 'text-teal-200' : 'text-white'
+                            }`}
+                          >
+                            {item.displayName}
+                          </span>
+                        </div>
+                        <ChevronDown
+                          className={`w-4 h-4 text-slate-400 transition-transform duration-200 shrink-0 ${
+                            isExpanded ? 'rotate-180 text-teal-300' : ''
+                          }`}
+                        />
+                      </button>
+
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                            className="overflow-hidden pt-2 pb-1 pl-3.5 border-l-2 border-teal-400/40 ml-2"
+                          >
+                            <div className="text-[11px] font-medium text-teal-300 mb-1">
+                              {sb.badge[lang] || sb.badge.ru}
+                            </div>
+                            <p className="text-xs text-slate-300/90 leading-relaxed">
+                              {sb.description[lang] || sb.description.ru}
+                            </p>
+                            <div className="mt-3">
+                              <Link
+                                href={`/portfolio?subbrand=${sb.id}&lang=${lang}`}
+                                onClick={() => setMobileBrandsDrawerOpen(false)}
+                                className="inline-flex items-center gap-1.5 text-xs font-semibold text-teal-300 hover:text-teal-200 transition-colors"
+                              >
+                                <span>
+                                  {lang === 'ru'
+                                    ? 'Смотреть продукцию бренда'
+                                    : lang === 'uz'
+                                    ? 'Brend mahsulotlarini koʻrish'
+                                    : 'View Brand Products'}
+                                </span>
+                                <ArrowUpRight className="w-3.5 h-3.5" />
+                              </Link>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* =====================================================================
+          2.4 COMPACT COMPANY LICENSES & CERTIFICATES MODAL DIALOG
+         ===================================================================== */}
+      <AnimatePresence>
+        {licensesModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+            {/* Dark translucent backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setLicensesModalOpen(false)}
+              className="fixed inset-0 bg-black/75 backdrop-blur-sm"
+            />
+
+            {/* Modal Dialog Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 16 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 16 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-xl rounded-3xl bg-[#07182C] border border-white/20 p-5 sm:p-7 text-white shadow-[0_24px_60px_-12px_rgba(0,0,0,0.85)] z-10 max-h-[90vh] flex flex-col overflow-hidden"
+            >
+              {/* Modal Header */}
+              <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10 shrink-0">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-teal-400/10 border border-teal-400/30 flex items-center justify-center shrink-0">
+                    <FileText className="w-5 h-5 text-teal-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-bold text-white tracking-normal">
+                      {lang === 'ru'
+                        ? 'Лицензии и сертификаты компании'
+                        : lang === 'uz'
+                        ? 'Kompaniyaning litsenziya va sertifikatlari'
+                        : 'Company Licenses & Certificates'}
+                    </h3>
+                    <p className="text-xs text-slate-300/80 mt-0.5">
+                      {lang === 'ru'
+                        ? 'Официальные государственные и международные разрешительные документы INSO Group'
+                        : lang === 'uz'
+                        ? 'INSO Group kompaniyasining rasmiy davlat va xalqaro ruxsatnomalari'
+                        : 'Official state and international regulatory credentials of INSO Group'}
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setLicensesModalOpen(false)}
+                  className="p-1.5 rounded-xl bg-white/10 text-slate-300 hover:text-white hover:bg-white/15 transition-colors cursor-pointer shrink-0"
+                  aria-label={lang === 'ru' ? 'Закрыть' : 'Close'}
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Documents List */}
+              <div className="py-4 space-y-3.5 overflow-y-auto divide-y divide-white/10">
+                {COMPANY_LICENSES.map((doc) => (
+                  <div
+                    key={doc.id}
+                    className="pt-3.5 first:pt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-teal-400/30 transition-all"
+                  >
+                    <div className="space-y-1 min-w-0 flex-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="font-semibold text-sm text-white">
+                          {doc.title[lang] || doc.title.ru}
+                        </span>
+                        {doc.fileSize && (
+                          <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-teal-400/10 text-teal-300 border border-teal-400/20 font-[family-name:var(--font-mono)]">
+                            {doc.fileSize}
+                          </span>
+                        )}
+                        {doc.statusLabel && (
+                          <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-white/10 text-slate-300">
+                            {doc.statusLabel[lang] || doc.statusLabel.ru}
+                          </span>
+                        )}
+                      </div>
+                      <div className="text-xs text-teal-200/90 font-medium">
+                        {doc.authority[lang] || doc.authority.ru}
+                      </div>
+                      <p className="text-[11px] sm:text-xs text-slate-300/80 leading-relaxed">
+                        {doc.details[lang] || doc.details.ru}
+                      </p>
+                    </div>
+
+                    <div className="shrink-0 sm:self-center">
+                      {doc.fileUrl ? (
+                        <a
+                          href={doc.fileUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl bg-teal-400/15 hover:bg-teal-400/25 border border-teal-400/30 text-xs font-semibold text-teal-200 hover:text-white transition-all whitespace-nowrap shadow-xs"
+                        >
+                          <span>
+                            {lang === 'ru'
+                              ? 'Открыть документ'
+                              : lang === 'uz'
+                              ? 'Hujjatni ochish'
+                              : 'Open Document'}
+                          </span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-teal-300" />
+                        </a>
+                      ) : (
+                        <a
+                          href="#contacts"
+                          onClick={() => setLicensesModalOpen(false)}
+                          className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-medium text-slate-200 hover:text-white transition-colors"
+                        >
+                          <span>
+                            {lang === 'ru'
+                              ? 'Запросить скан'
+                              : lang === 'uz'
+                              ? 'Nusxa soʻrash'
+                              : 'Request Copy'}
+                          </span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Modal Footer */}
+              <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-400 shrink-0">
+                <div className="flex items-center gap-1.5 text-[11px]">
+                  <ShieldCheck className="w-4 h-4 text-teal-300 shrink-0" />
+                  <span>
+                    {lang === 'ru'
+                      ? 'Оригиналы документов зарегистрированы в Минздраве РУз'
+                      : lang === 'uz'
+                      ? 'Hujjatlarning asl nusxalari OʻzR SSVda roʻyxatdan oʻtgan'
+                      : 'Original credentials registered with MoH Uzbekistan'}
+                  </span>
+                </div>
+                <a
+                  href="#contacts"
+                  onClick={() => setLicensesModalOpen(false)}
+                  className="text-teal-300 hover:text-teal-200 font-semibold inline-flex items-center gap-1 transition-colors"
+                >
+                  <span>
+                    {lang === 'ru'
+                      ? 'Запросить пакет документов'
+                      : lang === 'uz'
+                      ? 'Toʻliq paketni soʻrash'
+                      : 'Request Full Package'}
+                  </span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* =====================================================================
+          2.5 REGULATORY & TRUST CREDENTIALS BANNER (Licenses, Logistics & Direct Contracts)
+         ===================================================================== */}
+      <section
+        id="credentials"
+        className="relative z-10 bg-[#06182C] border-b border-white/10 text-white py-6 sm:py-8 scroll-mt-20"
+      >
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            {/* Pillar 01: License from Ministry of Health */}
+            <a
+              href="#contacts"
+              className="group relative pt-4 md:pt-0 md:px-6 first:pl-0 hover:bg-white/[0.03] rounded-2xl p-4 transition-all duration-300 block"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                  <ShieldCheck className="w-4 h-4 text-teal-300 shrink-0" />
+                  <span>
+                    {lang === 'ru'
+                      ? '01 · Госрегуляторика'
+                      : lang === 'uz'
+                      ? '01 · Davlat regulyatorikasi'
+                      : '01 · Regulatory Affairs'}
+                  </span>
+                </span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-500/10 text-teal-300 border border-teal-500/20">
+                  РУз
+                </span>
+              </div>
+              <div className="mt-2.5">
+                <div className="text-sm sm:text-base font-bold text-white group-hover:text-teal-200 transition-colors flex items-center justify-between gap-2">
+                  <span>
+                    {lang === 'ru'
+                      ? 'Лицензия Минздрава РУз · Фармкомитет'
+                      : lang === 'uz'
+                      ? 'OʻzR SSV litsenziyasi · Farmkomitet'
+                      : 'MoH License & Pharma Committee'}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                </div>
+                <p className="mt-1 text-xs text-slate-300/80 leading-relaxed">
+                  {lang === 'ru'
+                    ? 'Официальный фармимпортёр и дистрибьютор. Полный аудит фармдеятельности и регистрация ЛС.'
+                    : lang === 'uz'
+                    ? 'Rasmiy farm-importyor va distribyutor. Toʻliq farm-audit va dori vositalarini roʻyxatdan oʻtkazish.'
+                    : 'Officially licensed pharmaceutical importer and distributor in Uzbekistan.'}
+                </p>
+              </div>
+            </a>
+
+            {/* Pillar 02: Standards GDP & WHO-GMP */}
+            <a
+              href="#about"
+              className="group relative pt-4 md:pt-0 md:px-6 hover:bg-white/[0.03] rounded-2xl p-4 transition-all duration-300 block"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                  <CheckCircle2 className="w-4 h-4 text-teal-300 shrink-0" />
+                  <span>
+                    {lang === 'ru'
+                      ? '02 · Качество & Логистика'
+                      : lang === 'uz'
+                      ? '02 · Sifat va Logistika'
+                      : '02 · Quality & Logistics'}
+                  </span>
+                </span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-500/10 text-teal-300 border border-teal-500/20">
+                  10 000 м²
+                </span>
+              </div>
+              <div className="mt-2.5">
+                <div className="text-sm sm:text-base font-bold text-white group-hover:text-teal-200 transition-colors flex items-center justify-between gap-2">
+                  <span>
+                    {lang === 'ru'
+                      ? 'Стандарты GDP & WHO-GMP'
+                      : lang === 'uz'
+                      ? 'GDP & WHO-GMP standartlari'
+                      : 'GDP & WHO-GMP Standards'}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                </div>
+                <p className="mt-1 text-xs text-slate-300/80 leading-relaxed">
+                  {lang === 'ru'
+                    ? 'Холодовая цепь (+2…+8 °C), адресный EPAL-хаб в Ташкенте и валидированный спецтранспорт.'
+                    : lang === 'uz'
+                    ? 'Sovuqlik zanjiri (+2…+8 °C), Toshkentdagi EPAL xabi va sertifikatlangan maxsus transport.'
+                    : 'Validated cold chain (+2…+8 °C) with 10,000 m² EPAL warehouse in Tashkent.'}
+                </p>
+              </div>
+            </a>
+
+            {/* Pillar 03: Direct Import China & India */}
+            <Link
+              href={`/portfolio?lang=${lang}`}
+              className="group relative pt-4 md:pt-0 md:px-6 hover:bg-white/[0.03] rounded-2xl p-4 transition-all duration-300 block"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-mono)] text-[10px] font-bold text-teal-300 uppercase tracking-wider">
+                  <Globe className="w-4 h-4 text-teal-300 shrink-0" />
+                  <span>
+                    {lang === 'ru'
+                      ? '03 · Прямой импорт'
+                      : lang === 'uz'
+                      ? '03 · Toʻgʻridan-toʻgʻri import'
+                      : '03 · Direct Factory Supply'}
+                  </span>
+                </span>
+                <div className="flex items-center gap-1.5 text-xs">
+                  <span title="Китай">🇨🇳</span>
+                  <span title="Индия">🇮🇳</span>
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-teal-500/10 text-teal-300 border border-teal-500/20">
+                    70+ SKU
+                  </span>
+                </div>
+              </div>
+              <div className="mt-2.5">
+                <div className="text-sm sm:text-base font-bold text-white group-hover:text-teal-200 transition-colors flex items-center justify-between gap-2">
+                  <span>
+                    {lang === 'ru'
+                      ? 'Прямые контракты: Китай и Индия'
+                      : lang === 'uz'
+                      ? 'Toʻgʻridan-toʻgʻri import: Xitoy va Hindiston'
+                      : 'Direct Import: China & India'}
+                  </span>
+                  <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-teal-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
+                </div>
+                <p className="mt-1 text-xs text-slate-300/80 leading-relaxed">
+                  {lang === 'ru'
+                    ? 'Оригинальные партии напрямую с фармзаводов без посредников с подтверждённым контролем серий.'
+                    : lang === 'uz'
+                    ? 'Vositachilarsiz toʻgʻridan-toʻgʻri farmatsevtika zavodlaridan asl partiyalar.'
+                    : 'Direct supply contracts with certified pharmaceutical plants in China and India.'}
+                </p>
+              </div>
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* =====================================================================
@@ -2444,16 +2973,14 @@ export default function InsopharmHomepage({
               </div>
 
               <div className="rounded-2xl bg-gradient-to-br from-[#0B3B60] to-[#0B2545] text-white p-6 sm:p-7 space-y-4 shadow-[0_16px_36px_-12px_rgba(11,59,96,0.3)]">
-                <div className="flex items-center gap-3">
-                  <InsoOrbitalMark size="sm" />
-                  <div>
-                    <div className="text-sm font-extrabold tracking-[0.14em] text-white">
-                      INSO
-                    </div>
-                    <div className="text-[9px] font-bold tracking-[0.22em] text-teal-300 uppercase">
-                      GROUP
-                    </div>
-                  </div>
+                <div className="flex items-center">
+                  <Image
+                    src="/assets/photos/logo-white.webp"
+                    alt="INSO"
+                    width={96}
+                    height={40}
+                    className="h-10 w-auto object-contain mix-blend-screen"
+                  />
                 </div>
                 <h3 className="text-lg font-bold text-white leading-snug">
                   {t.faqCtaTitle}
@@ -2806,17 +3333,15 @@ export default function InsopharmHomepage({
               </div>
 
               <div className="bg-white rounded-2xl border border-slate-200/90 shadow-[0_12px_32px_-12px_rgba(15,23,42,0.06)] p-5 sm:p-6 flex items-center gap-4 sm:gap-5">
-                <InsoOrbitalMark size="lg" />
+                <Image
+                  src="/assets/photos/logo.webp"
+                  alt="INSO"
+                  width={120}
+                  height={56}
+                  className="h-12 sm:h-14 w-auto object-contain mix-blend-multiply shrink-0"
+                />
                 <div>
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="text-xl sm:text-2xl font-extrabold tracking-[0.14em] text-[#0B3B60]">
-                      INSO
-                    </span>
-                    <span className="text-[10px] sm:text-xs font-bold tracking-[0.22em] text-[#0D9488] uppercase">
-                      GROUP
-                    </span>
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                  <p className="text-xs sm:text-sm text-slate-600">
                     {t.partnerCardSubtitle}
                   </p>
                 </div>
@@ -2833,16 +3358,14 @@ export default function InsopharmHomepage({
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 pb-8 border-b border-slate-100">
             <div className="lg:col-span-2 space-y-3">
-              <div className="inline-flex items-center gap-3">
-                <InsoOrbitalMark size="sm" />
-                <div className="flex flex-col leading-none">
-                  <span className="text-xl font-extrabold tracking-[0.14em] text-[#0B3B60]">
-                    INSO
-                  </span>
-                  <span className="mt-1 text-[9px] font-bold tracking-[0.22em] text-[#0D9488] uppercase">
-                    GROUP
-                  </span>
-                </div>
+              <div className="inline-flex items-center">
+                <Image
+                  src="/assets/photos/logo.webp"
+                  alt="INSO"
+                  width={140}
+                  height={52}
+                  className="h-12 w-auto object-contain mix-blend-multiply"
+                />
               </div>
               <p className="text-xs sm:text-sm text-slate-500 max-w-sm leading-relaxed">
                 {lang === 'ru'

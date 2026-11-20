@@ -34,7 +34,6 @@ import {
   Language,
 } from '@/lib/insopharm-data';
 import {
-  InsoOrbitalMark,
   ProductPackageVisual,
   MedicalAmbientBackground,
 } from '@/components/InsoBrandGraphics';
@@ -391,16 +390,34 @@ export default function InsopharmPortfolioPage({
          ===================================================================== */}
       <header className="sticky top-0 z-40 h-18 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-colors">
         <div className="max-w-[1280px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 lg:gap-6">
+          {/* Zone 1: Two-line Brand Lockup (36x36px Round Mark + INSO Group) */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2.5 sm:gap-3 whitespace-nowrap shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
+            aria-label="INSO Group"
+            className="group inline-flex items-center gap-[10px] shrink-0 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
           >
-            <InsoOrbitalMark size="md" />
-            <div className="flex flex-col leading-none">
-              <span className="text-xl sm:text-2xl font-extrabold tracking-[0.14em] text-[#0B3B60]">
+            {/* Round Mark (36 × 36 px) */}
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="relative w-[36px] h-[36px] shrink-0 flex items-center justify-center"
+            >
+              <Image
+                src="/assets/photos/inso-mark.webp"
+                alt="INSO Mark"
+                width={36}
+                height={36}
+                priority
+                className="w-[36px] h-[36px] object-contain"
+              />
+            </motion.div>
+
+            {/* Two-line Text: INSO (26px) + GROUP (10px), aligned to common left edge */}
+            <div className="flex flex-col items-start gap-[2px] justify-center leading-none">
+              <span className="font-['Instrument_Sans',sans-serif] font-bold text-[26px] leading-none text-[#0B3B60] tracking-[0.02em] transition-colors group-hover:text-[#082B47]">
                 INSO
               </span>
-              <span className="mt-1 text-[9px] sm:text-[10px] font-bold tracking-[0.22em] text-[#0D9488] uppercase">
+              <span className="font-['Instrument_Sans',sans-serif] font-semibold text-[10px] leading-none text-[#0D9488] tracking-[0.18em] uppercase transition-colors group-hover:text-[#0F766E]">
                 GROUP
               </span>
             </div>
