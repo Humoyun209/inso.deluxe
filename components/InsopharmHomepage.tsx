@@ -978,49 +978,124 @@ export default function InsopharmHomepage({
       </section>
 
       {/* =====================================================================
-          3. ABOUT US (#about): CRISP LIGHT EDITORIAL HERITAGE + CLEAN METRICS
+          3. ABOUT US (#about): SYNTHON-INSPIRED EDITORIAL HERITAGE + CHRONOLOGY
          ===================================================================== */}
       <section
         id="about"
-        className="py-16 sm:py-20 lg:py-24 bg-white border-b border-slate-200/80"
+        className="py-20 sm:py-24 lg:py-28 bg-white border-b border-slate-200/80 overflow-hidden"
       >
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-14 sm:space-y-16">
-          {/* Part 1: Heritage Narrative + Clean 3-Step Timeline */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-16 sm:space-y-20">
+          {/* Part 1: Editorial Header — Synthon Typography & Clean Narrative */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-5 space-y-4"
             >
-              <div className="text-xs font-extrabold text-[#0D9488] uppercase tracking-wider">
-                {lang === 'ru'
-                  ? '01. О компании · История с 2017 года'
-                  : lang === 'uz'
-                  ? '01. Kompaniya haqida · 2017-yildan buyon'
-                  : '01. About Us · Heritage Since 2017'}
+              <div className="inline-flex items-center gap-3 text-xs font-semibold text-[#0D9488] uppercase tracking-[0.2em]">
+                <span className="w-6 h-[1.5px] bg-[#0D9488] inline-block" />
+                <span>
+                  {lang === 'ru'
+                    ? '01. О компании · История с 2017 года'
+                    : lang === 'uz'
+                    ? '01. Kompaniya haqida · 2017-yildan buyon'
+                    : '01. About Us · Heritage Since 2017'}
+                </span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.14] text-balance">
-                {lang === 'ru'
-                  ? 'С 2017 года строим надёжный мост между мировыми фармзаводами и пациентами'
-                  : lang === 'uz'
-                  ? '2017-yildan buyon jahon farmzavodlari va bemorlar oʻrtasida ishonchli koʻprik barpo etmoqdamiz'
-                  : 'Building a Reliable Bridge Between Global Pharma Plants and Patients Since 2017'}
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.12] text-balance">
+                {lang === 'ru' ? (
+                  <>
+                    От первого контракта до{' '}
+                    <em className="font-serif italic font-normal text-[#0D9488]">
+                      национального холдинга
+                    </em>
+                  </>
+                ) : lang === 'uz' ? (
+                  <>
+                    Ilk distribyutsiya shartnomasidan{' '}
+                    <em className="font-serif italic font-normal text-[#0D9488]">
+                      milliy farmxoldinggacha
+                    </em>
+                  </>
+                ) : (
+                  <>
+                    From First Contract to a{' '}
+                    <em className="font-serif italic font-normal text-[#0D9488]">
+                      Nationwide Pharma Holding
+                    </em>
+                  </>
+                )}
               </h2>
-
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                {lang === 'ru'
-                  ? 'Основанная в 2017 году в Ташкенте, компания INSO Group прошла путь от дистрибьютора лекарственных средств до многопрофильного холдинга из шести специализированных субрендов. Сегодня мы объединяем прямые контракты с заводами из 6 стран мира, собственный складской комплекс GDP и команды медицинской промоции.'
-                  : lang === 'uz'
-                  ? '2017-yilda Toshkentda tashkil etilgan INSO Group dori vositalari distribyutoridan oltita ixtisoslashgan sub-brendni birlashtirgan xoldingiga aylandi. Bugun biz 6 mamlakatdagi zavodlar bilan toʻgʻridan-toʻgʻri shartnomalar, xususiy GDP ombor majmuasi va tibbiy targʻibot jamoalarini birlashtiramiz.'
-                  : 'Founded in 2017 in Tashkent, INSO Group has grown from a pharmaceutical distributor into a multi-division holding uniting six specialized sub-brands across direct GMP supply, warehousing, and nationwide medical promotion.'}
-              </p>
             </motion.div>
 
-            {/* Clean Light 3-Milestone Strip */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4 items-stretch">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 flex flex-col justify-center space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed"
+            >
+              <p>
+                {lang === 'ru'
+                  ? 'Основанная в 2017 году в Ташкенте, компания INSO Group прошла путь от специализированного дистрибьютора до многопрофильного холдинга из шести специализированных субрендов. Сегодня мы объединяем прямые контракты с фармзаводами Китая, Индии и Европы, собственный GDP-складской комплекс 10 000 м² и разветвлённую сеть медицинской промоции.'
+                  : lang === 'uz'
+                  ? '2017-yilda Toshkentda tashkil etilgan INSO Group ixtisoslashgan distribyutordan oltita yoʻnalishli sub-brendni birlashtirgan xoldingga aylandi. Bugun biz Xitoy, Hindiston va Yevropa farmzavodlari bilan toʻgʻridan-toʻgʻri shartnomalar, 10 000 m² xususiy GDP ombor majmuasi va keng qamrovli tibbiy targʻibot tarmogʻini birlashtiramiz.'
+                  : 'Founded in 2017 in Tashkent, INSO Group has evolved from a pharmaceutical distributor into a multi-division holding uniting six specialized sub-brands. Today, we bridge direct GMP contracts from China, India, and Europe with a proprietary 10,000 m² GDP warehouse and nationwide promotion.'}
+              </p>
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-xs font-semibold text-slate-800">
+                <span className="inline-flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-[#0D9488]" />
+                  <span>
+                    {lang === 'ru'
+                      ? 'Лицензия Минздрава РУз'
+                      : lang === 'uz'
+                      ? 'OʻzR SSV litsenziyasi'
+                      : 'MoH License · Uzbekistan'}
+                  </span>
+                </span>
+                <span className="text-slate-300">•</span>
+                <span className="inline-flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-[#0D9488]" />
+                  <span>
+                    {lang === 'ru'
+                      ? 'Стандарты GDP & WHO-GMP'
+                      : lang === 'uz'
+                      ? 'GDP & WHO-GMP standartlari'
+                      : 'GDP & WHO-GMP Compliant'}
+                  </span>
+                </span>
+                <span className="text-slate-300">•</span>
+                <span className="inline-flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-[#0D9488]" />
+                  <span>
+                    {lang === 'ru'
+                      ? 'Ташкент, ул. Богишамол, 160'
+                      : lang === 'uz'
+                      ? 'Toshkent, Bogʻishamol koʻch., 160'
+                      : 'Tashkent, Bogishamol 160'}
+                  </span>
+                </span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Part 2: Interactive Synthon-Style 5-Stage Timeline (Scroll-Linked Linear Entrance) */}
+          <div className="relative pt-6 sm:pt-8">
+            {/* Horizontal Continuous Progress Line (Desktop) */}
+            <div className="hidden lg:block absolute top-[43px] left-0 right-0 h-[2px] bg-slate-100 overflow-hidden">
+              <motion.div
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full h-full bg-gradient-to-r from-[#0D9488] via-[#0B3B60] to-[#0D9488] origin-left"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-5">
               {[
                 {
                   year: '2017',
@@ -1032,39 +1107,83 @@ export default function InsopharmHomepage({
                       : 'Foundation',
                   title:
                     lang === 'ru'
-                      ? 'Старт работы в Узбекистане'
+                      ? 'Старт в Ташкенте'
                       : lang === 'uz'
-                      ? 'Oʻzbekistonda faoliyat boshlanishi'
-                      : 'Operations Launched in Tashkent',
+                      ? 'Toshkentda start'
+                      : 'Operations in Tashkent',
                   desc:
                     lang === 'ru'
-                      ? 'Запуск прямых поставок качественных препаратов и формирование первых региональных команд.'
+                      ? 'Регистрация компании, первые прямые контракты с производителями и запуск оптовой фармдистрибуции.'
                       : lang === 'uz'
-                      ? 'Sifatli dori vositalarini toʻgʻridan-toʻgʻri yetkazib berish va ilk hududiy jamoalarni shakllantirish.'
-                      : 'First direct GMP supply contracts and launch of regional pharmacy distribution.',
-                  featured: false,
+                      ? 'Kompaniya roʻyxatdan oʻtkazildi, zavodlar bilan ilk shartnomalar va ulgurji distribyutsiya yoʻlga qoʻyildi.'
+                      : 'Foundation in Tashkent, securing initial direct manufacturer contracts and launching wholesale supply.',
+                  status: 'past',
+                },
+                {
+                  year: '2021',
+                  tag:
+                    lang === 'ru'
+                      ? 'Охват'
+                      : lang === 'uz'
+                      ? 'Qamrov'
+                      : 'Nationwide Reach',
+                  title:
+                    lang === 'ru'
+                      ? '13 регионов Узбекистана'
+                      : lang === 'uz'
+                      ? '13 ta hududiy vakolatxona'
+                      : '13 Regional Offices',
+                  desc:
+                    lang === 'ru'
+                      ? 'Формирование собственной сети медицинских представителей во всех вилоятах страны и регулярные поставки в аптеки.'
+                      : lang === 'uz'
+                      ? 'Respublikaning barcha hududlarida tibbiy vakillar jamoalari va dorixonalar bilan tizimli taʼminot yoʻlga qoʻyildi.'
+                      : 'Proprietary field medical rep teams deployed across all 13 regions with direct pharmacy fulfillment.',
+                  status: 'past',
+                },
+                {
+                  year: '2024',
+                  tag:
+                    lang === 'ru'
+                      ? 'Инфраструктура'
+                      : lang === 'uz'
+                      ? 'Infratuzilma'
+                      : 'Infrastructure',
+                  title:
+                    lang === 'ru'
+                      ? 'GDP-комплекс 10 000 м²'
+                      : lang === 'uz'
+                      ? '10 000 m² GDP ombor'
+                      : '10,000 m² GDP Hub',
+                  desc:
+                    lang === 'ru'
+                      ? 'Запуск собственного логистического комплекса класса «А» с валидированной холодовой цепью (+2…+8 °C).'
+                      : lang === 'uz'
+                      ? '+2…+8 °C validatsiyalangan sovuqlik zanjiriga ega «A» toifali zamonaviy logistika xabi ishga tushirildi.'
+                      : 'Commissioning of a Class-A warehouse complex with continuous cold chain (+2…+8 °C) and high-bay storage.',
+                  status: 'past',
                 },
                 {
                   year: '2026',
                   tag:
                     lang === 'ru'
-                      ? 'Экосистема'
+                      ? 'Холдинг'
                       : lang === 'uz'
-                      ? 'Ekotizim'
+                      ? 'Xolding'
                       : 'Ecosystem',
                   title:
                     lang === 'ru'
-                      ? 'Холдинг из 6 субрендов'
+                      ? '6 специализированных суббрендов'
                       : lang === 'uz'
-                      ? '6 sub-brendli xolding'
-                      : '6-Subbrand Holding',
+                      ? '6 ta ixtisoslashgan sub-brend'
+                      : '6 Dedicated Sub-brands',
                   desc:
                     lang === 'ru'
-                      ? 'Три направления бизнеса: дистрибуция, промоция и сервисные услуги под ключ.'
+                      ? 'Полный цикл: дистрибуция, медпромоция, маркетинг и регистрация. Портфель 70+ SKU (Китай, Индия, ЕС).'
                       : lang === 'uz'
-                      ? 'Uchta biznes yoʻnalishi: distribyutsiya, targʻibot va tayyor servis xizmatlari.'
-                      : 'Full-cycle structure covering distribution, promotion, and turnkey regulatory services.',
-                  featured: true,
+                      ? 'Toʻliq sikl: distribyutsiya, medpromotsiya, marketing va registratsiya. 70+ SKU portfeli (Xitoy, Hindiston, YeI).'
+                      : 'Full-cycle holding: distribution, medical promotion, regulatory affairs. 70+ SKU portfolio from China, India, and EU.',
+                  status: 'current',
                 },
                 {
                   year: '2029',
@@ -1073,64 +1192,119 @@ export default function InsopharmHomepage({
                       ? 'Стратегия'
                       : lang === 'uz'
                       ? 'Strategiya'
-                      : 'Strategy',
+                      : 'Vision 2029',
                   title:
                     lang === 'ru'
-                      ? 'Международный масштаб'
+                      ? 'Экспансия в Центральную Азию'
                       : lang === 'uz'
-                      ? 'Xalqaro miqyos'
+                      ? 'Markaziy Osiyoga chiqish'
                       : 'Central Asia Expansion',
                   desc:
                     lang === 'ru'
-                      ? 'Открытие зарубежных представительств и выбор №1 для выхода фармпроизводителей в ЦА.'
+                      ? 'Партнёр первого выбора для мировых производителей при выводе препаратов на рынки стран Центральной Азии.'
                       : lang === 'uz'
-                      ? 'Xorijiy vakolatxonalar ochish va Markaziy Osiyo bozorlariga chiqishda 1-tanlov.'
-                      : 'Opening international offices as the partner of choice for Central Asian market entry.',
-                  featured: false,
+                      ? 'Jahon ishlab chiqaruvchilari Markaziy Osiyo bozorlariga chiqishda birinchi boʻlib tanlaydigan xalqaro hamkor.'
+                      : 'The partner of choice for global pharmaceutical manufacturers entering the Central Asian healthcare markets.',
+                  status: 'future',
                 },
-              ].map((milestone) => (
-                <div
-                  key={milestone.year}
-                  className={`p-5 rounded-2xl border flex flex-col justify-between transition-colors ${
-                    milestone.featured
-                      ? 'bg-[#F0FDFA]/70 border-[#0D9488]/35'
-                      : 'bg-[#F8FAFC] border-slate-200/80'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-baseline justify-between gap-2 pb-3 border-b border-slate-200/80">
-                      <span className="font-[family-name:var(--font-mono)] tabular-nums text-2xl font-extrabold text-[#0B3B60]">
-                        {milestone.year}
-                      </span>
-                      <span className="text-[11px] font-bold text-[#0D9488] uppercase tracking-wider">
+              ].map((milestone, idx) => {
+                const isCurrent = milestone.status === 'current';
+                const isFuture = milestone.status === 'future';
+
+                return (
+                  <motion.div
+                    key={milestone.year}
+                    initial={{ opacity: 0, y: 28 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: '-40px' }}
+                    transition={{
+                      duration: 0.65,
+                      delay: idx * 0.1,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                    className={`relative p-5 sm:p-6 rounded-2xl transition-all duration-300 flex flex-col justify-between ${
+                      isCurrent
+                        ? 'bg-slate-50/90 border-2 border-[#0D9488]/40 shadow-[0_12px_30px_-10px_rgba(13,148,136,0.12)]'
+                        : isFuture
+                        ? 'bg-white border border-dashed border-slate-300/90'
+                        : 'bg-white border border-slate-200/80 hover:border-slate-300 hover:shadow-xs'
+                    }`}
+                  >
+                    {/* Node Dot with Animated Pulse on Current */}
+                    <div className="flex items-center justify-between pb-3.5 border-b border-slate-100">
+                      <div className="flex items-center gap-2.5">
+                        <span
+                          className={`w-3 h-3 rounded-full flex items-center justify-center ${
+                            isCurrent
+                              ? 'bg-[#0D9488] ring-4 ring-[#0D9488]/20'
+                              : isFuture
+                              ? 'bg-slate-300 border-2 border-white'
+                              : 'bg-[#0B3B60]'
+                          }`}
+                        />
+                        <span className="font-[family-name:var(--font-mono)] tabular-nums text-xl sm:text-2xl font-extrabold text-[#0B3B60]">
+                          {milestone.year}
+                        </span>
+                      </div>
+                      <span
+                        className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider ${
+                          isCurrent
+                            ? 'text-[#0D9488] px-2 py-0.5 rounded-full bg-[#0D9488]/10'
+                            : 'text-slate-400'
+                        }`}
+                      >
                         {milestone.tag}
                       </span>
                     </div>
-                    <h3 className="mt-3.5 text-sm font-bold text-slate-900 leading-snug">
-                      {milestone.title}
-                    </h3>
-                    <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                      {milestone.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+
+                    <div className="mt-4 space-y-1.5 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                          {milestone.title}
+                        </h3>
+                        <p className="mt-1.5 text-xs text-slate-500 leading-relaxed">
+                          {milestone.desc}
+                        </p>
+                      </div>
+
+                      {isCurrent && (
+                        <div className="pt-3 mt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] font-semibold text-[#0D9488]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#0D9488] animate-pulse" />
+                          <span>
+                            {lang === 'ru'
+                              ? 'Текущий статус'
+                              : lang === 'uz'
+                              ? 'Hozirgi holat'
+                              : 'Current Status'}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Part 2: Lightweight 5-Column Hairline Typographic Metric Band */}
-          <div className="rounded-2xl border border-slate-200/90 bg-[#F8FAFC] grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-slate-200/80">
+          {/* Part 3: Scale in Numbers (Clean Open Typographic Band with Hairline Dividers) */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="py-8 sm:py-10 border-y border-slate-200/90 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-slate-200/80"
+          >
             {[
               {
-                target: 6,
-                suffix: '',
-                kicker: 'INSO Group',
+                target: 10000,
+                suffix: lang === 'ru' ? ' м²' : ' m²',
+                kicker: 'GDP +2…+8 °C',
                 label:
                   lang === 'ru'
-                    ? 'субрендов в структуре холдинга'
+                    ? 'Складской комплекс в Ташкенте'
                     : lang === 'uz'
-                    ? 'xolding tarkibidagi sub-brend'
-                    : 'specialized holding sub-brands',
+                    ? 'Toshkentdagi ombor majmuasi'
+                    : 'Class-A Warehouse in Tashkent',
               },
               {
                 target: 70,
@@ -1143,247 +1317,194 @@ export default function InsopharmHomepage({
                     : 'Rx · OTC · Supplements',
                 label:
                   lang === 'ru'
-                    ? 'препаратов и продуктов для здоровья'
+                    ? 'Препаратов в портфеле'
                     : lang === 'uz'
-                    ? 'preparat va salomatlik mahsuloti'
-                    : 'medicines and health products',
-              },
-              {
-                target: 25,
-                suffix: '+',
-                kicker: 'EU & WHO GMP',
-                label:
-                  lang === 'ru'
-                    ? 'производителей из 6 стран мира'
-                    : lang === 'uz'
-                    ? '6 mamlakatdan ishlab chiqaruvchi'
-                    : 'manufacturers from 6 countries',
-              },
-              {
-                target: 10000,
-                suffix: lang === 'ru' ? ' м²' : ' m²',
-                kicker: 'GDP +2…+8 °C',
-                label:
-                  lang === 'ru'
-                    ? 'склад по стандартам GDP'
-                    : lang === 'uz'
-                    ? 'GDP standartidagi ombor'
-                    : 'GDP-compliant warehouse',
+                    ? 'Portfeldagi preparatlar'
+                    : 'Medicines & Health Products',
               },
               {
                 target: 13,
                 suffix: '',
                 kicker:
                   lang === 'ru'
-                    ? 'Узбекистан и ЦА'
+                    ? 'Узбекистан'
                     : lang === 'uz'
-                    ? 'Oʻzbekiston va MO'
-                    : 'Uzbekistan & CA',
+                    ? 'Oʻzbekiston'
+                    : 'Uzbekistan',
                 label:
                   lang === 'ru'
-                    ? 'региональных офисов по стране'
+                    ? 'Регионов национального охвата'
                     : lang === 'uz'
-                    ? 'mamlakat boʻylab hududiy ofis'
-                    : 'regional representative offices',
+                    ? 'Milliy qamrovdagi hudud'
+                    : 'Regions of Nationwide Reach',
               },
-            ].map((stat) => (
-              <div key={stat.kicker} className="p-5 sm:p-6 flex flex-col justify-between">
-                <div className="text-[11px] font-bold text-[#0D9488] uppercase tracking-wider">
+              {
+                target: 6,
+                suffix: '',
+                kicker: 'China · India · EU',
+                label:
+                  lang === 'ru'
+                    ? 'Стран прямого импорта'
+                    : lang === 'uz'
+                    ? 'Toʻgʻridan-toʻgʻri import mamlakati'
+                    : 'Direct Import Countries',
+              },
+              {
+                target: 6,
+                suffix: '',
+                kicker: 'INSO Ecosystem',
+                label:
+                  lang === 'ru'
+                    ? 'Специализированных суббрендов'
+                    : lang === 'uz'
+                    ? 'Ixtisoslashgan sub-brend'
+                    : 'Specialized Sub-brands',
+              },
+            ].map((stat, sIdx) => (
+              <motion.div
+                key={stat.kicker}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{
+                  duration: 0.55,
+                  delay: sIdx * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="p-5 sm:p-6 flex flex-col justify-between first:pl-0 last:pr-0"
+              >
+                <div className="text-[11px] font-bold text-[#0D9488] uppercase tracking-wider font-[family-name:var(--font-mono)]">
                   {stat.kicker}
                 </div>
                 <div className="mt-3">
-                  <div className="font-[family-name:var(--font-mono)] tabular-nums text-2xl sm:text-3xl font-extrabold text-[#0B3B60] tracking-tight leading-none">
+                  <div className="font-[family-name:var(--font-mono)] tabular-nums text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#0B3B60] tracking-tight leading-none">
                     <AnimatedMetricValue target={stat.target} suffix={stat.suffix} />
                   </div>
-                  <p className="mt-2 text-xs text-slate-600 leading-snug">{stat.label}</p>
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 font-medium leading-snug">
+                    {stat.label}
+                  </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Part 2.5: Authentic GDP Logistics & Product Quality Showcase (Real Warehouse Photography) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          {/* Part 4: Editorial Split — Authentic Warehouse Infrastructure + Mission / Vision 2029 */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* Left: Authentic GDP Warehouse Photo Showcase */}
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative lg:col-span-7 min-h-[300px] sm:min-h-[360px] rounded-2xl overflow-hidden border border-slate-200/90 bg-slate-950"
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative lg:col-span-7 min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden border border-slate-200/90 bg-[#04101E] flex flex-col justify-between shadow-lg"
             >
               <Image
                 src="/assets/photos/gdp-pallet-amgv.jpg"
                 alt={
                   lang === 'ru'
-                    ? 'GDP-склад INSO Group 10 000 м² — паллетное хранение и высотная техника'
+                    ? 'GDP-склад INSO Group 10 000 м² — высотное паллетное хранение'
                     : lang === 'uz'
-                    ? 'INSO Group 10 000 m² GDP-ombori — palletli saqlash'
-                    : 'INSO Group 10,000 m² GDP warehouse — high-bay pallet logistics'
+                    ? 'INSO Group 10 000 m² GDP ombori — palletli saqlash'
+                    : 'INSO Group 10,000 m² GDP warehouse'
                 }
                 fill
                 sizes="(max-width: 1024px) 100vw, 58vw"
                 referrerPolicy="no-referrer"
                 className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/90 via-[#04101E]/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/95 via-[#04101E]/40 to-transparent" />
 
-              <div className="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#04101E]/75 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-teal-300">
+              <div className="relative z-10 p-5 sm:p-6 flex items-center justify-between gap-2">
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#04101E]/80 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-teal-300">
                   <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
-                  <span>GDP HUB · TASHKENT · 10 000 M²</span>
+                  <span>GDP LOGISTICS HUB · 10 000 M²</span>
                 </span>
-                <span className="hidden sm:inline-block px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] text-white/90">
+                <span className="hidden sm:inline-block px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] text-white/90">
                   EPAL · +15…+25 °C / +2…+8 °C
                 </span>
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-white">
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-300">
+              <div className="relative z-10 p-6 sm:p-8 text-white space-y-2">
+                <div className="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-300">
                   {lang === 'ru'
-                    ? 'Собственная инфраструктура · Ташкент'
+                    ? 'Собственная фармацевтическая инфраструктура'
                     : lang === 'uz'
-                    ? 'Xususiy infratuzilma · Toshkent'
-                    : 'Proprietary Infrastructure · Tashkent'}
+                    ? 'Xususiy farmatsevtika infratuzilmasi'
+                    : 'Proprietary Healthcare Infrastructure'}
                 </div>
-                <h3 className="mt-1.5 text-lg sm:text-2xl font-bold tracking-tight text-white leading-snug max-w-xl">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white leading-snug max-w-xl">
                   {lang === 'ru'
-                    ? 'Складской комплекс 10 000 м² по стандарту GDP: адресное хранение и контроль каждой серии'
+                    ? 'Складской комплекс 10 000 м² по стандарту GDP: адресное паллетное хранение и строгий партионный контроль'
                     : lang === 'uz'
-                    ? 'GDP standartidagi 10 000 m² ombor majmuasi: manzilli saqlash va har bir seriya nazorati'
-                    : '10,000 m² GDP Warehouse Hub: High-Bay Storage & Batch-Level Traceability'}
+                    ? 'GDP standartidagi 10 000 m² ombor: manzilli palletli saqlash va qatʼiy partiya nazorati'
+                    : '10,000 m² GDP Warehouse Hub: High-Bay Pallet Storage & Strict Batch Traceability'}
                 </h3>
               </div>
             </motion.div>
 
+            {/* Right: Integrated Mission & Vision 2029 Card */}
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative lg:col-span-5 min-h-[280px] sm:min-h-[360px] rounded-2xl overflow-hidden border border-slate-200/90 bg-slate-950 flex flex-col justify-between"
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.75, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 rounded-3xl bg-[#0B3B60] text-white p-7 sm:p-9 flex flex-col justify-between shadow-xl space-y-8"
             >
-              <Image
-                src="/assets/photos/greenwell-weightloss-box.jpg"
-                alt={
-                  lang === 'ru'
-                    ? 'Оригинальная заводская упаковка препаратов и нутрицевтиков Greenwell на складе INSO Group'
-                    : lang === 'uz'
-                    ? 'INSO Group omborida Greenwell original zavod qadoqlari'
-                    : 'Original factory master-carton packaging of Greenwell products at INSO Group warehouse'
-                }
-                fill
-                sizes="(max-width: 1024px) 100vw, 42vw"
-                referrerPolicy="no-referrer"
-                className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#04101E]/90 via-[#04101E]/30 to-[#04101E]/20" />
-
-              <div className="relative z-10 p-4 sm:p-5 flex items-center justify-between">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#04101E]/75 backdrop-blur-md border border-white/15 font-[family-name:var(--font-mono)] text-[11px] font-semibold text-emerald-300">
-                  <span>DIRECT SUPPLY · 100% ORIGINAL</span>
-                </span>
-              </div>
-
-              <div className="relative z-10 p-5 sm:p-7 text-white space-y-3">
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-300">
-                  {lang === 'ru'
-                    ? 'Прямые поставки с заводов'
-                    : lang === 'uz'
-                    ? 'Zavodlardan toʻgʻridan-toʻgʻri yetkazib berish'
-                    : 'Direct Factory Shipments'}
-                </div>
-                <h3 className="text-base sm:text-xl font-bold tracking-tight text-white leading-snug">
-                  {lang === 'ru'
-                    ? 'От заводской мастер-упаковки до аптечной полки — полная сохранность и прозрачность цепочки'
-                    : lang === 'uz'
-                    ? 'Zavod qadogʻidan dorixona peshtaxtasigacha — toʻliq xavfsizlik va shaffoflik'
-                    : 'From Factory Master Carton to Pharmacy Shelf — Unbroken Chain of Custody'}
-                </h3>
-                <Link
-                  href={`/portfolio?lang=${lang}`}
-                  className="inline-flex items-center gap-2 text-xs font-bold text-teal-300 hover:text-white transition-colors pt-1"
-                >
-                  <span>
-                    {lang === 'ru'
-                      ? 'Перейти в каталог препаратов (70+ SKU)'
-                      : lang === 'uz'
-                      ? 'Preparatlar katalogiga oʻtish (70+ SKU)'
-                      : 'Explore Product Portfolio (70+ SKUs)'}
-                  </span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Part 3: Asymmetric Mission (Light) vs Vision 2029 (Navy Focal) Split */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#F8FAFC] border border-slate-200/90 flex flex-col justify-between space-y-5">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-2 text-xs font-extrabold text-[#0D9488] tracking-wider uppercase">
+              {/* Mission */}
+              <div className="space-y-3.5">
+                <div className="inline-flex items-center gap-2 text-xs font-extrabold text-teal-300 tracking-wider uppercase">
                   <Compass className="w-4 h-4" />
                   <span>
                     {lang === 'ru'
-                      ? '02. Миссия · Зачем мы существуем'
+                      ? 'Миссия холдинга'
                       : lang === 'uz'
-                      ? '02. Missiya · Biz nima uchun mavjudmiz'
-                      : '02. Mission · Why We Exist'}
+                      ? 'Xolding missiyasi'
+                      : 'Corporate Mission'}
                   </span>
                 </div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-slate-900 leading-snug">
+                <h3 className="text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
                   {lang === 'ru'
-                    ? 'Открываем людям доступ к качественным лекарствам и продуктам для здоровья: выводим на рынок проверенные препараты и надёжно доводим их от производителя до пациента.'
+                    ? '«Открываем людям доступ к качественным лекарствам и продуктам для здоровья: надёжно доводим их от проверенного мирового производителя до пациента.»'
                     : lang === 'uz'
-                    ? 'Odamlarga sifatli dori vositalari va salomatlik mahsulotlariga yoʻl ochamiz: sinovdan oʻtgan preparatlarni bozorga olib chiqamiz va ularni ishlab chiqaruvchidan bemorgacha ishonchli yetkazamiz.'
-                    : 'We make quality medicines and health products accessible: we bring proven products to market and deliver them reliably from manufacturer to patient.'}
+                    ? '«Odamlarga sifatli dori vositalari va salomatlik mahsulotlariga yoʻl ochamiz: ularni jahon ishlab chiqaruvchisidan bemorgacha ishonchli yetkazamiz.»'
+                    : '“We expand access to quality medicines and health products: delivering them reliably from proven global manufacturers to the patient.”'}
                 </h3>
-              </div>
-              <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between text-xs text-slate-500">
-                <span>
+                <p className="text-xs sm:text-sm text-teal-200/90 font-medium">
                   {lang === 'ru'
                     ? 'Слоган: «От производителя — до пациента.»'
                     : lang === 'uz'
                     ? 'Shior: «Ishlab chiqaruvchidan — bemorgacha.»'
                     : 'Slogan: “From manufacturer to patient.”'}
-                </span>
-                <span className="font-[family-name:var(--font-mono)] text-[#0B3B60] font-bold">
-                  INSO Group
-                </span>
+                </p>
               </div>
-            </div>
 
-            <div className="p-6 sm:p-8 rounded-2xl bg-[#0B3B60] text-white flex flex-col justify-between space-y-5">
-              <div className="space-y-3">
+              {/* Hairline Divider */}
+              <div className="border-t border-white/15 pt-6 space-y-3.5">
                 <div className="inline-flex items-center gap-2 text-xs font-extrabold text-teal-300 tracking-wider uppercase">
                   <TrendingUp className="w-4 h-4" />
                   <span>
                     {lang === 'ru'
-                      ? '05. Видение 2029 · Стратегия 2026–2029'
+                      ? 'Видение 2029 · Стратегия'
                       : lang === 'uz'
-                      ? '05. Nigoh 2029 · Strategiya 2026–2029'
-                      : '05. Vision 2029 · Strategy 2026–2029'}
+                      ? 'Nigoh 2029 · Strategiya'
+                      : 'Vision 2029 · Strategic Horizon'}
                   </span>
                 </div>
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold tracking-tight text-white leading-snug">
+                <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
                   {lang === 'ru'
-                    ? 'К 2029 году — международный холдинг, который фармпроизводители выбирают первым для выхода на рынки Центральной Азии, и лучшее место работы в отрасли.'
+                    ? 'К 2029 году — международный холдинг, который фармпроизводители выбирают первым для выхода на рынки Центральной Азии.'
                     : lang === 'uz'
-                    ? '2029-yilga kelib — farmatsevtika ishlab chiqaruvchilari Markaziy Osiyo bozorlariga chiqishda birinchi boʻlib tanlaydigan xalqaro xolding va sohadagi eng yaxshi ish beruvchi.'
-                    : 'By 2029 — an international holding that pharmaceutical manufacturers choose first to enter Central Asian markets, and the best employer in the industry.'}
-                </h3>
+                    ? '2029-yilga kelib — farmatsevtika ishlab chiqaruvchilari Markaziy Osiyo bozorlariga chiqishda birinchi boʻlib tanlaydigan xalqaro xolding.'
+                    : 'By 2029 — an international holding chosen first by global pharma manufacturers to enter Central Asian markets.'}
+                </p>
+
+                <div className="pt-2 flex items-center justify-between text-xs text-teal-300/90 font-[family-name:var(--font-mono)]">
+                  <span>2017 Ташкент</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>2029 Центральная Азия</span>
+                </div>
               </div>
-              <div className="pt-4 border-t border-white/15 flex items-center justify-between text-xs text-slate-300">
-                <span>
-                  {lang === 'ru'
-                    ? 'Горизонт планирования: 3 года (2026–2029)'
-                    : lang === 'uz'
-                    ? 'Rejalashtirish ufqi: 3 yil (2026–2029)'
-                    : 'Strategic Horizon: 3 Years (2026–2029)'}
-                </span>
-                <span className="font-[family-name:var(--font-mono)] tabular-nums text-teal-300 font-bold">
-                  2017 → 2029
-                </span>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
