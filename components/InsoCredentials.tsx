@@ -42,7 +42,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
   return (
     <section id="credentials" aria-labelledby="credentials-title" className="scroll-mt-20 text-[#183f48]">
       <div className="mx-auto max-w-[1280px] px-4 pt-10 pb-7 sm:px-6 sm:pt-14 sm:pb-9 lg:px-8">
-        <h2 id="credentials-title" className="vision-reveal mb-6 text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+        <h2 id="credentials-title" className="vision-reveal mb-6 text-2xl sm:text-3xl lg:text-[38px] font-bold tracking-tight sm:mb-8">
           {heading[lang]}
         </h2>
         <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -52,9 +52,9 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
               <article key={href} className="vision-reveal flex flex-col items-start border-t border-[#c3d8d5] pt-4">
                 <div className="flex items-start gap-2.5">
                   <Icon aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#23756c]" />
-                  <h3 className="text-lg font-semibold leading-snug">{title}</h3>
+                  <h3 className="text-lg sm:text-[22px] font-semibold leading-snug">{title}</h3>
                 </div>
-                <p className="mt-2 mb-4 text-sm leading-relaxed text-slate-600">{description}</p>
+                <p className="mt-2 mb-4 text-[16px] sm:text-[17px] leading-relaxed text-slate-600">{description}</p>
                 <a href={href} className="inso-soft-link mt-auto inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold">
                   {action}<ArrowUpRight aria-hidden="true" className="size-4 shrink-0" />
                 </a>

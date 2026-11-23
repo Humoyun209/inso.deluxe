@@ -45,12 +45,12 @@ export default function InsoBusinessLines({ lang }: { lang: Language }) {
   return (
     <section id="subbrands" aria-labelledby="subbrands-heading" className="scroll-mt-18 text-[#183f48]">
       <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <h2 id="subbrands-heading" className="vision-reveal mb-6 text-3xl font-semibold tracking-tight sm:mb-8 sm:text-4xl">{copy.title}</h2>
+        <h2 id="subbrands-heading" className="vision-reveal mb-6 text-3xl font-semibold tracking-tight sm:mb-8 sm:text-[38px]">{copy.title}</h2>
         <ul className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
           {SUBBRANDS.map(brand => (
             <li key={brand.id} className="vision-reveal flex flex-col items-start border-t border-[#bfd5cd] pt-4">
-              <h3 className="text-xl font-semibold tracking-tight">{brand.name}</h3>
-              <p className="mb-4 mt-2 max-w-[42ch] text-sm leading-relaxed text-slate-600">{role[brand.id][lang]}</p>
+              <h3 className="text-xl sm:text-[22px] lg:text-[24px] font-semibold tracking-tight">{brand.name}</h3>
+              <p className="mb-4 mt-2 max-w-[42ch] text-[16px] sm:text-[17px] leading-relaxed text-slate-600">{role[brand.id][lang]}</p>
               <div className="mt-auto flex flex-wrap items-center gap-4 text-sm font-semibold text-[#235f57]">
                 {brand.id !== 'service' && (
                   <Link href={`/portfolio?subbrand=${brand.id}&lang=${lang}`} className="inline-flex items-center gap-1 py-1 underline-offset-4 hover:underline">

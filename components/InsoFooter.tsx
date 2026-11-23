@@ -23,20 +23,21 @@ export default function InsoFooter({ lang, onDocuments }: { lang: Language; onDo
           {features.map(card => (
             <Link key={card.href} href={card.href} className="footer-feature vision-reveal group">
               <Image src={card.photo} alt="" fill sizes="(min-width: 1280px) 400px, (min-width: 640px) 32vw, 94vw" className="object-cover" style={{objectPosition:card.position}} />
-              <span className="relative z-10 flex w-full items-end justify-between gap-3 px-4 py-3 text-base font-semibold lg:p-5 lg:text-xl">
+              <span className="relative z-10 flex w-full items-end justify-between gap-3 px-4 py-3 text-base font-semibold lg:p-5 lg:text-[22px]">
                 {card.title}<ArrowUpRight aria-hidden className="size-5 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
               </span>
             </Link>
           ))}
         </div>
         <div className="footer-links">
-          <a href="#top" aria-label={`INSO Group — ${t.top}`} className="group inline-flex w-fit items-center gap-2 self-start rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b6e6d3]">
-            <Image src="/assets/photos/inso-mark.webp" alt="" width={48} height={48}
-              className="size-12 brightness-0 invert motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105" />
-            <span className="flex flex-col gap-0.5 font-['Instrument_Sans',sans-serif] leading-none">
-              <span className="text-[28px] font-bold tracking-[0.02em] text-[#f3faf6]">INSO</span>
-              <span className="text-[9px] font-semibold tracking-[0.18em] text-[#b6e6d3]">GROUP</span>
-            </span>
+          <a href="#top" aria-label={`INSO Group — ${t.top}`} className="group inline-flex w-fit items-center self-start rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b6e6d3]">
+            <Image
+              src="/logos/INSO-Group_A_GROUP_horizontal_white.png"
+              alt="INSO Group"
+              width={140}
+              height={49}
+              className="h-10 sm:h-11 w-auto object-contain motion-safe:transition-transform motion-safe:duration-300 motion-safe:group-hover:scale-105"
+            />
           </a>
           <nav aria-label={t.company}><h2>{t.company}</h2><a href="#about">{t.history}</a><a href="#values">{t.values}</a><a href="#subbrands">{t.brands}</a></nav>
           <nav aria-label={t.partners}><h2>{t.partners}</h2><a href="#faq">{t.faq}</a><button type="button" onClick={onDocuments}>{t.docs}</button><a href="#contacts">{t.contacts}</a></nav>

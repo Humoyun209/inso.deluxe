@@ -35,10 +35,10 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
       <div className="mx-auto max-w-[1280px] px-4 pt-14 pb-12 sm:px-6 sm:py-20 lg:px-8">
         <div className="inso-vision-feature grid items-center md:grid-cols-[0.9fr_1.1fr]">
           <div className="vision-reveal inso-vision-intro">
-            <p className="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.16em] text-[#286e65]">
+            <p className="mb-4 flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.16em] text-[#286e65]">
               <span aria-hidden="true" className="h-px w-8 bg-teal-600" />{copy.label}
             </p>
-            <h2 id="vision-title" className="text-balance text-[clamp(1.85rem,3.2vw,3rem)] leading-[1.12] font-medium tracking-tight">
+            <h2 id="vision-title" className="text-balance text-3xl sm:text-4xl lg:text-[38px] leading-[1.12] font-medium tracking-tight">
               {copy.lead}{' '}<em className="font-serif font-normal text-[#286e65]">{copy.region}</em>{copy.end}
             </h2>
           </div>
@@ -46,12 +46,12 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
             sizes="(min-width: 1280px) 550px, (min-width: 768px) 45vw, 100vw"
             className="aspect-[3/2] w-full rounded-2xl object-cover" alt={copy.photoAlt} /></div>
         </div>
-        <h3 className="mt-10 mb-3 text-xl font-semibold sm:mt-14 sm:mb-4 sm:text-2xl">{copy.values}</h3>
+        <h3 className="mt-10 mb-3 text-xl font-semibold sm:mt-14 sm:mb-4 sm:text-[22px] lg:text-[24px]">{copy.values}</h3>
         <dl className="grid gap-x-14 md:grid-cols-2">
           {CORE_VALUES.map(value => (
             <div key={value.id} className="vision-reveal border-t border-[#c8dcd4] py-4 sm:py-5">
               <dt className="text-lg font-semibold tracking-tight text-[#0b3b60] sm:text-xl">{value.title[lang]}</dt>
-              <dd className="mt-1.5 max-w-[56ch] text-sm leading-relaxed text-slate-600 sm:text-base">{value.summary[lang]}</dd>
+              <dd className="mt-1.5 max-w-[56ch] text-[16px] sm:text-[17px] leading-relaxed text-slate-600">{value.summary[lang]}</dd>
             </div>
           ))}
         </dl>

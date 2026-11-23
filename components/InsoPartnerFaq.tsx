@@ -53,7 +53,7 @@ export default function InsoPartnerFaq({ lang, onRequest }: { lang: Language; on
       <div className="mx-auto max-w-[1280px] px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
         <div className="partner-library vision-reveal">
           <div>
-            <h2 id="partner-faq-title" className="text-4xl font-medium leading-[1.04] tracking-tight text-[#193f41] lg:text-5xl">
+            <h2 id="partner-faq-title" className="text-3xl sm:text-4xl lg:text-[38px] font-medium leading-[1.08] tracking-tight text-[#193f41]">
               {{ ru: 'Вопросы', uz: 'Hamkorlar', en: 'Partner' }[lang]}{' '}
               <em className="font-serif font-normal text-[#377b70]">{{ ru: 'партнёров', uz: 'savollari', en: 'questions' }[lang]}</em>
             </h2>

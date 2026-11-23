@@ -312,55 +312,35 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
       {/* =====================================================================
           1. STICKY HEADER (Main Menu: About Us · Subbrands · News · Career)
          ===================================================================== */}
-      <header className="inso-masthead sticky top-0 z-40 h-18 backdrop-blur-md">
-        <div className="max-w-[1280px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 lg:gap-6">
-          {/* Zone 1: Two-line Brand Lockup (36x36px Round Mark + INSO Group) */}
+      <header className="inso-masthead sticky top-0 z-40 h-18 sm:h-20 backdrop-blur-md">
+        <div className="max-w-[1360px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 lg:gap-8">
+          {/* Zone 1: Official Holding Brand Logo */}
           <motion.a
             href="#top"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="INSO Group"
-            whileHover="hover"
-            initial="idle"
-            className="group inline-flex items-center gap-[10px] shrink-0 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className="group inline-flex items-center shrink-0 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
           >
-            {/* Round Mark (36 × 36 px) */}
-            <motion.div
-              variants={{
-                idle: { y: 0, rotate: 0, scale: 1 },
-                hover: { y: -0.5, rotate: [0, -2, 2, 0], scale: 1.05 },
-              }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="relative w-[36px] h-[36px] shrink-0 flex items-center justify-center"
-            >
-              <Image
-                src="/assets/photos/inso-mark.webp"
-                alt="INSO Mark"
-                width={36}
-                height={36}
-                priority
-                className="w-[36px] h-[36px] object-contain"
-              />
-            </motion.div>
-
-            {/* Two-line Text: INSO (26px) + GROUP (10px), aligned to common left edge */}
-            <div className="flex flex-col items-start gap-[2px] justify-center leading-none">
-              <span className="font-['Instrument_Sans',sans-serif] font-bold text-[24px] leading-none text-[#0B3B60] tracking-[0.02em] transition-colors group-hover:text-[#082B47]">
-                INSO
-              </span>
-              <span className="font-['Instrument_Sans',sans-serif] font-semibold text-[8px] leading-none text-[#0D9488] tracking-[0.18em] uppercase transition-colors group-hover:text-[#0F766E]">
-                GROUP
-              </span>
-            </div>
+            <Image
+              src="/logos/INSO-Group_A_GROUP_horizontal_black.png"
+              alt="INSO Group"
+              width={160}
+              height={56}
+              priority
+              className="h-10 sm:h-12 md:h-[50px] w-auto object-contain"
+            />
           </motion.a>
 
           {/* Zone 2: Main Menu on Header */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-8 text-[16px] font-semibold text-slate-700"
+            className="hidden lg:flex items-center gap-7 xl:gap-8 text-[16px] font-semibold text-slate-800"
           >
             <Link
               href={`/portfolio?lang=${lang}`}
-              className="inso-nav-link whitespace-nowrap shrink-0"
+              className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navCatalogShort}
             </Link>
@@ -369,13 +349,13 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
             }}>
               <button ref={aboutButton} type="button" aria-expanded={aboutOpen} aria-controls="about-links"
                 onClick={() => setAboutOpen(open => !open)}
-                className="inso-nav-link inline-flex items-center gap-1.5 cursor-pointer">
+                className="inso-nav-link inline-flex items-center gap-1.5 cursor-pointer text-[16px]">
                 {t.navAbout}<ChevronDown aria-hidden="true" className={`size-3.5 transition-transform ${aboutOpen ? 'rotate-180' : ''}`} />
               </button>
-              <div id="about-links" inert={!aboutOpen} aria-hidden={!aboutOpen} data-open={aboutOpen} className="inso-nav-menu absolute top-full left-0 w-52 rounded-2xl border border-[#d7e5e2] bg-[#fcfefd] p-2 shadow-lg">
+              <div id="about-links" inert={!aboutOpen} aria-hidden={!aboutOpen} data-open={aboutOpen} className="inso-nav-menu absolute top-full left-0 w-60 rounded-2xl border border-[#d7e5e2] bg-[#fcfefd] p-2.5 shadow-lg">
                 {aboutLinks.map(link => (
                   <a key={link.href} href={link.href} onClick={() => setAboutOpen(false)}
-                    className="block rounded-xl px-3 py-2 text-sm transition-colors duration-300 hover:bg-[#eaf4f1] focus-visible:bg-[#eaf4f1]">
+                    className="block rounded-xl px-3 py-2 text-[15px] font-medium transition-colors duration-300 hover:bg-[#eaf4f1] focus-visible:bg-[#eaf4f1]">
                     {link.label}
                   </a>
                 ))}
@@ -383,13 +363,13 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
             </div>
             <a
               href="#faq"
-              className="inso-nav-link whitespace-nowrap shrink-0"
+              className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navFaq}
             </a>
             <a
               href={`/career?lang=${lang}`}
-              className="inso-nav-link whitespace-nowrap shrink-0"
+              className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navCareer}
             </a>
@@ -404,7 +384,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 onClick={() => setLangDropdownOpen((prev) => !prev)}
                 aria-expanded={langDropdownOpen}
                 aria-label="Select language"
-                className="inline-flex items-center gap-1.5 h-10 px-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-2 h-10 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 transition-all cursor-pointer shadow-2xs"
               >
                 <LanguageFlag code={lang} size="md" />
                 <ChevronDown
@@ -465,7 +445,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
             {/* Desktop Primary CTA */}
             <a
               href="#contacts"
-              className="inso-action hidden sm:inline-flex items-center gap-2 h-10 px-5 text-sm font-semibold rounded-full whitespace-nowrap shrink-0"
+              className="inso-action hidden sm:inline-flex items-center gap-2 h-10 sm:h-11 px-5 text-[15px] sm:text-[16px] font-semibold rounded-full whitespace-nowrap shrink-0"
             >
               <Phone className="w-3.5 h-3.5 text-teal-300" />
               <span>{t.ctaContact}</span>
@@ -478,7 +458,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
-              className="inso-action lg:hidden inline-flex items-center justify-center gap-2 h-10 px-4 rounded-full text-xs font-semibold cursor-pointer"
+              className="inso-action lg:hidden inline-flex items-center justify-center gap-2 h-10 px-3.5 rounded-full text-xs font-semibold cursor-pointer"
             >
               {mobileMenuOpen ? (
                 <>
@@ -504,7 +484,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="lg:hidden fixed inset-x-0 top-18 bottom-0 bg-slate-950/45 backdrop-blur-xs z-40"
+                className="lg:hidden fixed inset-x-0 top-18 sm:top-20 bottom-0 bg-slate-950/45 backdrop-blur-xs z-40"
                 onClick={() => setMobileMenuOpen(false)}
               />
 
@@ -513,7 +493,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -12 }}
                 transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:hidden fixed inset-x-0 top-18 z-50 bg-white border-b border-slate-200 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] max-h-[calc(100dvh-4.5rem)] overflow-y-auto"
+                className="lg:hidden fixed inset-x-0 top-18 sm:top-20 z-50 bg-white border-b border-slate-200 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] max-h-[calc(100dvh-5rem)] overflow-y-auto"
               >
                 <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 pb-6 space-y-4">
                   {/* Compact Flag Selector Row in Mobile Drawer */}
@@ -1061,7 +1041,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-[1.12] text-balance">
+              <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-slate-900 leading-[1.12] text-balance">
                 {lang === 'ru' ? (
                   <>
                     От первого контракта до{' '}
@@ -1225,9 +1205,9 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   >
                     <div className="inso-year">{milestone.year}</div>
                     <p className="mt-1 text-xs font-medium text-[#366c69]">{milestone.tag}</p>
-                    <h3 className="mt-2 text-base font-semibold leading-snug">{milestone.title}</h3>
+                    <h3 className="mt-2 text-lg sm:text-[22px] font-semibold leading-snug">{milestone.title}</h3>
                     {milestone.desc && (
-                      <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{milestone.desc}</p>
+                      <p className="mt-1.5 text-[16px] sm:text-[17px] leading-relaxed text-slate-600">{milestone.desc}</p>
                     )}
                   </div>
                 );

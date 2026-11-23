@@ -241,14 +241,14 @@ export default function InsoLocationMap({
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 sm:mb-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0D9488] uppercase tracking-wider mb-2">
+            <div className="inline-flex items-center gap-1.5 text-[12px] font-semibold text-[#0D9488] uppercase tracking-wider mb-2">
               <Navigation className="w-3.5 h-3.5" />
               <span>{copy.badge}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 text-balance">
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-slate-900 text-balance">
               {copy.title}
             </h2>
-            <p className="mt-2.5 text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="mt-2.5 text-[16px] sm:text-[17px] text-slate-600 leading-relaxed">
               {copy.subtitle}
             </p>
           </div>

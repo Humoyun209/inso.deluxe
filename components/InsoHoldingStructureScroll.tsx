@@ -765,7 +765,7 @@ export function InsoHoldingStructureScroll({
            ================================================================= */}
         <div className="pb-8 sm:pb-12 border-b border-slate-200/90">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B3B60]/6 border border-[#0B3B60]/15 text-[#0D9488] text-[11px] font-extrabold uppercase tracking-wider mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0B3B60]/6 border border-[#0B3B60]/15 text-[#0D9488] text-[12px] font-extrabold uppercase tracking-wider mb-3">
               <Layers className="w-3.5 h-3.5 text-[#0B3B60]" />
               <span>
                 {lang === 'ru'
@@ -776,7 +776,7 @@ export function InsoHoldingStructureScroll({
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 text-balance leading-[1.15]">
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-slate-900 text-balance leading-[1.15]">
               {lang === 'ru'
                 ? 'Экосистема субрендов INSO Group: от завода до пациента'
                 : lang === 'uz'
@@ -784,7 +784,7 @@ export function InsoHoldingStructureScroll({
                 : 'INSO Group Sub-Brand Ecosystem: From Factory to Patient'}
             </h2>
 
-            <p className="mt-3 text-sm sm:text-base text-slate-600 leading-relaxed">
+            <p className="mt-3 text-[16px] sm:text-[17px] text-slate-600 leading-relaxed">
               {lang === 'ru'
                 ? 'Каждый из шести субрендов отвечает за свой этап пути препарата и свои терапевтические ниши — без внутренней конкуренции и дублирования функций.'
                 : lang === 'uz'
@@ -1300,10 +1300,10 @@ export function InsoHoldingStructureScroll({
                             </div>
 
                             <div>
-                              <h3 className="text-2xl font-extrabold tracking-tight text-white leading-snug">
+                              <h3 className="text-xl sm:text-[22px] lg:text-[24px] font-extrabold tracking-tight text-white leading-snug">
                                 {chapter.title[lang]}
                               </h3>
-                              <p className="mt-2 text-sm text-slate-100/90 leading-relaxed">
+                              <p className="mt-2 text-[15px] sm:text-[16px] text-slate-100/90 leading-relaxed">
                                 {chapter.description[lang]}
                               </p>
                             </div>

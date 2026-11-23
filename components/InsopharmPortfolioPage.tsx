@@ -388,55 +388,38 @@ export default function InsopharmPortfolioPage({
       {/* =====================================================================
           1. STICKY HEADER (Consistent 4-Item Navigation + Language Switcher)
          ===================================================================== */}
-      <header className="sticky top-0 z-40 h-18 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-colors">
-        <div className="max-w-[1280px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 lg:gap-6">
-          {/* Zone 1: Two-line Brand Lockup (36x36px Round Mark + INSO Group) */}
+      <header className="sticky top-0 z-40 h-18 sm:h-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-colors">
+        <div className="max-w-[1360px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 lg:gap-8">
+          {/* Zone 1: Official Holding Brand Logo */}
           <Link
             href="/"
             aria-label="INSO Group"
-            className="group inline-flex items-center gap-[10px] shrink-0 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60]"
+            className="group inline-flex items-center shrink-0 select-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B3B60] transition-transform duration-200 hover:scale-[1.03]"
           >
-            {/* Round Mark (36 × 36 px) */}
-            <motion.div
-              whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
-              transition={{ duration: 0.35, ease: 'easeOut' }}
-              className="relative w-[36px] h-[36px] shrink-0 flex items-center justify-center"
-            >
-              <Image
-                src="/assets/photos/inso-mark.webp"
-                alt="INSO Mark"
-                width={36}
-                height={36}
-                priority
-                className="w-[36px] h-[36px] object-contain"
-              />
-            </motion.div>
-
-            {/* Two-line Text: INSO (26px) + GROUP (10px), aligned to common left edge */}
-            <div className="flex flex-col items-start gap-[2px] justify-center leading-none">
-              <span className="font-['Instrument_Sans',sans-serif] font-bold text-[26px] leading-none text-[#0B3B60] tracking-[0.02em] transition-colors group-hover:text-[#082B47]">
-                INSO
-              </span>
-              <span className="font-['Instrument_Sans',sans-serif] font-semibold text-[10px] leading-none text-[#0D9488] tracking-[0.18em] uppercase transition-colors group-hover:text-[#0F766E]">
-                GROUP
-              </span>
-            </div>
+            <Image
+              src="/logos/INSO-Group_A_GROUP_horizontal_black.png"
+              alt="INSO Group"
+              width={160}
+              height={56}
+              priority
+              className="h-10 sm:h-12 md:h-[50px] w-auto object-contain"
+            />
           </Link>
 
           {/* Desktop 4 Core Navigation Links */}
           <nav
             aria-label="Primary Navigation"
-            className="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-700"
+            className="hidden lg:flex items-center gap-7 xl:gap-8 text-[16px] font-semibold text-slate-800"
           >
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setCatalogDropdownOpen((prev) => !prev)}
-                className="inline-flex items-center gap-1.5 py-1 text-[#0B3B60] font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                className="inline-flex items-center gap-1.5 py-1 text-[#0B3B60] font-bold transition-colors whitespace-nowrap shrink-0 cursor-pointer text-[16px]"
               >
                 <span>{t.navCatalog}</span>
                 <ChevronDown
-                  className={`w-4 h-4 text-[#0D9488] transition-transform duration-150 ${
+                  className={`w-3.5 h-3.5 text-[#0D9488] transition-transform duration-150 ${
                     catalogDropdownOpen ? 'rotate-180' : ''
                   }`}
                 />
@@ -458,7 +441,7 @@ export default function InsopharmPortfolioPage({
                           setCurrentPage(1);
                           setCatalogDropdownOpen(false);
                         }}
-                        className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center justify-between whitespace-nowrap cursor-pointer ${
+                        className={`w-full text-left px-3.5 py-2.5 rounded-lg text-sm font-medium transition-colors flex items-center justify-between whitespace-nowrap cursor-pointer ${
                           selectedCategory === cat.id
                             ? 'bg-slate-100 text-[#0B3B60] font-semibold'
                             : 'text-slate-700 hover:bg-slate-50 hover:text-[#0B3B60]'
@@ -475,39 +458,39 @@ export default function InsopharmPortfolioPage({
 
             <Link
               href="/#about"
-              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navAbout}
             </Link>
             <Link
               href="/#subbrands"
-              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navSubbrands}
             </Link>
             <Link
               href={`/?lang=${lang}#faq`}
-              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
             >
               FAQ
             </Link>
             <Link
               href={`/career?lang=${lang}`}
-              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
+              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navCareer}
             </Link>
           </nav>
 
           {/* Language Switcher + CTA + Mobile Menu */}
-          <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setLangDropdownOpen((prev) => !prev)}
                 aria-expanded={langDropdownOpen}
                 aria-label="Select language"
-                className="inline-flex items-center gap-1.5 h-10 px-2.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-2 h-10 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 transition-all cursor-pointer shadow-2xs"
               >
                 <LanguageFlag code={lang} size="md" />
                 <ChevronDown
@@ -567,7 +550,7 @@ export default function InsopharmPortfolioPage({
 
             <Link
               href="/#contacts"
-              className="hidden sm:inline-flex items-center gap-2 h-10 px-4 text-xs font-semibold text-white bg-[#0B3B60] hover:bg-[#082B47] rounded-xl transition-colors whitespace-nowrap shrink-0 shadow-xs"
+              className="hidden sm:inline-flex items-center gap-2 h-10 sm:h-11 px-5 text-[15px] sm:text-[16px] font-semibold text-white bg-[#0B3B60] hover:bg-[#082B47] rounded-full transition-colors whitespace-nowrap shrink-0 shadow-xs"
             >
               <Phone className="w-3.5 h-3.5 text-teal-300" />
               <span>{t.ctaContact}</span>
@@ -1599,7 +1582,7 @@ export default function InsopharmPortfolioPage({
                     <span>·</span>
                     <span>{activeProduct.standard}</span>
                   </div>
-                  <h3 className="mt-1 text-xl sm:text-2xl font-extrabold text-slate-900">
+                  <h3 className="mt-1 text-xl sm:text-[22px] lg:text-[24px] font-extrabold text-slate-900">
                     {activeProduct.name[lang]}
                   </h3>
                   <p className="text-xs sm:text-sm font-medium text-slate-500 mt-0.5">

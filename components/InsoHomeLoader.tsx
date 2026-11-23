@@ -62,8 +62,14 @@ export default function InsoHomeLoader({ lang }: { lang: Language }) {
   return (
     <div ref={overlay} className="inso-loader" data-phase={phase} role="status">
       <div className="inso-loader-lockup" aria-hidden="true">
-        <Image src="/assets/photos/inso-mark.webp" alt="" width={60} height={60} priority />
-        <span>INSO<small>GROUP</small></span>
+        <Image
+          src="/logos/INSO-Group_A_GROUP_horizontal_black.png"
+          alt="INSO Group"
+          width={180}
+          height={64}
+          priority
+          className="h-14 sm:h-16 w-auto object-contain"
+        />
       </div>
       <div className="inso-loader-rail" aria-hidden="true" />
       <span className="inso-loader-label">{loading[lang]}</span>

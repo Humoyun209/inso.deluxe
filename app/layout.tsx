@@ -16,6 +16,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: '/logos/INSO-Group_A_GROUP_vertical_black.png',
+    shortcut: '/logos/INSO-Group_A_GROUP_vertical_black.png',
+    apple: '/logos/INSO-Group_A_GROUP_vertical_black.png',
+  },
   title: 'INSO Group — фармацевтический холдинг Узбекистана',
   description:
     'Дистрибуция, промоция и сервисные услуги для производителей лекарств и продуктов для здоровья. INSO Group — от производителя до пациента.',

@@ -15,10 +15,29 @@ export default function InsoCareers({ lang }: { lang: Language }) {
 
   return (
     <>
-      <header className="inso-masthead flex items-center justify-between gap-5 px-4 py-5 sm:px-8">
-        <Link href={`/?lang=${lang}`} className="font-semibold text-teal-900">← INSO Group</Link>
-        <nav aria-label={{ ru: 'Язык', uz: 'Til', en: 'Language' }[lang]} className="flex gap-4 text-sm">
-          {(['ru', 'uz', 'en'] as const).map(code => <Link href={`/career?lang=${code}`} key={code} aria-current={code === lang ? 'page' : undefined} className={code === lang ? 'font-bold text-teal-800 underline' : ''}>{code.toUpperCase()}</Link>)}
+      <header className="inso-masthead flex items-center justify-between gap-5 px-4 sm:px-8 h-18 sm:h-20 max-w-[1360px] mx-auto w-full">
+        <Link href={`/?lang=${lang}`} className="inline-flex items-center gap-3 font-semibold text-teal-900 group">
+          <span className="text-xl transition-transform group-hover:-translate-x-1">←</span>
+          <Image
+            src="/logos/INSO-Group_A_GROUP_horizontal_black.png"
+            alt="INSO Group"
+            width={160}
+            height={56}
+            priority
+            className="h-10 sm:h-12 md:h-[50px] w-auto object-contain"
+          />
+        </Link>
+        <nav aria-label={{ ru: 'Язык', uz: 'Til', en: 'Language' }[lang]} className="flex items-center gap-5 text-[16px] font-semibold text-slate-800">
+          {(['ru', 'uz', 'en'] as const).map(code => (
+            <Link
+              href={`/career?lang=${code}`}
+              key={code}
+              aria-current={code === lang ? 'page' : undefined}
+              className={code === lang ? 'font-bold text-[#0B3B60] underline underline-offset-4' : 'text-slate-600 hover:text-[#0B3B60] transition-colors'}
+            >
+              {code.toUpperCase()}
+            </Link>
+          ))}
         </nav>
       </header>
       <main
@@ -126,14 +145,14 @@ export default function InsoCareers({ lang }: { lang: Language }) {
               </div>
 
               <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-white">
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-300">
+                <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-teal-300">
                   {lang === 'ru'
                     ? 'Команда операционной и GDP-логистики'
                     : lang === 'uz'
                     ? 'Operatsion va GDP-logistika jamoasi'
                     : 'Operations & GDP Logistics Team'}
                 </div>
-                <h3 className="mt-1.5 text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
+                <h3 className="mt-1.5 text-xl sm:text-[22px] lg:text-[24px] font-bold tracking-tight text-white leading-snug">
                   {lang === 'ru'
                     ? 'Сотрудник для нас — партнёр, а не ресурс: точность, ответственность и взаимное уважение в каждой смене'
                     : lang === 'uz'
@@ -173,14 +192,14 @@ export default function InsoCareers({ lang }: { lang: Language }) {
               </div>
 
               <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-white">
-                <div className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-300">
+                <div className="text-[12px] font-bold uppercase tracking-[0.18em] text-teal-300">
                   {lang === 'ru'
                     ? 'Контроль качества и фармацевтический порядок'
                     : lang === 'uz'
                     ? 'Sifat nazorati va farmatsevtik tartib'
                     : 'Quality Assurance & Order Fulfillment'}
                 </div>
-                <h3 className="mt-1.5 text-lg sm:text-xl font-bold tracking-tight text-white leading-snug">
+                <h3 className="mt-1.5 text-xl sm:text-[22px] lg:text-[24px] font-bold tracking-tight text-white leading-snug">
                   {lang === 'ru'
                     ? 'За каждой упаковкой стоит пациент: строгие стандарты комплектации и хранения'
                     : lang === 'uz'
@@ -250,14 +269,14 @@ export default function InsoCareers({ lang }: { lang: Language }) {
           <div className="rounded-3xl bg-slate-50 border border-slate-200/90 p-5 sm:p-8 space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
-                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
+                <h3 className="text-xl sm:text-[22px] lg:text-[24px] font-extrabold text-slate-900">
                   {lang === 'ru'
                     ? 'Открытые карьерные направления в субрендах холдинга'
                     : lang === 'uz'
                     ? 'Xolding sub-brendlarida ochiq karyera yoʻnalishlari'
                     : 'Open Career Tracks Across Holding Sub-Brands'}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600">
+                <p className="text-[15px] sm:text-[16px] text-slate-600">
                   {lang === 'ru'
                     ? 'Выберите профильное направление, чтобы отправить отклик напрямую в HR-департамент'
                     : lang === 'uz'

@@ -75,26 +75,26 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
       <section id="contacts" aria-labelledby="partner-contact-title" className="scroll-mt-18 px-4 pb-12 sm:px-6 lg:px-8 lg:pb-20">
         <div className="mx-auto grid max-w-[1216px] items-center gap-6 border-t border-[#b9d0c7] pt-10 text-[#193f41] lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:pt-14">
           <div className="min-w-0">
-            <h2 id="partner-contact-title" className="vision-reveal text-balance text-[clamp(2.1rem,3.8vw,3.4rem)] font-medium leading-[1.05] tracking-tight">{t.title}</h2>
+            <h2 id="partner-contact-title" className="vision-reveal text-balance text-3xl sm:text-4xl lg:text-[38px] font-medium leading-[1.08] tracking-tight">{t.title}</h2>
             <div className="mt-6 flex items-start gap-3">
               <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#34766a]" />
-              <div><p className="mb-1 text-xs text-[#47675e]">{t.phone}</p>
+              <div><p className="mb-1 text-[12px] text-[#47675e]">{t.phone}</p>
                 <a className="block w-fit text-xl font-semibold hover:underline" href="tel:+998935056552">+998 93 505 65 52</a>
-                <a className="mt-1 block w-fit text-sm hover:underline" href="tel:+998712006552">+998 71 200 65 52</a>
+                <a className="mt-1 block w-fit text-[15px] sm:text-[16px] hover:underline" href="tel:+998712006552">+998 71 200 65 52</a>
               </div>
             </div>
-            <a className="mt-4 inline-flex items-center gap-3 hover:underline" href="mailto:sales@inso.uz"><Mail aria-hidden="true" className="size-4 text-[#34766a]" />sales@inso.uz</a>
+            <a className="mt-4 inline-flex items-center gap-3 text-[16px] sm:text-[17px] hover:underline" href="mailto:sales@inso.uz"><Mail aria-hidden="true" className="size-4 text-[#34766a]" />sales@inso.uz</a>
             <div id="map" className="mt-4 flex scroll-mt-24 items-start gap-3 border-t border-[#b9d0c7] pt-4">
               <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#34766a]" />
-              <div><p className="text-sm">{t.address}</p>
-                <a className="mt-1.5 inline-flex items-center gap-1 text-sm font-semibold text-[#27675b] hover:underline" href="https://www.google.com/maps/dir/?api=1&destination=160+Bogishamol+Street%2C+Yunusabad%2C+Tashkent%2C+Uzbekistan" target="_blank" rel="noreferrer">{t.route}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
+              <div><p className="text-[16px] sm:text-[17px]">{t.address}</p>
+                <a className="mt-1.5 inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-semibold text-[#27675b] hover:underline" href="https://www.google.com/maps/dir/?api=1&destination=160+Bogishamol+Street%2C+Yunusabad%2C+Tashkent%2C+Uzbekistan" target="_blank" rel="noreferrer">{t.route}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
               </div>
             </div>
 
           </div>
           <form id="inquiry-form" onSubmit={submit} onChange={() => { if (status !== 'pending') setStatus('idle'); }}
             className="partner-form min-w-0 scroll-mt-24 rounded-3xl p-5 text-[#234d4b] sm:p-8">
-            <h3 className="mb-5 text-2xl font-semibold tracking-tight">{t.formTitle}</h3>
+            <h3 className="mb-5 text-xl sm:text-[22px] lg:text-[24px] font-semibold tracking-tight">{t.formTitle}</h3>
               <fieldset disabled={status === 'pending'} className="grid gap-4 text-sm font-semibold text-[#284e4c]">
                 <label>{t.name}<input ref={nameInput} name="name" required maxLength={120} autoComplete="name" className={field} /></label>
                 <label>{t.contact}<input name="contact" required maxLength={160} className={field} /></label>
