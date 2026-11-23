@@ -416,15 +416,27 @@ nextjs-portal,
 .hero-forward:focus-visible svg { outline: 2px solid white; outline-offset: 3px; }
 .hero-ink-mask { display: none; }
 @media (prefers-reduced-motion: no-preference) {
+  .inso-home { --hero-overlap: clamp(6rem, 26svh, 15rem); }
+  #top:has(.hero-track[data-reveal]) ~ .inso-scroll-surface {
+    margin-top: calc(-1 * var(--hero-overlap));
+    background: transparent;
+  }
+  .hero-track[data-reveal] { background: #d9eae3; }
+  .inso-scroll-wash[data-handoff] {
+    mask-image: linear-gradient(to bottom, transparent, black var(--feather));
+  }
   .hero-track[data-reveal]::after {
     content: '';
     display: block;
     box-sizing: content-box;
     height: var(--hero-reveal-distance, 98svh);
     padding-bottom: var(--hero-hold-distance, 50svh);
+    border-bottom: var(--hero-overlap) solid transparent;
   }
   [data-reveal] > .hero-stage {
     position: sticky; top: var(--masthead-height); height: calc(100svh - var(--masthead-height)); overflow: clip;
+    opacity: calc(1 - var(--hero-exit, 0));
+    --hero-lower-ink: clamp(0, calc(1 - 10 * var(--hero-exit, 0)), 1);
     --aperture: inset(var(--film-edge, 54%) var(--film-side, 5.6%) 0 round calc(var(--film-side, 5.6%) * .23));
   }
   [data-reveal] .hero-film, [data-reveal] .hero-ink-mask { position: absolute; inset: 0; clip-path: var(--aperture); }
@@ -449,12 +461,12 @@ nextjs-portal,
     transition: opacity .42s ease, transform .48s cubic-bezier(.2,.75,.25,1);
   }
   [data-reveal] .hero-actions[inert], [data-reveal] .hero-brands[inert] { opacity: 0; transform: translateY(.55rem); transition: none; }
-  [data-reveal] .hero-brands { position: absolute; inset: auto 0 0; z-index: 4; }
+  [data-reveal] .hero-brands { position: absolute; inset: auto 0 0; z-index: 4; opacity: var(--hero-lower-ink); }
   [data-reveal] .hero-film { --brands-offset: calc(var(--brands-height, 0px) * var(--film-progress, 0)); }
   [data-reveal] .hero-forward svg, [data-reveal] .hero-playback { bottom: calc(1.15rem + var(--brands-offset)); }
   [data-reveal] .hero-caption { bottom: calc(5rem + var(--brands-offset)); }
   [data-reveal] .hero-film video { transform: translateY(calc(var(--film-edge, 0px) * .43)); }
-  [data-reveal] .hero-caption { opacity: var(--caption, 0); transform: translateY(calc((1 - var(--caption, 0)) * 1rem)); }
+  [data-reveal] .hero-caption { opacity: calc(var(--caption, 0) * var(--hero-lower-ink)); transform: translateY(calc((1 - var(--caption, 0)) * 1rem)); }
   [data-reveal] .hero-ink-mask { display: block; z-index: 3; pointer-events: none; }
   .hero-ink-mask :is(.hero-eyebrow,.hero-headline,.hero-headline em) { color: #fff; }
 }

@@ -24,18 +24,32 @@ export default function InsoScrollPalette({ children }: { children: ReactNode })
     const surface = ref.current;
     if (!surface) return;
     const wash = surface.querySelector<HTMLElement>('.inso-scroll-wash')!;
+    const hero = document.querySelector<HTMLElement>('#top .hero-track');
+    const stage = hero?.querySelector<HTMLElement>('.hero-stage');
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sections = Array.from(surface.querySelectorAll<HTMLElement>(':scope > section'));
     const elements = Array.from(surface.querySelectorAll<HTMLElement>('.vision-reveal, .inso-photo-window'));
     let chapters: { top: number; tone: string }[] = [];
     let frames: { element: HTMLElement; top: number; height: number; stagger: number; photo: boolean }[] = [];
     let ticket = 0;
+    let heroInset = 0;
 
     const paint = () => {
       ticket = 0;
       if (preference.matches) return;
       const y = window.scrollY;
       const vh = window.innerHeight;
+      if (hero?.hasAttribute('data-reveal') && stage) {
+        // The next section enters at the bottom of the viewport as the hero hold ends.
+        const progress = clamp((stage.clientHeight + heroInset - surface.getBoundingClientRect().top) / stage.clientHeight);
+        const fade = progress * progress * (3 - 2 * progress);
+        const exit = fade.toFixed(4);
+        if (stage.style.getPropertyValue('--hero-exit') !== exit) stage.style.setProperty('--hero-exit', exit);
+        wash.toggleAttribute('data-handoff', progress > 0 && progress < 1);
+        if (progress > 0 && progress < 1) wash.style.setProperty('--feather', ((1 - progress) * 17).toFixed(2) + 'svh');
+      } else {
+        wash.removeAttribute('data-handoff');
+      }
       const center = y + vh * 0.48;
       let index = 0;
       while (index + 1 < chapters.length && chapters[index + 1].top <= center) index++;
@@ -61,6 +75,7 @@ export default function InsoScrollPalette({ children }: { children: ReactNode })
       if (!ticket) ticket = window.requestAnimationFrame(paint);
     };
     const measure = () => {
+      if (hero) heroInset = parseFloat(getComputedStyle(hero).scrollMarginTop);
       chapters = [
         { top: layoutTop(surface) - window.innerHeight * 0.65, tone: '#edf4f3' },
         ...sections.map(section => ({ top: layoutTop(section), tone: tones[section.id] ?? '#d8e7dc' })),
@@ -77,6 +92,7 @@ export default function InsoScrollPalette({ children }: { children: ReactNode })
     };
     const observer = new ResizeObserver(measure);
     [surface, ...sections, ...elements].forEach(el => observer.observe(el));
+    if (hero) observer.observe(hero);
     measure();
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', measure);
