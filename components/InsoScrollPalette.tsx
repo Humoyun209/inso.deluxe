@@ -4,6 +4,7 @@ const tones: Record<string, string> = {
   credentials: '#c1e4da',
   about: '#f5e1ba',
   values: '#b4d5d3',
+  leadership: '#e5eee5',
   subbrands: '#e1eac7',
   faq: '#c3dce8',
   contacts: '#d3e4d4',
@@ -18,7 +19,7 @@ function layoutTop(element: HTMLElement) {
   return top;
 }
 
-export default function InsoScrollPalette({ children }: { children: ReactNode }) {
+export default function InsoScrollPalette({ children, animatedHero }: { children: ReactNode; animatedHero: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const surface = ref.current;
@@ -39,8 +40,7 @@ export default function InsoScrollPalette({ children }: { children: ReactNode })
       if (preference.matches) return;
       const y = window.scrollY;
       const vh = window.innerHeight;
-      if (hero?.hasAttribute('data-reveal') && stage) {
-        // The next section enters at the bottom of the viewport as the hero hold ends.
+      if (stage && (!animatedHero || hero?.hasAttribute('data-reveal'))) {
         const progress = clamp((stage.clientHeight + heroInset - surface.getBoundingClientRect().top) / stage.clientHeight);
         const fade = progress * progress * (3 - 2 * progress);
         const exit = fade.toFixed(4);
@@ -75,7 +75,13 @@ export default function InsoScrollPalette({ children }: { children: ReactNode })
       if (!ticket) ticket = window.requestAnimationFrame(paint);
     };
     const measure = () => {
-      if (hero) heroInset = parseFloat(getComputedStyle(hero).scrollMarginTop);
+      if (hero && stage) {
+        heroInset = parseFloat(getComputedStyle(hero).scrollMarginTop);
+        if (!animatedHero) {
+          heroInset = Math.min(heroInset, window.innerHeight - stage.clientHeight);
+          stage.style.setProperty('--exit-inset', heroInset + 'px');
+        }
+      }
       chapters = [
         { top: layoutTop(surface) - window.innerHeight * 0.65, tone: '#edf4f3' },
         ...sections.map(section => ({ top: layoutTop(section), tone: tones[section.id] ?? '#d8e7dc' })),
@@ -104,7 +110,7 @@ export default function InsoScrollPalette({ children }: { children: ReactNode })
       window.removeEventListener('resize', measure);
       preference.removeEventListener('change', schedule);
     };
-  }, []);
+  }, [animatedHero]);
   return (
     <div ref={ref} className="inso-scroll-surface">
       <div aria-hidden="true" className="inso-scroll-wash"><div className="inso-scroll-light" /></div>

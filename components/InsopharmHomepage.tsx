@@ -25,6 +25,7 @@ import {
 } from '@/lib/insopharm-data';
 import InsoHero from '@/components/InsoHero';
 import InsoVisionValues from '@/components/InsoVisionValues';
+import InsoLeadership from '@/components/InsoLeadership';
 import InsoCredentials from '@/components/InsoCredentials';
 import InsoScrollPalette from '@/components/InsoScrollPalette';
 import InsoFooter from '@/components/InsoFooter';
@@ -245,7 +246,7 @@ const COMPANY_LICENSES: CompanyLicenseDoc[] = [
   },
 ];
 
-export default function InsopharmHomepage({ initialLang, directMail }: { initialLang: Language; directMail: boolean }) {
+export default function InsopharmHomepage({ initialLang, directMail, animatedHero }: { initialLang: Language; directMail: boolean; animatedHero: boolean }) {
   const [lang, setLang] = useState<Language>(initialLang);
   const [aboutOpen, setAboutOpen] = useState(false);
   const aboutButton = useRef<HTMLButtonElement>(null);
@@ -302,6 +303,7 @@ export default function InsopharmHomepage({ initialLang, directMail }: { initial
     { href: '#credentials', label: { ru: 'Дистрибуция', uz: 'Distribyutsiya', en: 'Distribution' }[lang] },
     { href: '#about', label: { ru: 'История', uz: 'Tarix', en: 'History' }[lang] },
     { href: '#values', label: { ru: 'Видение и ценности', uz: 'Maqsad va qadriyatlar', en: 'Vision and values' }[lang] },
+    { href: '#leadership', label: { ru: 'Руководство', uz: 'Rahbariyat', en: 'Leadership' }[lang] },
     { href: '#subbrands', label: { ru: 'Направления холдинга', uz: 'Xolding yoʻnalishlari', en: 'Our business lines' }[lang] },
   ];
 
@@ -602,7 +604,7 @@ export default function InsopharmHomepage({ initialLang, directMail }: { initial
           2. MAIN HERO SECTION (Synthon-Inspired Minimalist Elegance & Smooth Transitions)
          ===================================================================== */}
       <section id="top" className="relative isolate bg-[#fafaf6] text-[#183f48]">
-        <InsoHero copy={t} lang={lang} onDocuments={() => setLicensesModalOpen(true)} onBrandsHidden={closeBrands}>
+        <InsoHero key={animatedHero ? 'animated' : 'static'} animated={animatedHero} copy={t} lang={lang} onDocuments={() => setLicensesModalOpen(true)} onBrandsHidden={closeBrands}>
         <div className="inso-brand-strip relative z-30 border-t border-[var(--brand-rule)]">
           <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Desktop View (>= 1024px): "Наши бренды" + 6 clickable names in one row */}
@@ -1034,7 +1036,7 @@ export default function InsopharmHomepage({ initialLang, directMail }: { initial
         )}
       </AnimatePresence>
 
-      <InsoScrollPalette>
+      <InsoScrollPalette animatedHero={animatedHero}>
       <InsoCredentials lang={lang} />
 
       {/* =====================================================================
@@ -1237,6 +1239,7 @@ export default function InsopharmHomepage({ initialLang, directMail }: { initial
       </section>
 
       <InsoVisionValues lang={lang} />
+      <InsoLeadership lang={lang} />
 
       <InsoBusinessLines lang={lang} />
 

@@ -34,7 +34,8 @@ function HeroHeading({ copy, overlay = false }: { copy: HeroCopy; overlay?: bool
   );
 }
 
-export default function InsoHero({ copy, lang, onDocuments, onBrandsHidden, children }: {
+export default function InsoHero({ animated, copy, lang, onDocuments, onBrandsHidden, children }: {
+  animated: boolean;
   copy: HeroCopy;
   lang: Language;
   onDocuments: () => void;
@@ -59,6 +60,19 @@ export default function InsoHero({ copy, lang, onDocuments, onBrandsHidden, chil
     const video = videoRef.current;
     if (!track || !stage || !intro || !actions || !brands || !video) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!reduced.matches) void video.play().catch(() => {});
+    const respectMotionPreference = () => { if (reduced.matches) video.pause(); };
+    reduced.addEventListener('change', respectMotionPreference);
+    if (!animated) {
+      const sizeBar = () => stage.style.setProperty('--brands-height', brands.offsetHeight + 'px');
+      const observer = new ResizeObserver(sizeBar);
+      observer.observe(brands);
+      sizeBar();
+      return () => {
+        observer.disconnect();
+        reduced.removeEventListener('change', respectMotionPreference);
+      };
+    }
     const detail = intro.querySelector<HTMLElement>('.hero-detail')!;
     const line = intro.querySelector<HTMLElement>('.hero-line')!;
     let frame = 0;
@@ -105,30 +119,26 @@ export default function InsoHero({ copy, lang, onDocuments, onBrandsHidden, chil
       last = -1;
       paint();
     };
-    const preferenceChanged = () => {
-      if (reduced.matches) video.pause();
-      measure();
-    };
     const observer = new ResizeObserver(measure);
     observer.observe(intro);
     observer.observe(stage);
     observer.observe(brands);
     measure();
-    if (!reduced.matches) void video.play().catch(() => {});
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', measure);
-    reduced.addEventListener('change', preferenceChanged);
+    reduced.addEventListener('change', measure);
     return () => {
       observer.disconnect();
       cancelAnimationFrame(frame);
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', measure);
-      reduced.removeEventListener('change', preferenceChanged);
+      reduced.removeEventListener('change', measure);
+      reduced.removeEventListener('change', respectMotionPreference);
     };
-  }, [onBrandsHidden]);
+  }, [animated, onBrandsHidden]);
 
   return (
-    <div className="hero-track" ref={trackRef}>
+    <div className="hero-track" data-mode={animated ? 'animated' : 'static'} ref={trackRef}>
       <div className="hero-stage" ref={stageRef}>
         <div className="hero-intro" ref={introRef}>
           <HeroHeading copy={copy} />
