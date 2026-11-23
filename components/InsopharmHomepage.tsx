@@ -306,7 +306,7 @@ export default function InsopharmHomepage({ initialLang, directMail }: { initial
   ];
 
   return (
-    <div className="inso-home min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
+    <div id="inso-home" className="inso-home min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
       {/* =====================================================================
           1. STICKY HEADER (Main Menu: About Us · Subbrands · News · Career)
          ===================================================================== */}
