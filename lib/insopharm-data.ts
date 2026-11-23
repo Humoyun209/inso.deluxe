@@ -44,6 +44,7 @@ export interface CoreValueItem {
     uz: string;
     en: string;
   };
+  summary: Record<Language, string>;
   keywords: {
     ru: string;
     uz: string;
@@ -385,6 +386,11 @@ export const CORE_VALUES: CoreValueItem[] = [
       uz: 'Ishonchni asraymiz',
       en: 'We safeguard trust',
     },
+    summary: {
+      ru: 'Открыто говорим о рисках для качества и безопасности.',
+      uz: 'Sifat va xavfsizlik bilan bogʻliq xatarlarni ochiq aytamiz.',
+      en: 'We speak openly about risks to quality and safety.',
+    },
     keywords: {
       ru: 'ЧЕСТНОСТЬ · КАЧЕСТВО · ФУНДАМЕНТ',
       uz: 'HALOLLIK · SIFAT · FUNDAMENT',
@@ -434,6 +440,11 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Берём ответственность',
       uz: 'Masʼuliyatli ishlaymiz',
       en: 'We take ownership',
+    },
+    summary: {
+      ru: 'Держим слово и заранее предупреждаем о задержках.',
+      uz: 'Vaʼdamizni bajaramiz va kechikish haqida oldindan xabar beramiz.',
+      en: 'We keep our word and flag delays early.',
     },
     keywords: {
       ru: 'НАДЁЖНОСТЬ · ОТВЕТСТВЕННОСТЬ',
@@ -485,6 +496,11 @@ export const CORE_VALUES: CoreValueItem[] = [
       uz: 'Dalillarga tayanamiz',
       en: 'We rely on facts',
     },
+    summary: {
+      ru: 'Проверяем данные, прежде чем принять решение.',
+      uz: 'Qaror qabul qilishdan oldin maʼlumotlarni tekshiramiz.',
+      en: 'We check the evidence before making decisions.',
+    },
     keywords: {
       ru: 'ПРОФЕССИОНАЛИЗМ',
       uz: 'PROFESSIONALLIK',
@@ -534,6 +550,11 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Доводим до конца',
       uz: 'Oxirigacha yetkazamiz',
       en: 'We see it through',
+    },
+    summary: {
+      ru: 'Сопровождаем задачу до результата, о котором договорились.',
+      uz: 'Har bir ishni kelishilgan natijaga yetkazamiz.',
+      en: 'We follow each task through to the agreed outcome.',
     },
     keywords: {
       ru: 'ЦЕЛЕУСТРЕМЛЁННОСТЬ',
@@ -585,6 +606,11 @@ export const CORE_VALUES: CoreValueItem[] = [
       uz: 'Uzoqni koʻramiz',
       en: 'We look further',
     },
+    summary: {
+      ru: 'Ищем решения, которые понадобятся партнёрам завтра.',
+      uz: 'Hamkorlarimizga ertaga kerak boʻladigan yechimlarni izlaymiz.',
+      en: 'We look ahead to what our partners will need next.',
+    },
     keywords: {
       ru: 'ИННОВАЦИИ',
       uz: 'INNOVATSIYA',
@@ -634,6 +660,11 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Ценим людей',
       uz: 'Insonni qadrlaymiz',
       en: 'We value people',
+    },
+    summary: {
+      ru: 'Слушаем коллег и поддерживаем их развитие.',
+      uz: 'Hamkasblarimizni tinglaymiz va ularning rivojlanishini qoʻllab-quvvatlaymiz.',
+      en: 'We listen to colleagues and support their growth.',
     },
     keywords: {
       ru: 'УВАЖЕНИЕ',
@@ -1427,9 +1458,9 @@ export const FAQ_ITEMS: FAQItem[] = [
       en: 'How can manufacturers, pharmacy chains, and hospitals partner with INSO Group?',
     },
     answer: {
-      ru: 'Нажмите кнопку «Стать партнёром» на главном экране или оставьте заявку в форме обратной связи внизу страницы. Мы свяжемся с вами в течение 2 рабочих часов, чтобы обсудить дистрибуцию, промоцию медицинскими представителями, регистрацию новых молекул или актуальный оптовый прайс-лист по любому из 6 субрендов.',
-      uz: 'Bosh ekrandagi «Hamkor boʻlish» tugmasini bosing yoki aloqa formasi orqali murojaat qoldiring. Mutaxassislarimiz distribyutsiya, targʻibot yoki roʻyxatdan oʻtkazish boʻyicha 2 ish soati ichida bogʻlanadi.',
-      en: 'Click "Become a partner" in the hero section or submit an inquiry via our contact form. Our leadership and commercial team will respond within 2 business hours with a tailored roadmap or wholesale catalog.',
+      ru: 'Нажмите кнопку «Обсудить сотрудничество» на главном экране или оставьте заявку в форме обратной связи внизу страницы. Мы свяжемся с вами в течение 2 рабочих часов, чтобы обсудить дистрибуцию, промоцию медицинскими представителями, регистрацию новых молекул или актуальный оптовый прайс-лист по любому из 6 субрендов.',
+      uz: 'Bosh ekrandagi «Hamkorlikni muhokama qilish» tugmasini bosing yoki aloqa formasi orqali murojaat qoldiring. Mutaxassislarimiz distribyutsiya, targʻibot yoki roʻyxatdan oʻtkazish boʻyicha 2 ish soati ichida bogʻlanadi.',
+      en: 'Click "Discuss a partnership" in the hero section or submit an inquiry via our contact form. Our leadership and commercial team will respond within 2 business hours with a tailored roadmap or wholesale catalog.',
     },
   },
   {
