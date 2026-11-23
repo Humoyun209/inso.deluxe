@@ -42,14 +42,14 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
   return (
     <section id="credentials" aria-labelledby="credentials-title" className="scroll-mt-20 text-[#183f48]">
       <div className="mx-auto max-w-[1280px] px-4 pt-10 pb-7 sm:px-6 sm:pt-14 sm:pb-9 lg:px-8">
-        <h2 id="credentials-title" className="mb-6 text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+        <h2 id="credentials-title" className="vision-reveal mb-6 text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
           {heading[lang]}
         </h2>
         <div className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
           {credentials.map(({ icon: Icon, href, ...copy }) => {
             const [title, description, action] = copy[lang];
             return (
-              <article key={href} className="flex flex-col items-start border-t border-[#c3d8d5] pt-4">
+              <article key={href} className="vision-reveal flex flex-col items-start border-t border-[#c3d8d5] pt-4">
                 <div className="flex items-start gap-2.5">
                   <Icon aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#23756c]" />
                   <h3 className="text-lg font-semibold leading-snug">{title}</h3>

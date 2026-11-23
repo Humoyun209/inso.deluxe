@@ -486,13 +486,13 @@ export default function InsopharmPortfolioPage({
               {t.navSubbrands}
             </Link>
             <Link
-              href="/#news"
+              href={`/?lang=${lang}#faq`}
               className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
-              {t.navNews}
+              FAQ
             </Link>
             <Link
-              href="/#career"
+              href={`/career?lang=${lang}`}
               className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0"
             >
               {t.navCareer}
@@ -693,8 +693,8 @@ export default function InsopharmPortfolioPage({
                       {[
                         { href: '/#about', label: t.navAbout },
                         { href: '/#subbrands', label: t.navSubbrands },
-                        { href: '/#news', label: t.navNews },
-                        { href: '/#career', label: t.navCareer },
+                        { href: `/?lang=${lang}#faq`, label: 'FAQ' },
+                        { href: `/career?lang=${lang}`, label: t.navCareer },
                       ].map((navItem) => (
                         <Link
                           key={navItem.href}
