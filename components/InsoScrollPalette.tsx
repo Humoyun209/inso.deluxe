@@ -1,13 +1,13 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 
 const tones: Record<string, string> = {
-  credentials: '#c1e4da',
-  about: '#f5e1ba',
-  values: '#b4d5d3',
-  leadership: '#e5eee5',
-  subbrands: '#e1eac7',
-  faq: '#c3dce8',
-  contacts: '#d3e4d4',
+  credentials: '#daf0ea',
+  about: '#eef5f3',
+  values: '#e2eff0',
+  leadership: '#eaf4f0',
+  subbrands: '#e8f2ef',
+  faq: '#e2eff4',
+  contacts: '#e3f0ec',
 };
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 

@@ -15,19 +15,18 @@ interface Portrait {
   role: Label;
   fullRole: Record<Language, string>;
   bio: Record<Language, string>;
-  historical?: boolean;
 }
 
 const portraits: Portrait[] = [
   {
     id: 'ceo',
     file: 'ceo',
-    name: "Rustam O'tkirovich",
+    name: 'Rustam Haqberdiyev',
     role: 'CEO',
     fullRole: {
-      ru: 'Главный исполнительный директор INSO Group',
-      uz: 'INSO Group bosh ijrochi direktori',
-      en: 'Chief Executive Officer, INSO Group',
+      ru: 'Генеральный директор INSO Group (CEO)',
+      uz: 'INSO Group bosh direktori (CEO)',
+      en: 'CEO & General Director, INSO Group',
     },
     bio: {
       ru: 'Стратегическое лидерство, масштабирование бизнеса и реализация видения холдинга на рынках Центральной Азии.',
@@ -36,46 +35,14 @@ const portraits: Portrait[] = [
     },
   },
   {
-    id: 'cto',
-    file: 'cto',
-    name: 'Humoyun Ahmedov',
-    role: 'CTO',
-    fullRole: {
-      ru: 'Технический директор',
-      uz: 'Texnik direktor',
-      en: 'Chief Technology Officer',
-    },
-    bio: {
-      ru: 'Развитие технологической инфраструктуры, автоматизация складской и фармацевтической логистики.',
-      uz: 'Texnologik infratuzilmani rivojlantirish, ombor va farmatsevtika logistikasini avtomatlashtirish.',
-      en: 'Technological infrastructure development and pharmaceutical logistics automation.',
-    },
-  },
-  {
-    id: 'cdo',
-    file: 'cdo',
-    name: 'Ibrokhim Halil',
-    role: 'CDO',
-    fullRole: {
-      ru: 'Директор по цифровой трансформации',
-      uz: 'Raqamli transformatsiya direktori',
-      en: 'Chief Digital Officer',
-    },
-    bio: {
-      ru: 'Цифровизация бизнес-процессов, data-driven управление и развитие дистрибьюторских каналов.',
-      uz: 'Biznes jarayonlarini raqamlashtirish, data-driven boshqaruv va distributsiya tahlili.',
-      en: 'Digital transformation, data-driven management, and distribution ecosystem growth.',
-    },
-  },
-  {
     id: 'cho',
     file: 'cho',
     name: 'Madina Mirsodiqova',
-    role: 'CHO',
+    role: 'HR Director',
     fullRole: {
-      ru: 'Директор по управлению талантами',
-      uz: 'Inson resurslari direktori',
-      en: 'Chief Human Resources Officer',
+      ru: 'Директор по персоналу (Director of HR)',
+      uz: 'Inson resurslari direktori (Director of HR)',
+      en: 'Director of HR',
     },
     bio: {
       ru: 'Формирование экспертной команды, развитие талантов и поддержание корпоративной культуры роста.',
@@ -84,81 +51,44 @@ const portraits: Portrait[] = [
     },
   },
   {
-    id: 'cherchill',
-    file: 'cherchill',
-    historical: true,
-    name: {
-      ru: 'Уинстон Черчилль',
-      uz: 'Uinston Cherchill',
-      en: 'Winston Churchill',
-    },
-    role: {
-      ru: 'Премьер-министр Великобритании',
-      uz: 'Buyuk Britaniya bosh vaziri',
-      en: 'Prime Minister of the United Kingdom',
-    },
+    id: 'consulting',
+    file: 'feruz',
+    name: 'Feruz Abdurashidov',
+    role: 'Consulting',
     fullRole: {
-      ru: 'Исторический ориентир антикризисного управления',
-      uz: 'Inqirozga qarshi boshqaruvning tarixiy mezoni',
-      en: 'Historical benchmark in crisis governance',
+      ru: 'Директор направления INSO Consulting',
+      uz: 'INSO Consulting yoʻnalishi direktori',
+      en: 'Director, INSO Consulting',
     },
     bio: {
-      ru: 'Символ стратегической стойкости, ораторского искусства и непоколебимой воли при принятии ключевых решений.',
-      uz: 'Strategik sabr-toqat, notiqlik san’ati va qat’iy qarorlar qabul qilish ramzi.',
-      en: 'A symbol of strategic endurance, leadership under pressure, and resolute decision-making.',
-    },
-  },
-  {
-    id: 'stalin',
-    file: 'stalin',
-    historical: true,
-    name: {
-      ru: 'Иосиф Сталин',
-      uz: 'Iosif Stalin',
-      en: 'Joseph Stalin',
-    },
-    role: {
-      ru: 'Председатель Совета Министров СССР',
-      uz: 'SSSR Vazirlar Kengashi raisi',
-      en: 'Chairman of the Council of Ministers of the USSR',
-    },
-    fullRole: {
-      ru: 'Исторический опыт масштабной индустриализации',
-      uz: 'Keng ko‘lamli sanoatlashtirish tajribasi',
-      en: 'Historical benchmark of large-scale industrialization',
-    },
-    bio: {
-      ru: 'Пример глобального индустриального планирования, масштабного развёртывания инфраструктуры и системной дисциплины.',
-      uz: 'Keng ko‘lamli sanoat rejalashtirish, infratuzilmani yo‘lga qo‘yish va tizimli intizom tajribasi.',
-      en: 'Historical experience of systemic discipline, rapid industrial mobilization, and complex infrastructure buildout.',
+      ru: 'Экспертное сопровождение регистрации лекарственных средств, регуляторный консалтинг и стратегическое лицензирование фармпроизводителей.',
+      uz: 'Dori vositalarini roʻyxatdan oʻtkazish boʻyicha ekspert koʻmagi, regulyator konsalting va farmatsevtika litsenziyalash.',
+      en: 'Expert regulatory affairs, pharmaceutical product registration, and strategic licensing for international manufacturers.',
     },
   },
 ];
 
 const copy = {
   ru: {
-    sectionBadge: 'Руководство INSO Group',
+    sectionBadge: '06 · РУКОВОДСТВО ХОЛДИНГА',
     sectionTitle: 'Команда, которая ведёт INSO вперёд',
     sectionLead: 'Сочетание стратегической визионерности, технологической экспертизы и системного управления.',
     previous: 'Предыдущий портрет',
     next: 'Следующий портрет',
-    historyLabel: 'Исторический ориентир',
   },
   uz: {
-    sectionBadge: 'INSO Group rahbariyati',
+    sectionBadge: '06 · XOLDING RAHBARIYATI',
     sectionTitle: 'INSO guruhini olg‘a yetaklayotgan jamoa',
     sectionLead: 'Strategik qarash, texnologik tajriba va tizimli boshqaruv uyg‘unligi.',
     previous: 'Oldingi portret',
     next: 'Keyingi portret',
-    historyLabel: 'Tarixiy mezon',
   },
   en: {
-    sectionBadge: 'INSO Group Leadership',
+    sectionBadge: '06 · EXECUTIVE LEADERSHIP',
     sectionTitle: 'The Team Driving INSO Forward',
     sectionLead: 'Combining strategic vision, technology leadership, and institutional discipline.',
     previous: 'Previous portrait',
     next: 'Next portrait',
-    historyLabel: 'Historical Context',
   },
 };
 
@@ -220,7 +150,7 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
     <section
       id="leadership"
       aria-label={t.sectionTitle}
-      className="scroll-mt-18 relative py-8 sm:py-12 lg:py-14 overflow-hidden min-h-[calc(100svh-4rem)] flex flex-col justify-center"
+      className="scroll-mt-18 relative py-10 sm:py-14 lg:py-16 overflow-hidden"
       onKeyDown={onKeyDown}
       tabIndex={0}
       ref={containerRef}
@@ -312,14 +242,9 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
 
                     {/* Top Role Badge */}
                     <div className="absolute top-0 inset-x-0 p-4 z-20 flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent">
-                      <span className="text-[11px] font-mono tracking-wider text-emerald-300 uppercase px-3 py-1 rounded-full bg-black/40 border border-emerald-400/30 backdrop-blur-md">
+                      <span className="text-[11px] font-semibold tracking-wider text-emerald-300 uppercase px-3 py-1 rounded-full bg-black/40 border border-emerald-400/30 backdrop-blur-md">
                         {localize(person.role, lang)}
                       </span>
-                      {person.historical && (
-                        <span className="text-[10px] font-mono text-amber-200 tracking-wide px-2 py-0.5 rounded bg-amber-950/60 border border-amber-400/30 backdrop-blur-md">
-                          HISTORICAL
-                        </span>
-                      )}
                     </div>
 
                     {/* Bottom Info Overlay directly inside the card */}
@@ -364,10 +289,10 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
           <div className="relative z-20 flex items-center justify-between w-full max-w-lg mt-6 pt-4 border-t border-[#9fb6a7]/60">
             {/* Counter */}
             <div className="flex items-center gap-2">
-              <span className="font-mono text-sm font-semibold text-[#183f48]">
+              <span className="font-semibold text-sm tabular-nums text-[#183f48]">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <span className="text-slate-400 text-sm font-mono">/ {String(total).padStart(2, '0')}</span>
+              <span className="text-slate-400 text-sm tabular-nums">/ {String(total).padStart(2, '0')}</span>
               <span className="text-xs text-[#286e65] font-medium ml-2 hidden sm:inline">
                 {localize(portraits[index].name, lang)}
               </span>

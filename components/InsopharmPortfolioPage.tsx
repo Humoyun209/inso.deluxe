@@ -26,6 +26,7 @@ import {
   LayoutGrid,
   ChevronLeft,
   ChevronRight,
+  Globe,
 } from 'lucide-react';
 import {
   PRODUCTS,
@@ -38,46 +39,17 @@ import {
   MedicalAmbientBackground,
 } from '@/components/InsoBrandGraphics';
 
-function LanguageFlag({ code, size = 'md' }: { code: Language; size?: 'sm' | 'md' }) {
-  const dimensions = size === 'sm' ? 'w-5 h-3.5' : 'w-6 h-4';
-
-  if (code === 'ru') {
-    return (
-      <span
-        aria-hidden="true"
-        className={`inline-flex flex-col ${dimensions} rounded-[4px] overflow-hidden border border-slate-300/80 shadow-2xs shrink-0`}
-      >
-        <span className="w-full h-1/3 bg-white" />
-        <span className="w-full h-1/3 bg-[#0039A6]" />
-        <span className="w-full h-1/3 bg-[#D52B1E]" />
-      </span>
-    );
-  }
-
-  if (code === 'uz') {
-    return (
-      <span
-        aria-hidden="true"
-        className={`inline-flex flex-col ${dimensions} rounded-[4px] overflow-hidden border border-slate-300/80 shadow-2xs shrink-0`}
-      >
-        <span className="w-full h-[32%] bg-[#0099B5]" />
-        <span className="w-full h-[4%] bg-[#CE1126]" />
-        <span className="w-full h-[28%] bg-white" />
-        <span className="w-full h-[4%] bg-[#CE1126]" />
-        <span className="w-full h-[32%] bg-[#1EB53A]" />
-      </span>
-    );
-  }
-
+// Minimalist, branded language badge aligned with pharma corporate aesthetic (no flags)
+function LanguageBadge({ code, active = false }: { code: Language; active?: boolean }) {
   return (
     <span
-      aria-hidden="true"
-      className={`relative inline-flex items-center justify-center ${dimensions} rounded-[4px] overflow-hidden bg-[#012169] border border-slate-300/80 shadow-2xs shrink-0`}
+      className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded transition-colors uppercase ${
+        active
+          ? 'bg-white/20 text-white'
+          : 'bg-teal-50 text-[#185d53] border border-teal-200/60'
+      }`}
     >
-      <span className="absolute inset-x-0 h-[32%] bg-white" />
-      <span className="absolute inset-y-0 w-[24%] bg-white" />
-      <span className="absolute inset-x-0 h-[18%] bg-[#C8102E]" />
-      <span className="absolute inset-y-0 w-[14%] bg-[#C8102E]" />
+      {code}
     </span>
   );
 }
@@ -86,8 +58,8 @@ const PORTFOLIO_COPY = {
   ru: {
     backHome: 'На главную страницу',
     navCatalog: 'Каталог',
-    navAbout: 'О компании',
-    navSubbrands: 'Субренды',
+    navAbout: 'О нас',
+    navSubbrands: 'Бренды',
     navNews: 'Новости',
     navCareer: 'Карьера',
     navContacts: 'Контакты',
@@ -120,8 +92,8 @@ const PORTFOLIO_COPY = {
   uz: {
     backHome: 'Asosiy sahifaga qaytish',
     navCatalog: 'Katalog',
-    navAbout: 'Kompaniya haqida',
-    navSubbrands: 'Sub-brendlar',
+    navAbout: 'Biz haqimizda',
+    navSubbrands: 'Brendlar',
     navNews: 'Yangiliklar',
     navCareer: 'Karyera',
     navContacts: 'Aloqa',
@@ -155,7 +127,7 @@ const PORTFOLIO_COPY = {
     backHome: 'Back to Corporate Overview',
     navCatalog: 'Portfolio',
     navAbout: 'About Us',
-    navSubbrands: 'Subbrands',
+    navSubbrands: 'Brands',
     navNews: 'News',
     navCareer: 'Career',
     navContacts: 'Contacts',
@@ -388,7 +360,7 @@ export default function InsopharmPortfolioPage({
       {/* =====================================================================
           1. STICKY HEADER (Consistent 4-Item Navigation + Language Switcher)
          ===================================================================== */}
-      <header className="sticky top-0 z-40 h-18 sm:h-20 bg-white/95 backdrop-blur-md border-b border-slate-200/80 transition-colors">
+      <header className="inso-masthead sticky top-0 z-40 h-18 sm:h-20 backdrop-blur-md transition-colors">
         <div className="max-w-[1360px] mx-auto h-full px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 lg:gap-8">
           {/* Zone 1: Official Holding Brand Logo */}
           <Link
@@ -457,22 +429,22 @@ export default function InsopharmPortfolioPage({
             </div>
 
             <Link
-              href="/#about"
+              href={`/?lang=${lang}#about`}
               className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navAbout}
             </Link>
             <Link
-              href="/#subbrands"
+              href={`/?lang=${lang}#news`}
+              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
+            >
+              {t.navNews}
+            </Link>
+            <Link
+              href={`/?lang=${lang}#subbrands`}
               className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
             >
               {t.navSubbrands}
-            </Link>
-            <Link
-              href={`/?lang=${lang}#faq`}
-              className="py-1 hover:text-[#0B3B60] hover:underline underline-offset-4 transition-colors whitespace-nowrap shrink-0 text-[16px]"
-            >
-              FAQ
             </Link>
             <Link
               href={`/career?lang=${lang}`}
@@ -490,12 +462,15 @@ export default function InsopharmPortfolioPage({
                 onClick={() => setLangDropdownOpen((prev) => !prev)}
                 aria-expanded={langDropdownOpen}
                 aria-label="Select language"
-                className="inline-flex items-center gap-2 h-10 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-2 h-10 px-3.5 rounded-full bg-white/50 hover:bg-white/80 backdrop-blur-md border border-[#185d53]/25 hover:border-[#185d53]/50 transition-all cursor-pointer shadow-2xs group"
               >
-                <LanguageFlag code={lang} size="md" />
+                <Globe className="w-4 h-4 text-[#185d53] group-hover:scale-105 transition-transform" />
+                <span className="font-[family-name:var(--font-mono)] text-xs font-bold uppercase tracking-wider text-[#185d53]">
+                  {lang.toUpperCase()}
+                </span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-slate-500 transition-transform duration-200 ${
-                    langDropdownOpen ? 'rotate-180 text-[#0B3B60]' : ''
+                  className={`w-3.5 h-3.5 text-[#185d53]/70 transition-transform duration-200 ${
+                    langDropdownOpen ? 'rotate-180 text-[#185d53]' : ''
                   }`}
                 />
               </button>
@@ -512,7 +487,7 @@ export default function InsopharmPortfolioPage({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 4, scale: 0.96 }}
                       transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute right-0 mt-2 w-40 rounded-2xl bg-white border border-slate-200/90 shadow-[0_16px_36px_-10px_rgba(15,23,42,0.16)] p-1.5 z-30"
+                      className="absolute right-0 mt-2 w-44 rounded-2xl bg-white/95 backdrop-blur-xl border border-teal-800/15 shadow-[0_16px_36px_-10px_rgba(20,83,75,0.18)] p-1.5 z-30"
                     >
                       {languageOptions.map((item) => {
                         const active = lang === item.code;
@@ -526,13 +501,21 @@ export default function InsopharmPortfolioPage({
                             }}
                             className={`w-full px-2.5 py-2 rounded-xl flex items-center justify-between gap-2.5 text-left transition-colors cursor-pointer ${
                               active
-                                ? 'bg-[#0B3B60] text-white'
-                                : 'text-slate-700 hover:bg-slate-50'
+                                ? 'bg-[#185d53] text-white'
+                                : 'text-slate-700 hover:bg-emerald-50/70'
                             }`}
                           >
                             <div className="flex items-center gap-2.5">
-                              <LanguageFlag code={item.code} size="sm" />
-                              <span className="text-xs font-bold leading-none">
+                              <span
+                                className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
+                                  active
+                                    ? 'bg-white/20 text-white'
+                                    : 'bg-teal-50 text-[#185d53] border border-teal-200/60'
+                                }`}
+                              >
+                                {item.code.toUpperCase()}
+                              </span>
+                              <span className="text-xs font-semibold">
                                 {item.label}
                               </span>
                             </div>
@@ -611,13 +594,21 @@ export default function InsopharmPortfolioPage({
                           key={item.code}
                           type="button"
                           onClick={() => handleSetLang(item.code)}
-                          className={`px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                          className={`px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                             active
-                              ? 'bg-[#0B3B60] text-white border-[#0B3B60]'
-                              : 'bg-slate-50 text-slate-700 border-slate-200/80'
+                              ? 'bg-[#185d53] text-white border-[#185d53]'
+                              : 'bg-slate-50 text-slate-700 border-slate-200/80 hover:bg-slate-100'
                           }`}
                         >
-                          <LanguageFlag code={item.code} size="sm" />
+                          <span
+                            className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
+                              active
+                                ? 'bg-white/20 text-white'
+                                : 'bg-teal-50 text-[#185d53]'
+                            }`}
+                          >
+                            {item.code}
+                          </span>
                           <span className="text-xs font-bold">{item.label}</span>
                         </button>
                       );

@@ -17,6 +17,7 @@ import {
   Pill,
   FileText,
   ChevronUp,
+  Globe,
 } from 'lucide-react';
 import {
   PRODUCTS,
@@ -24,6 +25,7 @@ import {
   Language,
 } from '@/lib/insopharm-data';
 import InsoHero from '@/components/InsoHero';
+import InsoNews from '@/components/InsoNews';
 import InsoVisionValues from '@/components/InsoVisionValues';
 import InsoLeadership from '@/components/InsoLeadership';
 import InsoCredentials from '@/components/InsoCredentials';
@@ -32,48 +34,17 @@ import InsoFooter from '@/components/InsoFooter';
 import InsoPartnerContact from '@/components/InsoPartnerContact';
 import InsoBusinessLines from '@/components/InsoBusinessLines';
 
-// Crisp CSS Flag Icon (renders reliably across all mobile/desktop platforms without custom SVGs)
-function LanguageFlag({ code, size = 'md' }: { code: Language; size?: 'sm' | 'md' }) {
-  const dimensions = size === 'sm' ? 'w-5 h-3.5' : 'w-6 h-4';
-
-  if (code === 'ru') {
-    return (
-      <span
-        aria-hidden="true"
-        className={`inline-flex flex-col ${dimensions} rounded-[4px] overflow-hidden border border-slate-300/80 shadow-2xs shrink-0`}
-      >
-        <span className="w-full h-1/3 bg-white" />
-        <span className="w-full h-1/3 bg-[#0039A6]" />
-        <span className="w-full h-1/3 bg-[#D52B1E]" />
-      </span>
-    );
-  }
-
-  if (code === 'uz') {
-    return (
-      <span
-        aria-hidden="true"
-        className={`inline-flex flex-col ${dimensions} rounded-[4px] overflow-hidden border border-slate-300/80 shadow-2xs shrink-0`}
-      >
-        <span className="w-full h-[32%] bg-[#0099B5]" />
-        <span className="w-full h-[4%] bg-[#CE1126]" />
-        <span className="w-full h-[28%] bg-white" />
-        <span className="w-full h-[4%] bg-[#CE1126]" />
-        <span className="w-full h-[32%] bg-[#1EB53A]" />
-      </span>
-    );
-  }
-
-  // 'en' (UK / International English)
+// Minimalist, branded language badge aligned with pharma corporate aesthetic (no flags)
+function LanguageBadge({ code, active = false }: { code: Language; active?: boolean }) {
   return (
     <span
-      aria-hidden="true"
-      className={`relative inline-flex items-center justify-center ${dimensions} rounded-[4px] overflow-hidden bg-[#012169] border border-slate-300/80 shadow-2xs shrink-0`}
+      className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded transition-colors uppercase ${
+        active
+          ? 'bg-white/20 text-white'
+          : 'bg-teal-50 text-[#185d53] border border-teal-200/60'
+      }`}
     >
-      <span className="absolute inset-x-0 h-[32%] bg-white" />
-      <span className="absolute inset-y-0 w-[24%] bg-white" />
-      <span className="absolute inset-x-0 h-[18%] bg-[#C8102E]" />
-      <span className="absolute inset-y-0 w-[14%] bg-[#C8102E]" />
+      {code}
     </span>
   );
 }
@@ -82,7 +53,9 @@ const UI_COPY = {
   ru: {
     serviceContact: 'Обсудить регистрацию',
     navCatalogShort: 'Каталог',
-    navAbout: 'О компании',
+    navAbout: 'О нас',
+    navNews: 'Новости',
+    navBrands: 'Бренды',
     navCareer: 'Карьера',
     navCatalog: 'Каталог препаратов',
     navFaq: 'FAQ',
@@ -100,7 +73,9 @@ const UI_COPY = {
   uz: {
     serviceContact: 'Roʻyxatdan oʻtkazishni muhokama qilish',
     navCatalogShort: 'Katalog',
-    navAbout: 'Kompaniya haqida',
+    navAbout: 'Biz haqimizda',
+    navNews: 'Yangiliklar',
+    navBrands: 'Brendlar',
     navCareer: 'Karyera',
     navCatalog: 'Dori vositalari katalogi',
     navFaq: 'FAQ',
@@ -119,6 +94,8 @@ const UI_COPY = {
     serviceContact: 'Discuss registration',
     navCatalogShort: 'Catalog',
     navAbout: 'About Us',
+    navNews: 'News',
+    navBrands: 'Brands',
     navCareer: 'Career',
     navCatalog: 'Product Portfolio',
     navFaq: 'FAQ',
@@ -246,10 +223,86 @@ const COMPANY_LICENSES: CompanyLicenseDoc[] = [
   },
 ];
 
+interface MilestoneItem {
+  year: string;
+  title: Record<Language, string>;
+  desc: Record<Language, string>;
+  isCurrent?: boolean;
+  isFuture?: boolean;
+}
+
+const INSO_MILESTONES: MilestoneItem[] = [
+  {
+    year: '2017',
+    title: {
+      ru: 'Старт в Ташкенте',
+      uz: 'Toshkentda start',
+      en: 'Operations in Tashkent',
+    },
+    desc: {
+      ru: 'Регистрация компании, первые прямые контракты с производителями и запуск оптовой фармдистрибуции.',
+      uz: 'Kompaniya roʻyxatdan oʻtkazildi, zavodlar bilan ilk shartnomalar va ulgurji distribyutsiya yoʻlga qoʻyildi.',
+      en: 'Foundation in Tashkent, securing initial direct manufacturer contracts and launching wholesale supply.',
+    },
+  },
+  {
+    year: '2021',
+    title: {
+      ru: '13 регионов Узбекистана',
+      uz: '13 ta hududiy vakolatxona',
+      en: '13 Regional Offices',
+    },
+    desc: {
+      ru: 'Формирование собственной сети медицинских представителей во всех вилоятах страны и регулярные поставки в аптеки.',
+      uz: 'Respublikaning barcha hududlarida tibbiy vakillar jamoalari va dorixonalar bilan muntazam taʼminot yoʻlga qoʻyildi.',
+      en: 'Proprietary field medical rep teams deployed across all 13 regions with direct pharmacy fulfillment.',
+    },
+  },
+  {
+    year: '2024',
+    title: {
+      ru: 'GDP-комплекс 10 000 м²',
+      uz: '10 000 m² GDP ombor',
+      en: '10,000 m² GDP Hub',
+    },
+    desc: {
+      ru: 'Запуск собственного логистического комплекса класса «А» с валидированной холодовой цепью (+2…+8 °C).',
+      uz: '+2…+8 °C validatsiyalangan sovuqlik zanjiriga ega «A» toifali zamonaviy logistika xabi ishga tushirildi.',
+      en: 'Commissioning of a Class-A warehouse complex with continuous cold chain (+2…+8 °C).',
+    },
+  },
+  {
+    year: '2026',
+    isCurrent: true,
+    title: {
+      ru: '6 специализированных суббрендов',
+      uz: '6 ta ixtisoslashgan sub-brend',
+      en: '6 Dedicated Sub-brands',
+    },
+    desc: {
+      ru: 'Полный цикл: дистрибуция, медпромоция, маркетинг и регистрация. Портфель 70+ SKU (Китай, Индия, ЕС).',
+      uz: 'Toʻliq sikl: distribyutsiya, medpromotsiya, marketing va registratsiya. 70+ SKU portfeli (Xitoy, Hindiston, YeI).',
+      en: 'Full-cycle holding: distribution, medical promotion, regulatory affairs. 70+ SKU portfolio (China, India, EU).',
+    },
+  },
+  {
+    year: '2029',
+    isFuture: true,
+    title: {
+      ru: 'Выход на рынки Центральной Азии',
+      uz: 'Markaziy Osiyoga chiqish',
+      en: 'Central Asia Expansion',
+    },
+    desc: {
+      ru: 'Масштабирование дистрибьюторской сети в страны Центральной Азии с единым регуляторным стандартом качества GDP.',
+      uz: 'Markaziy Osiyo mamlakatlariga yagona GDP sifat standarti bilan distribyutsiya tarmogʻini kengaytirish.',
+      en: 'Scaling distribution network into Central Asian markets under unified GDP international quality standards.',
+    },
+  },
+];
+
 export default function InsopharmHomepage({ initialLang, directMail, animatedHero }: { initialLang: Language; directMail: boolean; animatedHero: boolean }) {
   const [lang, setLang] = useState<Language>(initialLang);
-  const [aboutOpen, setAboutOpen] = useState(false);
-  const aboutButton = useRef<HTMLButtonElement>(null);
   const [langDropdownOpen, setLangDropdownOpen] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [activeBrandPopover, setActiveBrandPopover] = useState<string | null>(null);
@@ -272,8 +325,6 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        if (aboutButton.current?.parentElement?.contains(document.activeElement)) aboutButton.current.focus();
-        setAboutOpen(false);
         setActiveBrandPopover(null);
         setMobileBrandsDrawerOpen(false);
         setLicensesModalOpen(false);
@@ -299,13 +350,6 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
   ];
 
   const t = UI_COPY[lang];
-  const aboutLinks = [
-    { href: '#credentials', label: { ru: 'Дистрибуция', uz: 'Distribyutsiya', en: 'Distribution' }[lang] },
-    { href: '#about', label: { ru: 'История', uz: 'Tarix', en: 'History' }[lang] },
-    { href: '#values', label: { ru: 'Видение и ценности', uz: 'Maqsad va qadriyatlar', en: 'Vision and values' }[lang] },
-    { href: '#leadership', label: { ru: 'Руководство', uz: 'Rahbariyat', en: 'Leadership' }[lang] },
-    { href: '#subbrands', label: { ru: 'Направления холдинга', uz: 'Xolding yoʻnalishlari', en: 'Our business lines' }[lang] },
-  ];
 
   return (
     <div id="inso-home" className="inso-home min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
@@ -333,39 +377,28 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
             />
           </motion.a>
 
-          {/* Zone 2: Main Menu on Header */}
+          {/* Zone 2: Main Menu on Header: О нас, Новости, Бренды, Карьера */}
           <nav
             aria-label="Primary Navigation"
             className="hidden lg:flex items-center gap-7 xl:gap-8 text-[16px] font-semibold text-slate-800"
           >
-            <Link
-              href={`/portfolio?lang=${lang}`}
-              className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
-            >
-              {t.navCatalogShort}
-            </Link>
-            <div className="relative" onBlur={event => {
-              if (!event.currentTarget.contains(event.relatedTarget)) setAboutOpen(false);
-            }}>
-              <button ref={aboutButton} type="button" aria-expanded={aboutOpen} aria-controls="about-links"
-                onClick={() => setAboutOpen(open => !open)}
-                className="inso-nav-link inline-flex items-center gap-1.5 cursor-pointer text-[16px]">
-                {t.navAbout}<ChevronDown aria-hidden="true" className={`size-3.5 transition-transform ${aboutOpen ? 'rotate-180' : ''}`} />
-              </button>
-              <div id="about-links" inert={!aboutOpen} aria-hidden={!aboutOpen} data-open={aboutOpen} className="inso-nav-menu absolute top-full left-0 w-60 rounded-2xl border border-[#d7e5e2] bg-[#fcfefd] p-2.5 shadow-lg">
-                {aboutLinks.map(link => (
-                  <a key={link.href} href={link.href} onClick={() => setAboutOpen(false)}
-                    className="block rounded-xl px-3 py-2 text-[15px] font-medium transition-colors duration-300 hover:bg-[#eaf4f1] focus-visible:bg-[#eaf4f1]">
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
             <a
-              href="#faq"
+              href="#about"
               className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
             >
-              {t.navFaq}
+              {t.navAbout}
+            </a>
+            <a
+              href="#news"
+              className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
+            >
+              {t.navNews}
+            </a>
+            <a
+              href="#subbrands"
+              className="inso-nav-link whitespace-nowrap shrink-0 text-[16px]"
+            >
+              {t.navBrands}
             </a>
             <a
               href={`/career?lang=${lang}`}
@@ -375,21 +408,24 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
             </a>
           </nav>
 
-          {/* Zone 3: Compact Flag-Only Language Dropdown + Primary CTA + Mobile Menu Button */}
+          {/* Zone 3: Branded Language Switcher + Primary CTA + Mobile Menu Button */}
           <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-            {/* Compact Flag-Only Language Dropdown */}
+            {/* Branded Language Switcher matching site's pharma aesthetic */}
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setLangDropdownOpen((prev) => !prev)}
                 aria-expanded={langDropdownOpen}
                 aria-label="Select language"
-                className="inline-flex items-center gap-2 h-10 px-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/90 transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-2 h-10 px-3.5 rounded-full bg-white/50 hover:bg-white/80 backdrop-blur-md border border-[#185d53]/25 hover:border-[#185d53]/50 transition-all cursor-pointer shadow-2xs group"
               >
-                <LanguageFlag code={lang} size="md" />
+                <Globe className="w-4 h-4 text-[#185d53] group-hover:scale-105 transition-transform" />
+                <span className="font-[family-name:var(--font-mono)] text-xs font-bold uppercase tracking-wider text-[#185d53]">
+                  {lang.toUpperCase()}
+                </span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-slate-500 transition-transform duration-200 ${
-                    langDropdownOpen ? 'rotate-180 text-[#0B3B60]' : ''
+                  className={`w-3.5 h-3.5 text-[#185d53]/70 transition-transform duration-200 ${
+                    langDropdownOpen ? 'rotate-180 text-[#185d53]' : ''
                   }`}
                 />
               </button>
@@ -406,7 +442,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 4, scale: 0.96 }}
                       transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute right-0 mt-2 w-40 rounded-2xl bg-white border border-slate-200/90 shadow-[0_16px_36px_-10px_rgba(15,23,42,0.16)] p-1.5 z-30"
+                      className="absolute right-0 mt-2 w-44 rounded-2xl bg-white/95 backdrop-blur-xl border border-teal-800/15 shadow-[0_16px_36px_-10px_rgba(20,83,75,0.18)] p-1.5 z-30"
                     >
                       {languageOptions.map((item) => {
                         const active = lang === item.code;
@@ -420,13 +456,21 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                             }}
                             className={`w-full px-2.5 py-2 rounded-xl flex items-center justify-between gap-2.5 text-left transition-colors cursor-pointer ${
                               active
-                                ? 'bg-[#0B3B60] text-white'
-                                : 'text-slate-700 hover:bg-slate-50'
+                                ? 'bg-[#185d53] text-white'
+                                : 'text-slate-700 hover:bg-emerald-50/70'
                             }`}
                           >
                             <div className="flex items-center gap-2.5">
-                              <LanguageFlag code={item.code} size="sm" />
-                              <span className="text-xs font-bold leading-none">
+                              <span
+                                className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
+                                  active
+                                    ? 'bg-white/20 text-white'
+                                    : 'bg-teal-50 text-[#185d53] border border-teal-200/60'
+                                }`}
+                              >
+                                {item.code.toUpperCase()}
+                              </span>
+                              <span className="text-xs font-semibold">
                                 {item.label}
                               </span>
                             </div>
@@ -496,7 +540,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 className="lg:hidden fixed inset-x-0 top-18 sm:top-20 z-50 bg-white border-b border-slate-200 shadow-[0_24px_48px_-12px_rgba(15,23,42,0.18)] max-h-[calc(100dvh-5rem)] overflow-y-auto"
               >
                 <div className="max-w-2xl mx-auto px-4 sm:px-6 pt-4 pb-6 space-y-4">
-                  {/* Compact Flag Selector Row in Mobile Drawer */}
+                  {/* Branded Language Selector Row in Mobile Drawer */}
                   <div className="grid grid-cols-3 gap-2 pb-3 border-b border-slate-100">
                     {languageOptions.map((item) => {
                       const active = lang === item.code;
@@ -505,32 +549,41 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                           key={item.code}
                           type="button"
                           onClick={() => handleSetLang(item.code)}
-                          className={`px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-2 ${
+                          className={`px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                             active
-                              ? 'bg-[#0B3B60] text-white border-[#0B3B60] shadow-xs'
+                              ? 'bg-[#185d53] text-white border-[#185d53] shadow-xs'
                               : 'bg-slate-50 text-slate-700 border-slate-200/80 hover:bg-slate-100'
                           }`}
                         >
-                          <LanguageFlag code={item.code} size="sm" />
+                          <span
+                            className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
+                              active
+                                ? 'bg-white/20 text-white'
+                                : 'bg-teal-50 text-[#185d53]'
+                            }`}
+                          >
+                            {item.code}
+                          </span>
                           <span className="text-xs font-bold">{item.label}</span>
                         </button>
                       );
                     })}
                   </div>
 
-                  {/* Primary Navigation List (4 Main Menu Items: About Us, Subbrands, News, Career) */}
+                  {/* Primary Navigation List (4 Main Menu Items: О нас, Новости, Бренды, Карьера) */}
                   <nav aria-label="Mobile Navigation" className="space-y-2.5">
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <div className="grid grid-cols-2 gap-2">
                       {[
-                        ...aboutLinks,
-                        { href: '#faq', label: t.navFaq },
+                        { href: '#about', label: t.navAbout },
+                        { href: '#news', label: t.navNews },
+                        { href: '#subbrands', label: t.navBrands },
                         { href: `/career?lang=${lang}`, label: t.navCareer },
                       ].map((navItem) => (
                         <a
                           key={navItem.href}
                           href={navItem.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between px-3.5 py-3 rounded-xl border border-slate-200/80 bg-white hover:border-[#0B3B60]/40 text-xs sm:text-sm font-bold text-slate-900 transition-colors"
+                          className="flex items-center justify-between px-3.5 py-3 rounded-xl border border-slate-200/80 bg-white hover:border-[#185d53]/40 text-xs sm:text-sm font-bold text-slate-900 transition-colors"
                         >
                           <span className="truncate">{navItem.label}</span>
                           <ArrowRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -880,8 +933,23 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-xl rounded-3xl bg-[#07182C] border border-white/20 p-5 sm:p-7 text-white shadow-[0_24px_60px_-12px_rgba(0,0,0,0.85)] z-10 max-h-[90vh] flex flex-col overflow-hidden"
+              className="relative w-full max-w-xl rounded-3xl bg-[#07182C] border border-white/20 p-5 sm:p-7 text-white shadow-[0_24px_60px_-12px_rgba(0,0,0,0.85)] z-10 max-h-[90vh] flex flex-col overflow-hidden isolate"
             >
+              {/* Official regulatory watermark seal */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none select-none absolute -bottom-20 -right-20 w-80 h-80 opacity-[0.05] mix-blend-screen -z-10"
+              >
+                <Image
+                  src="/photos/bg-element.svg"
+                  alt=""
+                  width={320}
+                  height={320}
+                  className="w-full h-full object-contain"
+                  priority={false}
+                />
+              </div>
+
               {/* Modal Header */}
               <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10 shrink-0">
                 <div className="flex items-center gap-3">
@@ -1017,31 +1085,37 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
       </AnimatePresence>
 
       <InsoScrollPalette animatedHero={animatedHero}>
+      {/* 02. INFRASTRUCTURE & LOGISTICS (#credentials) — Placed right after Hero */}
       <InsoCredentials lang={lang} />
 
+      {/* Elegant Hairline Transition Rule */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full border-t border-slate-200" />
+      </div>
+
       {/* =====================================================================
-          3. ABOUT US (#about): SYNTHON-INSPIRED EDITORIAL HERITAGE + CHRONOLOGY
+          03. ABOUT US (#about): SWISS EDITORIAL HERITAGE + TIMELINE
          ===================================================================== */}
       <section
         id="about"
-        className="scroll-mt-20 pt-12 sm:pt-16 overflow-hidden"
+        className="scroll-mt-20 pt-10 sm:pt-12 lg:pt-16 pb-12 sm:pb-16 lg:pb-20 text-slate-900"
       >
-        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-          {/* Part 1: Editorial Header — Synthon Typography & Clean Narrative */}
-          <div className="grid items-center gap-6 md:grid-cols-2 lg:gap-16">
-            <div className="vision-reveal space-y-4 md:order-2">
-              <div className="inline-flex items-center gap-3 text-xs font-semibold text-[#26736f] uppercase tracking-[0.2em]">
-                <span className="w-6 h-[1.5px] bg-[#26736f] inline-block" />
+        <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 space-y-10 lg:space-y-14">
+          {/* Part 1: Editorial Header — Narrative on Left, Clean Office Photo on Right */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+            {/* Left Column: Heading & Narrative */}
+            <div className="lg:col-span-6 space-y-4">
+              <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
                 <span>
                   {lang === 'ru'
-                    ? 'История INSO'
+                    ? '03 · ИСТОРИЯ INSO'
                     : lang === 'uz'
-                    ? 'INSO tarixi'
-                    : 'Our history'}
+                    ? '03 · INSO TARIXI'
+                    : '03 · INSO HISTORY'}
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-slate-900 leading-[1.12] text-balance">
+              <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance">
                 {lang === 'ru' ? (
                   <>
                     От первого контракта до{' '}
@@ -1065,7 +1139,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   </>
                 )}
               </h2>
-              <p className="max-w-[52ch] text-sm leading-relaxed text-slate-600 sm:text-base">
+
+              <p className="text-base sm:text-[17px] text-slate-600 font-normal leading-relaxed max-w-xl">
                 {lang === 'ru'
                   ? 'В 2017 году мы начали поставлять лекарства в Ташкенте по прямым контрактам с производителями. Сегодня INSO Group объединяет шесть специализированных суббрендов.'
                   : lang === 'uz'
@@ -1073,157 +1148,106 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   : 'We began supplying medicines in Tashkent in 2017 through direct contracts with manufacturers. Today, INSO Group brings together six specialist brands.'}
               </p>
             </div>
-            <figure id="warehouse" className="scroll-mt-24 md:order-1">
-              <div className="inso-photo-window"><Image
-                src="/assets/video/inso-warehouse-poster.jpg"
-                width={1280} height={720}
-                sizes="(min-width: 1280px) 576px, (min-width: 768px) 47vw, 100vw"
-                className="aspect-video w-full rounded-2xl object-cover"
-                alt={{ ru: 'Фасад складского комплекса', uz: 'Ombor majmuasining tashqi koʻrinishi', en: 'Exterior of the warehouse complex' }[lang]}
-              /></div>
-              <figcaption className="mt-2 text-xs text-slate-600">
-                {{ ru: 'Складской комплекс сегодня', uz: 'Bugungi ombor majmuasi', en: 'The warehouse today' }[lang]}
-              </figcaption>
-            </figure>
-          </div>
 
-          {/* Part 2: Interactive Synthon-Style 5-Stage Timeline (Scroll-Linked Linear Entrance) */}
-          <div>
-            <div className="inso-timeline grid lg:grid-cols-5">
-              {[
-                {
-                  year: '2017',
-                  tag:
+            {/* Right Column: Clean Office Photo without any badges/plates */}
+            <div className="lg:col-span-6 space-y-3">
+              <div className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80">
+                <Image
+                  src="/assets/photos/office-entrance.jpg"
+                  alt={
                     lang === 'ru'
-                      ? 'Основание'
+                      ? 'Главный офис и запуск первых прямых поставок'
                       : lang === 'uz'
-                      ? 'Asos solinishi'
-                      : 'Foundation',
-                  title:
-                    lang === 'ru'
-                      ? 'Старт в Ташкенте'
-                      : lang === 'uz'
-                      ? 'Toshkentda start'
-                      : 'Operations in Tashkent',
-                  desc:
-                    lang === 'ru'
-                      ? 'Регистрация компании, первые прямые контракты с производителями и запуск оптовой фармдистрибуции.'
-                      : lang === 'uz'
-                      ? 'Kompaniya roʻyxatdan oʻtkazildi, zavodlar bilan ilk shartnomalar va ulgurji distribyutsiya yoʻlga qoʻyildi.'
-                      : 'Foundation in Tashkent, securing initial direct manufacturer contracts and launching wholesale supply.',
-                  status: 'past',
-                },
-                {
-                  year: '2021',
-                  tag:
-                    lang === 'ru'
-                      ? 'Охват'
-                      : lang === 'uz'
-                      ? 'Qamrov'
-                      : 'Nationwide Reach',
-                  title:
-                    lang === 'ru'
-                      ? '13 регионов Узбекистана'
-                      : lang === 'uz'
-                      ? '13 ta hududiy vakolatxona'
-                      : '13 Regional Offices',
-                  desc:
-                    lang === 'ru'
-                      ? 'Формирование собственной сети медицинских представителей во всех вилоятах страны и регулярные поставки в аптеки.'
-                      : lang === 'uz'
-                      ? 'Respublikaning barcha hududlarida tibbiy vakillar jamoalari va dorixonalar bilan tizimli taʼminot yoʻlga qoʻyildi.'
-                      : 'Proprietary field medical rep teams deployed across all 13 regions with direct pharmacy fulfillment.',
-                  status: 'past',
-                },
-                {
-                  year: '2024',
-                  tag:
-                    lang === 'ru'
-                      ? 'Инфраструктура'
-                      : lang === 'uz'
-                      ? 'Infratuzilma'
-                      : 'Infrastructure',
-                  title:
-                    lang === 'ru'
-                      ? 'GDP-комплекс 10 000 м²'
-                      : lang === 'uz'
-                      ? '10 000 m² GDP ombor'
-                      : '10,000 m² GDP Hub',
-                  desc:
-                    lang === 'ru'
-                      ? 'Запуск собственного логистического комплекса класса «А» с валидированной холодовой цепью (+2…+8 °C).'
-                      : lang === 'uz'
-                      ? '+2…+8 °C validatsiyalangan sovuqlik zanjiriga ega «A» toifali zamonaviy logistika xabi ishga tushirildi.'
-                      : 'Commissioning of a Class-A warehouse complex with continuous cold chain (+2…+8 °C) and high-bay storage.',
-                  status: 'past',
-                },
-                {
-                  year: '2026',
-                  tag:
-                    lang === 'ru'
-                      ? 'Холдинг'
-                      : lang === 'uz'
-                      ? 'Xolding'
-                      : 'Ecosystem',
-                  title:
-                    lang === 'ru'
-                      ? '6 специализированных суббрендов'
-                      : lang === 'uz'
-                      ? '6 ta ixtisoslashgan sub-brend'
-                      : '6 Dedicated Sub-brands',
-                  desc:
-                    lang === 'ru'
-                      ? 'Полный цикл: дистрибуция, медпромоция, маркетинг и регистрация. Портфель 70+ SKU (Китай, Индия, ЕС).'
-                      : lang === 'uz'
-                      ? 'Toʻliq sikl: distribyutsiya, medpromotsiya, marketing va registratsiya. 70+ SKU portfeli (Xitoy, Hindiston, YeI).'
-                      : 'Full-cycle holding: distribution, medical promotion, regulatory affairs. 70+ SKU portfolio from China, India, and EU.',
-                  status: 'current',
-                },
-                {
-                  year: '2029',
-                  tag:
-                    lang === 'ru'
-                      ? 'Стратегия'
-                      : lang === 'uz'
-                      ? 'Strategiya'
-                      : 'Vision 2029',
-                  title:
-                    lang === 'ru'
-                      ? 'Выход на рынки Центральной Азии'
-                      : lang === 'uz'
-                      ? 'Markaziy Osiyoga chiqish'
-                      : 'Central Asia Expansion',
-                  status: 'future',
-                },
-              ].map(milestone => {
-                const isCurrent = milestone.status === 'current';
-                const isFuture = milestone.status === 'future';
-
-                return (
-                  <div key={milestone.year}
-                    className={`vision-reveal inso-milestone ${isCurrent ? 'is-current' : isFuture ? 'is-planned' : ''}`}
-                  >
-                    <div className="inso-year">{milestone.year}</div>
-                    <p className="mt-1 text-xs font-medium text-[#366c69]">{milestone.tag}</p>
-                    <h3 className="mt-2 text-lg sm:text-[22px] font-semibold leading-snug">{milestone.title}</h3>
-                    {milestone.desc && (
-                      <p className="mt-1.5 text-[16px] sm:text-[17px] leading-relaxed text-slate-600">{milestone.desc}</p>
-                    )}
-                  </div>
-                );
-              })}
+                      ? 'Bosh ofis va ilk toʻgʻridan-toʻgʻri taʼminot yoʻlga qoʻyilishi'
+                      : 'Main headquarters and initial direct supply contracts'
+                  }
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover object-center"
+                />
+              </div>
+              <p className="text-xs sm:text-sm text-slate-500 font-normal">
+                {lang === 'ru'
+                  ? 'Главный офис и запуск первых прямых поставок'
+                  : lang === 'uz'
+                  ? 'Bosh ofis va ilk toʻgʻridan-toʻgʻri taʼminot yoʻlga qoʻyilishi'
+                  : 'Main headquarters and initial direct supply contracts'}
+              </p>
             </div>
           </div>
 
+          {/* Part 2: Pure Horizontal Timeline on a Single 1px Line */}
+          <div className="border-t border-slate-200 pt-8 sm:pt-10 lg:pt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-8">
+              {INSO_MILESTONES.map((milestone) => (
+                <div key={milestone.year} className="flex flex-col">
+                  <div
+                    className={`text-2xl sm:text-3xl lg:text-[34px] tracking-tight leading-none ${
+                      milestone.isCurrent
+                        ? 'font-extrabold text-[#185d53]'
+                        : milestone.isFuture
+                        ? 'font-medium text-slate-400'
+                        : 'font-bold text-slate-900'
+                    }`}
+                  >
+                    {milestone.year}
+                  </div>
+
+                  <h3 className="text-[15px] sm:text-base font-bold text-slate-900 mt-3 leading-snug">
+                    {milestone.title[lang]}
+                  </h3>
+
+                  <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    {milestone.desc[lang]}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      <InsoVisionValues lang={lang} />
-      <InsoLeadership lang={lang} />
+      {/* Elegant Hairline Transition Rule */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full border-t border-slate-200" />
+      </div>
 
+      {/* 04. SUBBRANDS & BUSINESS LINES (#subbrands, #brands) */}
       <InsoBusinessLines lang={lang} />
 
+      {/* Elegant Hairline Transition Rule */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full border-t border-slate-200" />
+      </div>
+
+      {/* 05. VISION & VALUES (#values) */}
+      <InsoVisionValues lang={lang} />
+
+      {/* Elegant Hairline Transition Rule */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full border-t border-slate-200" />
+      </div>
+
+      {/* 06. LEADERSHIP (#leadership) */}
+      <InsoLeadership lang={lang} />
+
+      {/* Elegant Hairline Transition Rule */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full border-t border-slate-200" />
+      </div>
+
+      {/* 07. NEWS & PRESS CENTER (#news) — Social proof before FAQ and contact */}
+      <InsoNews lang={lang} />
+
+      {/* Elegant Hairline Transition Rule */}
+      <div className="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-px w-full border-t border-slate-200" />
+      </div>
+
+      {/* 08. PARTNER FAQ & 09. CONTACT FORM (#faq, #contacts) */}
       <InsoPartnerContact lang={lang} directMail={directMail} />
+
+      {/* FOOTER */}
       <InsoFooter lang={lang} onDocuments={() => setLicensesModalOpen(true)} />
       </InsoScrollPalette>
     </div>

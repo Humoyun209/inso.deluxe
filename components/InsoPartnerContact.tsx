@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import InsoTopicSelect from './InsoTopicSelect';
 import InsoPartnerFaq from './InsoPartnerFaq';
 import { useRef, useState } from 'react';
@@ -10,18 +11,21 @@ import type { Language } from '@/lib/insopharm-data';
 
 const copy = {
   ru: {
+    badge: '09 · СВЯЗАТЬСЯ С НАМИ',
     title: 'Обсудим сотрудничество', name: 'Имя и организация', contact: 'Почта или телефон для ответа', topic: 'Тема обращения', message: 'Ваш запрос',
     send: 'Отправить запрос', draft: 'Открыть в почте', hint: 'Письмо откроется в вашей почте. Проверьте текст и нажмите «Отправить».',
     pending: 'Отправляем…', ok: 'Почтовый сервис принял письмо для отправки.', error: 'Отправить не удалось. Можно повторить попытку или написать отделу напрямую.',
     address: 'Ташкент, Юнусабадский район, ул. Богишамол, 160', route: 'Построить маршрут', formTitle: 'Написать нам', phone: 'Телефон и фармаконадзор', invalid: 'Заполните имя, обратный контакт и сообщение.',
   },
   uz: {
+    badge: '09 · ALOQA VA HAMKORLIK',
     title: 'Hamkorlikni muhokama qilaylik', name: 'Ism va tashkilot', contact: 'Javob uchun email yoki telefon', topic: 'Murojaat mavzusi', message: 'Xabaringiz',
     send: 'Xabar yuborish', draft: 'Pochtada ochish', hint: 'Xat pochtangizda ochiladi. Matnni tekshiring va yuboring.',
     pending: 'Yuborilmoqda…', ok: 'Pochta xizmati xatni yuborish uchun qabul qildi.', error: 'Xat yuborilmadi. Qayta urinib koʻring yoki boʻlimga bevosita yozing.',
     address: 'Toshkent, Yunusobod tumani, Bogʻishamol koʻchasi, 160', route: 'Yoʻnalishni ochish', formTitle: 'Bizga yozing', phone: 'Telefon va farmakonazorat', invalid: 'Ism, aloqa maʼlumoti va xabarni kiriting.',
   },
   en: {
+    badge: '09 · CONTACT & PARTNERSHIP',
     title: 'Discuss a partnership', name: 'Name and organisation', contact: 'Email or phone for a reply', topic: 'Enquiry topic', message: 'Your enquiry',
     send: 'Send enquiry', draft: 'Open in email', hint: 'Your email app will open a draft. Review it and press Send.',
     pending: 'Sending…', ok: 'The email service accepted your enquiry for delivery.', error: 'Sending failed. Please retry or email the department directly.',
@@ -75,7 +79,10 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
       <section id="contacts" aria-labelledby="partner-contact-title" className="scroll-mt-18 px-4 pb-12 sm:px-6 lg:px-8 lg:pb-20">
         <div className="mx-auto grid max-w-[1216px] items-center gap-6 border-t border-[#b9d0c7] pt-10 text-[#193f41] lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:pt-14">
           <div className="min-w-0">
-            <h2 id="partner-contact-title" className="vision-reveal text-balance text-3xl sm:text-4xl lg:text-[38px] font-medium leading-[1.08] tracking-tight">{t.title}</h2>
+            <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em] mb-3">
+              <span>{t.badge}</span>
+            </div>
+            <h2 id="partner-contact-title" className="text-balance text-3xl sm:text-4xl lg:text-[38px] font-medium leading-[1.08] tracking-tight">{t.title}</h2>
             <div className="mt-6 flex items-start gap-3">
               <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#34766a]" />
               <div><p className="mb-1 text-[12px] text-[#47675e]">{t.phone}</p>
@@ -93,9 +100,23 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
 
           </div>
           <form id="inquiry-form" onSubmit={submit} onChange={() => { if (status !== 'pending') setStatus('idle'); }}
-            className="partner-form min-w-0 scroll-mt-24 rounded-3xl p-5 text-[#234d4b] sm:p-8">
-            <h3 className="mb-5 text-xl sm:text-[22px] lg:text-[24px] font-semibold tracking-tight">{t.formTitle}</h3>
-              <fieldset disabled={status === 'pending'} className="grid gap-4 text-sm font-semibold text-[#284e4c]">
+            className="partner-form relative overflow-hidden isolate min-w-0 scroll-mt-24 rounded-3xl p-5 text-[#234d4b] sm:p-8">
+            {/* Subtle brand watermark on contact form */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none select-none absolute -bottom-24 -right-24 sm:-bottom-28 sm:-right-24 w-[340px] h-[340px] opacity-[0.04] -z-10"
+            >
+              <Image
+                src="/photos/bg-element-teal.svg"
+                alt=""
+                width={340}
+                height={340}
+                className="w-full h-full object-contain"
+                priority={false}
+              />
+            </div>
+            <h3 className="relative z-10 mb-5 text-xl sm:text-[22px] lg:text-[24px] font-semibold tracking-tight">{t.formTitle}</h3>
+              <fieldset disabled={status === 'pending'} className="relative z-10 grid gap-4 text-sm font-semibold text-[#284e4c]">
                 <label>{t.name}<input ref={nameInput} name="name" required maxLength={120} autoComplete="name" className={field} /></label>
                 <label>{t.contact}<input name="contact" required maxLength={160} className={field} /></label>
                 <InsoTopicSelect label={t.topic} lang={lang} value={topic} onChange={next => { setTopic(next); setStatus('idle'); }} />
