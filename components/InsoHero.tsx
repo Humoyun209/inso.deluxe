@@ -16,12 +16,14 @@ const labels = {
   ru: { docs: 'Лицензии компании', next: 'Как устроена дистрибуция', play: 'Воспроизвести видео', pause: 'Приостановить видео' },
   en: { docs: 'Company licences', next: 'How INSO distributes medicines', play: 'Play video', pause: 'Pause video' },
   uz: { docs: 'Kompaniya litsenziyalari', next: 'INSO distribyutsiyasi qanday ishlaydi', play: 'Videoni ijro etish', pause: 'Videoni toʻxtatish' },
+  zh: { docs: '公司资质证书', next: 'INSO药品分销网络', play: '播放视频', pause: '暂停视频' },
 };
 
 const introLine = {
   ru: ['От регистрации препарата', 'до поставки в аптеку'],
   en: ['From product registration', 'to pharmacy delivery'],
   uz: ['Dorini roʻyxatdan oʻtkazishdan', 'dorixonaga yetkazib berishgacha'],
+  zh: ['从药品注册申报', '到终端药房配送'],
 };
 
 function HeroHeading({ copy, overlay = false }: { copy: HeroCopy; overlay?: boolean }) {
@@ -159,7 +161,7 @@ export default function InsoHero({ animated, copy, lang, onDocuments, onBrandsHi
           <video ref={videoRef} src="/assets/video/inso-background-v4.mp4" poster="/assets/video/inso-warehouse-poster.jpg"
             muted loop playsInline preload="metadata" aria-hidden="true" onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} />
           <a className="hero-forward" href="#credentials" aria-label={t.next}><ArrowDown aria-hidden="true" /></a>
-          <p className="hero-caption">{copy.heroDescription}</p>
+          <p className="hero-caption font-serif italic text-white/95">{copy.heroDescription}</p>
           <button type="button" className="hero-playback" data-playing={playing} aria-label={playing ? t.pause : t.play} title={playing ? t.pause : t.play}
             onClick={() => { const video = videoRef.current; if (video?.paused) void video.play().catch(() => {}); else video?.pause(); }}>
             {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}

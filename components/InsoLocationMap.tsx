@@ -96,6 +96,22 @@ const MAP_COPY = {
     openInMaps: 'Open in Google Maps',
     gdpNote: 'Direct GDP cold-chain delivery across all 14 regions of Uzbekistan (+2…+8 °C)',
   },
+  zh: {
+    badge: '地理位置与供应链物流 · Google Maps Platform',
+    title: '医药基础设施与业务网络互动地图',
+    subtitle:
+      '通过 Google Places API 实时了解位于塔什干的总部大楼、GDP保税仓储中心及周边合作连锁药房与医疗机构。',
+    searchPlaceholder: '在塔什干检索街道、药房或医疗中心...',
+    searchBtn: '搜索',
+    presetHub: '尤努萨巴德区博吉沙莫尔街',
+    presetPharmacies: '尤努萨巴德区药房',
+    presetClinics: '塔什干各大医院与专科门诊',
+    resultsLabel: 'Google Maps 搜索结果：',
+    loadingText: '正在从 Google Places API 加载地理位置数据...',
+    noResultsText: '未检索到相关地点，请尝试其他关键词。',
+    openInMaps: '在 Google 地图中打开',
+    gdpNote: '覆盖乌兹别克斯坦全境各省市的直发冷链配送网络（+2…+8 °C / +15…+25 °C）',
+  },
 };
 
 function PlacesMapController({

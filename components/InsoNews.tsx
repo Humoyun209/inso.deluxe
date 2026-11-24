@@ -24,32 +24,38 @@ export const INSO_NEWS: NewsItem[] = [
       ru: 'Инфраструктура и логистика',
       uz: 'Infratuzilma va logistika',
       en: 'Infrastructure & Logistics',
+      zh: '仓储基础设施与物流',
     },
     date: {
       ru: '18 ноября 2026',
       uz: '18-noyabr, 2026',
       en: 'November 18, 2026',
+      zh: '2026年11月18日',
     },
     readTime: {
       ru: '3 мин',
       uz: '3 daq',
       en: '3 min',
+      zh: '3分钟',
     },
     image: '/assets/pharma/sklad-3.webp',
     imageAlt: {
       ru: 'Вторая очередь центрального GDP-комплекса INSO Group',
       uz: 'INSO Group markaziy GDP majmuasining ikkinchi navbati',
       en: 'Phase II of INSO Group Central GDP Logistics Complex',
+      zh: 'INSO Group 塔什干中央 GDP 仓储综合体二期工程',
     },
     title: {
       ru: 'INSO Group завершил ввод второй очереди центрального GDP-комплекса в Ташкенте',
       uz: 'INSO Group Toshkentdagi markaziy GDP majmuasining ikkinchi navbatini ishga tushirdi',
       en: 'INSO Group Commissions Phase II of Central GDP Logistics Complex in Tashkent',
+      zh: 'INSO Group 完成塔什干中央 GDP 医药仓储物流综合体二期工程扩建投产',
     },
     summary: {
       ru: 'В эксплуатацию введены дополнительные 3 500 м² кондиционируемых зон с автоматическим контролем холодовой цепи (+2…+8 °C) и партионным учётом WMS.',
       uz: 'Uzluksiz sovuqlik zanjiri (+2…+8 °C) va avtomatlashtirilgan WMS partiya nazoratiga ega qoʻshimcha 3 500 m² ombor maydoni foydalanishga topshirildi.',
       en: 'An additional 3,500 m² of climate-controlled warehouse capacity featuring continuous cold-chain monitoring (+2…+8 °C) and full WMS batch tracking is now operational.',
+      zh: '新增3,500平方米温控仓储区正式投入运营，全面配备全自动冷链监控系统（+2…+8 °C）及现代化WMS批次数字化追溯系统。',
     },
     paragraphs: {
       ru: [
@@ -67,6 +73,11 @@ export const INSO_NEWS: NewsItem[] = [
         'The newly built facility features high-efficiency German refrigeration systems with triple-redundant power backup and calibrated thermal sensors transmitting real-time telemetry to dispatchers.',
         'All receiving, storing, and shipping operations are fully integrated with the national Asl Belgisi serialization database and WHO Good Distribution Practice requirements, ensuring safe handling of vaccines and biologicals.',
       ],
+      zh: [
+        '作为乌兹别克斯坦国家级医药供应链长期投资基础设施规划的重要组成部分，INSO Group已圆满完成塔什干中央现代化物流综合体二期的施工建设与全面系统联调。',
+        '新扩建的库区全面引进德国高效节能制冷机组，配备三回路不间断备用供电系统以及经过高精度校验的无线温湿度传感器，所有环境参数7×24小时实时传输至中央调度大厅。',
+        '园区内所有药品收发与养护操作流程均100%无缝对接乌兹别克斯坦Asl Belgisi国家数字追溯系统，严格执行世界卫生组织《药品优良分销规范》（WHO GDP），为疫苗、生物制剂及温敏药品的安全储存提供坚实保障。',
+      ],
     },
   },
   {
@@ -75,32 +86,38 @@ export const INSO_NEWS: NewsItem[] = [
       ru: 'Международные соглашения',
       uz: 'Xalqaro shartnomalar',
       en: 'Global Partnerships',
+      zh: '国际合作与协议',
     },
     date: {
       ru: '4 ноября 2026',
       uz: '4-noyabr, 2026',
       en: 'November 4, 2026',
+      zh: '2026年11月4日',
     },
     readTime: {
       ru: '2 мин',
       uz: '2 daq',
       en: '2 min',
+      zh: '2分钟',
     },
     image: '/assets/photos/partner-meeting.jpg',
     imageAlt: {
       ru: 'Подписание соглашений с европейскими фармацевтическими партнерами',
       uz: 'Yevropa farmatsevtika hamkorlari bilan bitimlar imzolanishi',
       en: 'Signing ceremonies with European pharmaceutical manufacturers',
+      zh: '与欧洲制药企业正式签署独家分销战略合作协议',
     },
     title: {
       ru: 'Подписаны прямые дистрибьюторские контракты с 12 европейскими производителями',
       uz: 'Yevropaning 12 ta ishlab chiqaruvchisi bilan toʻgʻridan-toʻgʻri shartnomalar imzolandi',
       en: 'Direct Distribution Agreements Signed with 12 European Pharma Manufacturers',
+      zh: '与12家欧洲知名制药厂商正式签署独家直接分销战略合作协议',
     },
     summary: {
       ru: 'Холдинг расширяет терапевтический портфель в направлениях кардиологии, онкологии и неврологии с поставками в 13 регионов страны.',
       uz: 'Xolding kardiologiya, onkologiya va nevrologiya yoʻnalishlaridagi dori portfelini kengaytirib, 13 ta hududga taʼminotni boshlaydi.',
       en: 'The holding expands its therapeutic portfolio across cardiology, oncology, and neurology, establishing supply lines across all 13 regions of Uzbekistan.',
+      zh: '集团进一步扩充心血管、肿瘤及神经内科领域优质药品管线，覆盖乌兹别克斯坦全境13个大区的终端供应。',
     },
     paragraphs: {
       ru: [
@@ -118,6 +135,11 @@ export const INSO_NEWS: NewsItem[] = [
         'The scope covers regulatory filings, ethical medical marketing, scientific engagement, and verified logistics into hospitals and community pharmacies.',
         'Initial commercial shipments of certified European medicines are scheduled for release across Uzbekistan in Q1 2027.',
       ],
+      zh: [
+        'INSO Group与来自德国、意大利及瑞士的众多领先制药企业达成多项长期排他性独家代理与分销合作协议。',
+        '合作范围覆盖药品在乌兹别克斯坦的国家注册法规支持、伦理化学术推广、专业医师科研协作，以及向全国重点三甲临床医学中心和连锁药房的定期直供。',
+        '首批获得乌兹别克斯坦官方认证的欧洲原研药及高质量品牌药将于2027年第一季度全面进入集团分销管网。',
+      ],
     },
   },
   {
@@ -126,32 +148,38 @@ export const INSO_NEWS: NewsItem[] = [
       ru: 'Стандарты качества',
       uz: 'Sifat standartlari',
       en: 'Quality Standards',
+      zh: '质量标准与认证',
     },
     date: {
       ru: '22 октября 2026',
       uz: '22-oktyabr, 2026',
       en: 'October 22, 2026',
+      zh: '2026年10月22日',
     },
     readTime: {
       ru: '4 мин',
       uz: '4 daq',
       en: '4 min',
+      zh: '4分钟',
     },
     image: '/assets/photos/gdp-pallet-amgv.jpg',
     imageAlt: {
       ru: 'Фармацевтические паллеты с температурным контролем GDP',
       uz: 'GDP harorat nazoratiga ega farmatsevtika partiyalari',
       en: 'Pharmaceutical pallets with GDP validated thermal logging',
+      zh: '具备GDP全程温控验证的医药托盘仓储',
     },
     title: {
       ru: 'Холдинг успешно прошёл ежегодный аудит соответствия стандартам GDP WHO',
       uz: 'Xolding JSSTning GDP sifat standartlariga muvofiqlik boʻyicha yillik auditidan muvaffaqiyatli oʻtdi',
       en: 'INSO Group Successfully Passes Annual WHO GDP Re-certification Audit',
+      zh: '集团顺利通过世界卫生组织WHO GDP标准年度复审认证',
     },
     summary: {
       ru: 'Независимая инспекция подтвердила нулевой уровень отклонений в процедурах хранения вакцин, термовалидации и электронного трекинга партий.',
       uz: 'Mustaqil nazorat vaksinalarni saqlash, harorat validatsiyasi va partiyalarni elektron kuzatish boʻyicha nol tafovutni tasdiqladi.',
       en: 'Independent inspection verified zero critical deviations across cold-chain validation, biopharmaceutical storage, and electronic batch tracing.',
+      zh: '第三方专业权威审计机构确认集团在生物制剂仓储、冷链全程温湿度验证及电子批次追溯流程中实现“零缺陷”记录。',
     },
     paragraphs: {
       ru: [
@@ -168,6 +196,11 @@ export const INSO_NEWS: NewsItem[] = [
         'INSO Group’s pharmaceutical distribution network has re-confirmed full compliance with World Health Organization Good Distribution Practice (GDP) standards.',
         'During the comprehensive inspection, evaluators verified thermal mapping consistency, sensor calibration logs, and emergency protocol response times.',
         'This reaffirmation provides global manufacturing partners with absolute assurance regarding drug efficacy and patient safety across the supply chain.',
+      ],
+      zh: [
+        'INSO Group现代化医药供应链基础设施再次成功通过世界卫生组织《药品优良分销规范》（WHO Good Distribution Practice）严格年度审核认证。',
+        '在为期数周的系统性审计中，国际独立检验专家对集团各大冷库的立体温度场动态分布、传感器检定周期及外电突发故障下的应急响应切换进行了深度核查。',
+        '持续保持的国际认证等级，为全球制药合作伙伴提供了最高标准的药品品质与疗效保障，确保药品从出厂直到最终患者手中的全程高品质。',
       ],
     },
   },
@@ -200,6 +233,15 @@ const copy = {
       'Official updates on infrastructure expansion, global manufacturer agreements, and regulatory audits across INSO Group.',
     readMore: 'Read Full Story',
     closeModal: 'Close',
+  },
+  zh: {
+    badge: '07 · 新闻与动态',
+    titleMain: '集团新闻与',
+    titleAccent: '里程碑事件',
+    subtitle:
+      '掌握INSO Group在基础设施扩建、国际厂商合作及医药法规质量认证方面的最新动态与官方资讯。',
+    readMore: '阅读全文',
+    closeModal: '关闭',
   },
 };
 

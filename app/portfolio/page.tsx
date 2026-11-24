@@ -11,7 +11,7 @@ export default async function PortfolioRoute({
   const initialSubbrand = resolvedParams?.subbrand || 'all';
   const rawLang = resolvedParams?.lang;
   const initialLang: Language =
-    rawLang === 'uz' || rawLang === 'en' || rawLang === 'ru' ? rawLang : 'ru';
+    rawLang === 'uz' || rawLang === 'en' || rawLang === 'ru' || rawLang === 'zh' ? rawLang : 'ru';
 
   return (
     <InsopharmPortfolioPage

@@ -77,6 +77,30 @@ const content = {
       'Tashkent, Samarkand, Fergana, Bukhara, Andijan, Namangan, and all provinces.',
     deliveryAction: 'Regional supply terms',
   },
+  zh: {
+    badge: '02 · 基础设施与仓储物流',
+    subtitle:
+      '拥有符合国际标准的自有甲级（Class A）医药仓储物流综合体、全程验证冷链体系，以及覆盖乌兹别克斯坦全境的13个区域配送枢纽。',
+    photoCaption: '位于塔什干的中央甲级医药仓储物流综合体',
+    photoLink: '园区详细参数',
+    metric1Val: '+2…+8 °C',
+    metric1Label: '全程验证不间断冷链',
+    metric2Val: '10 000 m²',
+    metric2Label: '自建甲级现代化医药仓储',
+    metric3Val: '100% WMS',
+    metric3Label: '数字化批次追溯与Asl Belgisi赋码追溯',
+    licenseTitle: '符合WHO GDP标准的正规医药批发分销',
+    licenseDesc:
+      '与全球制药商直接签订分销协议。严格执行国际《药品优良分销规范》（GDP），获乌兹别克斯坦卫生部正式许可认证（执照编号 № 18563）。',
+    pdfAction: 'GDP资质认证 (PDF)',
+    licenseAction: '申请完整资质文件包',
+    deliveryTitle: '覆盖乌兹别克斯坦全境的配送网络',
+    deliveryDesc:
+      '13个区域分公司与现代仓储中心，实现12至24小时内向各级医院、诊所及连锁药房直供配送。',
+    deliveryCities:
+      '塔什干、撒马尔罕、费尔干纳、布哈拉、安集延、纳曼干及乌兹别克斯坦全部行政区。',
+    deliveryAction: '区域供货合作细则',
+  },
 };
 
 export default function InsoCredentials({ lang }: { lang: Language }) {
@@ -98,33 +122,19 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
           </div>
           <h2
             id="credentials-title"
-            className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance"
+            className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.12] text-balance"
           >
-            {lang === 'ru' ? (
-              <>
-                Как устроена{' '}
-                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                  дистрибуция
-                </em>{' '}
-                INSO Group
-              </>
-            ) : lang === 'uz' ? (
-              <>
-                INSO Group{' '}
-                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                  distribyutsiyasi
-                </em>{' '}
-                qanday ishlaydi
-              </>
-            ) : (
-              <>
-                How{' '}
-                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                  Distribution
-                </em>{' '}
-                Works at INSO Group
-              </>
-            )}
+            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
+              {lang === 'ru' ? (
+                'Как устроена дистрибуция INSO Group'
+              ) : lang === 'uz' ? (
+                'INSO Group distribyutsiyasi qanday ishlaydi'
+              ) : lang === 'zh' ? (
+                'INSO集团的医药分销体系运作模式'
+              ) : (
+                'How Distribution Works at INSO Group'
+              )}
+            </em>
           </h2>
           <p className="text-base sm:text-[17px] text-slate-600 font-normal leading-relaxed max-w-2xl">
             {t.subtitle}

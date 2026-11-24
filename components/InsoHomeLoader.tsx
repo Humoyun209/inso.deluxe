@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import type { Language } from '@/lib/insopharm-data';
 
-const loading = { ru: 'Загрузка', en: 'Loading', uz: 'Yuklanmoqda' };
+const loading = { ru: 'Загрузка', en: 'Loading', uz: 'Yuklanmoqda', zh: '加载中' };
 
 export default function InsoHomeLoader({ lang }: { lang: Language }) {
   const overlay = useRef<HTMLDivElement>(null);

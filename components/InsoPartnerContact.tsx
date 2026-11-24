@@ -31,6 +31,13 @@ const copy = {
     pending: 'Sending…', ok: 'The email service accepted your enquiry for delivery.', error: 'Sending failed. Please retry or email the department directly.',
     address: '160 Bogishamol Street, Yunusabad, Tashkent', route: 'Get directions', formTitle: 'Write to us', phone: 'Phone and pharmacovigilance', invalid: 'Enter your name, contact details and message.',
   },
+  zh: {
+    badge: '09 · 商务合作与联络',
+    title: '洽谈商务合作', name: '姓名与机构名称', contact: '回复邮箱或联系电话', topic: '咨询主题', message: '您的需求说明',
+    send: '提交合作需求', draft: '在邮件中打开', hint: '点击后将在您的邮件客户端中生成草稿，确认无误后发送即可。',
+    pending: '正在提交…', ok: '邮件系统已成功接收您的合作需求。', error: '发送失败，请重试或直接致信相关业务部门。',
+    address: '乌兹别克斯坦塔什干市尤努萨巴德区博吉沙莫尔街160号', route: '查看地图路线', formTitle: '在线致信', phone: '咨询热线与药物警戒', invalid: '请完整填写您的姓名、联系方式及需求内容。',
+  },
 };
 
 export default function InsoPartnerContact({ lang, directMail }: { lang: Language; directMail: boolean }) {

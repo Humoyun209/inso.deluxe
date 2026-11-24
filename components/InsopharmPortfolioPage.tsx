@@ -157,6 +157,40 @@ const PORTFOLIO_COPY = {
     btnDossier: 'Dossier & SmPC',
     btnRequestQuote: 'Request Quote',
   },
+  zh: {
+    backHome: '返回集团首页',
+    navCatalog: '药品目录',
+    navAbout: '关于我们',
+    navSubbrands: '控股品牌',
+    navNews: '新闻资讯',
+    navCareer: '加入我们',
+    navContacts: '联系我们',
+    ctaContact: '商务合作',
+    menuOpen: '菜单',
+    menuClose: '关闭',
+    catalogTitle: '药品产品组合与产品目录',
+    catalogSubtitle:
+      '符合欧盟EU GMP及世界卫生组织WHO GMP国际高标准的正规处方药（Rx）与非处方药（OTC）。',
+    searchPlaceholder: '输入商品名或通用名（INN）检索...',
+    filterAll: '全部治疗领域',
+    filterCardio: '心血管系统',
+    filterNeuro: '神经系统',
+    filterGastro: '消化与肝胆系统',
+    filterAntibiotics: '抗感染与抗菌素',
+    filterInfusion: '急救静脉输液',
+    filterVitamins: '维生素与营养素',
+    moreCategories: '更多治疗领域',
+    lessCategories: '收起领域',
+    dispenseAll: '全部药品 (Rx / OTC)',
+    dispenseAllShort: '全部',
+    dispenseRx: 'Rx · 处方药',
+    dispenseRxShort: 'Rx 处方',
+    dispenseOtc: 'OTC · 非处方药',
+    dispenseOtcShort: 'OTC',
+    resetFilters: '重置筛选',
+    btnDossier: '技术资料与说明书',
+    btnRequestQuote: '索取批发价格表',
+  },
 };
 
 export default function InsopharmPortfolioPage({
@@ -195,6 +229,7 @@ export default function InsopharmPortfolioPage({
     { code: 'ru', label: 'Русский', short: 'RU' },
     { code: 'uz', label: 'O‘zbekcha', short: 'UZ' },
     { code: 'en', label: 'English', short: 'EN' },
+    { code: 'zh', label: '中文', short: 'ZH' },
   ];
 
   const t = PORTFOLIO_COPY[lang];
@@ -209,6 +244,7 @@ export default function InsopharmPortfolioPage({
           ru: '70+ препаратов и БАД стандарта EU и WHO GMP',
           uz: '70+ EU va WHO GMP dori vositalari va BFQ',
           en: '70+ EU & WHO GMP medicines & supplements',
+          zh: '70+ 达到EU与WHO GMP标准的药品与营养补充剂',
         },
       },
       {
@@ -219,6 +255,7 @@ export default function InsopharmPortfolioPage({
           ru: 'Контроль АД и защита сосудов',
           uz: 'Qon bosimi nazorati va tomirlar himoyasi',
           en: 'BP control & vascular protection',
+          zh: '血压调控与血管靶向保护',
         },
       },
       {
@@ -229,6 +266,7 @@ export default function InsopharmPortfolioPage({
           ru: 'Нейропротекция и когнитивная терапия',
           uz: 'Neyroproteksiya va kognitiv terapiya',
           en: 'Neuroprotection & cognitive recovery',
+          zh: '神经保护与脑认知功能康复',
         },
       },
       {
@@ -239,6 +277,7 @@ export default function InsopharmPortfolioPage({
           ru: 'Гастро- и гепатопротекторы',
           uz: 'Gastro- va gepatoprotektorlar',
           en: 'GI & hepatoprotective care',
+          zh: '胃肠道与肝功能高阶养护',
         },
       },
       {
@@ -249,6 +288,7 @@ export default function InsopharmPortfolioPage({
           ru: 'Госпитальные и системные антибиотики',
           uz: 'Gospital va tizimli antibiotiklar',
           en: 'Hospital & systemic antibacterials',
+          zh: '临床重症与系统性抗菌药物',
         },
       },
       {
@@ -259,6 +299,7 @@ export default function InsopharmPortfolioPage({
           ru: 'Стерильные растворы для в/в введения',
           uz: 'Vena ichiga yuborish uchun eritmalar',
           en: 'Sterile intravenous infusions',
+          zh: '无菌注射用静脉输液系统',
         },
       },
       {
@@ -269,6 +310,7 @@ export default function InsopharmPortfolioPage({
           ru: 'Нутрицевтики Greenwell и метаболический баланс',
           uz: 'Greenwell nutritsevtiklari va metabolik balans',
           en: 'Greenwell nutraceuticals & metabolic balance',
+          zh: 'Greenwell高端营养素与代谢平衡',
         },
       },
     ],
@@ -314,7 +356,7 @@ export default function InsopharmPortfolioPage({
 
       const matchesExtra =
         item.regNumber.toLowerCase().includes(q) ||
-        item.dosageForm[lang].toLowerCase().includes(q);
+        (item.dosageForm[lang] || item.dosageForm.ru).toLowerCase().includes(q);
 
       const matchesQuery =
         searchScope === 'brand'
@@ -1049,7 +1091,7 @@ export default function InsopharmPortfolioPage({
                           : 'bg-slate-100 text-slate-600'
                       }`}
                     >
-                      {sb.skuCountLabel[lang]}
+                      {sb.skuCountLabel[lang] || sb.skuCountLabel.ru}
                     </span>
                   </button>
                 );
@@ -1202,7 +1244,7 @@ export default function InsopharmPortfolioPage({
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <div className="text-[11px] font-bold tracking-wider uppercase text-teal-300">
-                      {activeCategoryMeta.subtitle[lang]}
+                      {activeCategoryMeta.subtitle[lang] || activeCategoryMeta.subtitle.ru}
                     </div>
                     <h2 className="text-lg sm:text-2xl font-extrabold text-white mt-0.5">
                       {activeCategoryMeta.label}
@@ -1355,7 +1397,7 @@ export default function InsopharmPortfolioPage({
 
                         <div className="mt-3.5 flex items-center justify-between gap-2 text-xs font-medium text-slate-500">
                           <span className="text-[#0D9488] font-semibold truncate">
-                            {product.categoryLabel[lang]}
+                            {product.categoryLabel[lang] || product.categoryLabel.ru}
                           </span>
                           <span
                             className={`shrink-0 font-semibold ${
@@ -1369,11 +1411,11 @@ export default function InsopharmPortfolioPage({
                         </div>
 
                         <h3 className="mt-1 text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#0B3B60] transition-colors">
-                          {product.name[lang]}
+                          {product.name[lang] || product.name.ru}
                         </h3>
                         <p className="text-xs font-medium text-slate-500 mt-0.5 line-clamp-1">
-                          {lang === 'ru' ? 'МНН:' : lang === 'uz' ? 'MNN:' : 'INN:'}{' '}
-                          <span className="text-slate-700">{product.inn[lang]}</span>
+                          {lang === 'ru' ? 'МНН:' : lang === 'uz' ? 'MNN:' : lang === 'zh' ? '通用名:' : 'INN:'}{' '}
+                          <span className="text-slate-700">{product.inn[lang] || product.inn.ru}</span>
                         </p>
 
                         <div className="mt-3 pt-2.5 border-t border-slate-100 space-y-1 text-xs text-slate-600">
@@ -1383,6 +1425,8 @@ export default function InsopharmPortfolioPage({
                                 ? 'Дозировка:'
                                 : lang === 'uz'
                                 ? 'Dozasi:'
+                                : lang === 'zh'
+                                ? '规格:'
                                 : 'Strength:'}
                             </span>
                             <span className="font-[family-name:var(--font-mono)] font-medium text-slate-800 text-right">
@@ -1395,10 +1439,12 @@ export default function InsopharmPortfolioPage({
                                 ? 'Страна:'
                                 : lang === 'uz'
                                 ? 'Mamlakat:'
+                                : lang === 'zh'
+                                ? '产地:'
                                 : 'Origin:'}
                             </span>
                             <span className="font-medium text-slate-700">
-                              {product.country[lang]}
+                              {product.country[lang] || product.country.ru}
                             </span>
                           </div>
                         </div>
@@ -1569,16 +1615,16 @@ export default function InsopharmPortfolioPage({
               <div className="flex items-start justify-between gap-4 border-b border-slate-100 pb-4">
                 <div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-[#0D9488]">
-                    <span>{activeProduct.categoryLabel[lang]}</span>
+                    <span>{activeProduct.categoryLabel[lang] || activeProduct.categoryLabel.ru}</span>
                     <span>·</span>
                     <span>{activeProduct.standard}</span>
                   </div>
                   <h3 className="mt-1 text-xl sm:text-[22px] lg:text-[24px] font-extrabold text-slate-900">
-                    {activeProduct.name[lang]}
+                    {activeProduct.name[lang] || activeProduct.name.ru}
                   </h3>
                   <p className="text-xs sm:text-sm font-medium text-slate-500 mt-0.5">
-                    {lang === 'ru' ? 'МНН:' : lang === 'uz' ? 'MNN:' : 'INN:'}{' '}
-                    <span className="text-slate-800">{activeProduct.inn[lang]}</span>
+                    {lang === 'ru' ? 'МНН:' : lang === 'uz' ? 'MNN:' : lang === 'zh' ? '通用名:' : 'INN:'}{' '}
+                    <span className="text-slate-800">{activeProduct.inn[lang] || activeProduct.inn.ru}</span>
                   </p>
                 </div>
                 <button
@@ -1598,10 +1644,12 @@ export default function InsopharmPortfolioPage({
                       ? 'Форма выпуска:'
                       : lang === 'uz'
                       ? 'Chiqarilish shakli:'
+                      : lang === 'zh'
+                      ? '剂型：'
                       : 'Dosage Form:'}
                   </span>
                   <span className="font-semibold text-slate-800 mt-0.5 block">
-                    {activeProduct.dosageForm[lang]}
+                    {activeProduct.dosageForm[lang] || activeProduct.dosageForm.ru}
                   </span>
                 </div>
                 <div>
@@ -1610,6 +1658,8 @@ export default function InsopharmPortfolioPage({
                       ? 'Дозировка и фасовка:'
                       : lang === 'uz'
                       ? 'Dozasi va qadoqlanishi:'
+                      : lang === 'zh'
+                      ? '规格与包装：'
                       : 'Strength & Pack Size:'}
                   </span>
                   <span className="font-[family-name:var(--font-mono)] font-semibold text-slate-800 mt-0.5 block">
@@ -1622,6 +1672,8 @@ export default function InsopharmPortfolioPage({
                       ? 'Регистрационное удостоверение:'
                       : lang === 'uz'
                       ? 'Roʻyxatdan oʻtkazilganlik guvohnomasi:'
+                      : lang === 'zh'
+                      ? '药品注册批号：'
                       : 'Marketing Authorization:'}
                   </span>
                   <span className="font-[family-name:var(--font-mono)] font-semibold text-[#0B3B60] mt-0.5 block">
@@ -1634,6 +1686,8 @@ export default function InsopharmPortfolioPage({
                       ? 'Условия хранения (GDP):'
                       : lang === 'uz'
                       ? 'Saqlash sharoiti (GDP):'
+                      : lang === 'zh'
+                      ? '贮藏条件（GDP）：'
                       : 'Storage Conditions (GDP):'}
                   </span>
                   <span className="inline-flex items-center gap-1 font-semibold text-slate-800 mt-0.5">
@@ -1649,10 +1703,12 @@ export default function InsopharmPortfolioPage({
                     ? 'Показания к применению (SmPC)'
                     : lang === 'uz'
                     ? 'Qoʻllash uchun koʻrsatmalar (SmPC)'
+                    : lang === 'zh'
+                    ? '临床适应症（SmPC说明书）'
                     : 'Therapeutic Indications (SmPC)'}
                 </h4>
                 <p className="mt-1.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
-                  {activeProduct.indications[lang]}
+                  {activeProduct.indications[lang] || activeProduct.indications.ru}
                 </p>
               </div>
 

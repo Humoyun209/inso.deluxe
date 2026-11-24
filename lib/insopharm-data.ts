@@ -1,4 +1,4 @@
-export type Language = 'ru' | 'uz' | 'en';
+export type Language = 'ru' | 'uz' | 'en' | 'zh';
 
 export type SubbrandId = 'inom' | 'hb' | 'lps' | 'greenwell' | 'nl' | 'service';
 
@@ -10,27 +10,32 @@ export interface SubbrandItem {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   skuCountLabel: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   directionType: 'distribution' | 'promotion' | 'services';
   description: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   therapeuticAreas: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   flagshipProducts: {
     ru: string[];
     uz: string[];
     en: string[];
+    zh?: string[];
   };
   accentColor: 'indigo' | 'teal' | 'sky' | 'emerald' | 'cobalt' | 'amber';
 }
@@ -39,31 +44,31 @@ export interface CoreValueItem {
   id: string;
   number: string;
   isFoundation?: boolean;
-  title: {
-    ru: string;
-    uz: string;
-    en: string;
-  };
+  title: Record<Language, string>;
   summary: Record<Language, string>;
   keywords: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   description: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   weDo: {
     ru: string[];
     uz: string[];
     en: string[];
+    zh?: string[];
   };
   weDont: {
     ru: string[];
     uz: string[];
     en: string[];
+    zh?: string[];
   };
 }
 
@@ -75,23 +80,27 @@ export interface ProductItem {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   inn: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   categoryId: 'cardiology' | 'neurology' | 'gastro' | 'antibiotics' | 'infusion' | 'vitamins';
   categoryLabel: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   dispenseType: 'Rx' | 'OTC';
   dosageForm: {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   dosageStrength: string;
   packSize: string;
@@ -99,6 +108,7 @@ export interface ProductItem {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   standard: 'EU GMP' | 'WHO GMP' | 'ISO 13485';
   regNumber: string;
@@ -107,6 +117,7 @@ export interface ProductItem {
     ru: string;
     uz: string;
     en: string;
+    zh?: string;
   };
   packageColor: 'cobalt' | 'teal' | 'emerald' | 'indigo' | 'rose' | 'amber';
 }
@@ -385,11 +396,13 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Бережём доверие',
       uz: 'Ishonchni asraymiz',
       en: 'We safeguard trust',
+      zh: '坚守信任',
     },
     summary: {
       ru: 'Открыто говорим о рисках для качества и безопасности.',
       uz: 'Sifat va xavfsizlik bilan bogʻliq xatarlarni ochiq aytamiz.',
       en: 'We speak openly about risks to quality and safety.',
+      zh: '直面质量与安全风险，诚实透明沟通。',
     },
     keywords: {
       ru: 'ЧЕСТНОСТЬ · КАЧЕСТВО · ФУНДАМЕНТ',
@@ -440,11 +453,13 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Берём ответственность',
       uz: 'Masʼuliyatli ishlaymiz',
       en: 'We take ownership',
+      zh: '勇于担当',
     },
     summary: {
       ru: 'Держим слово и заранее предупреждаем о задержках.',
       uz: 'Vaʼdamizni bajaramiz va kechikish haqida oldindan xabar beramiz.',
       en: 'We keep our word and flag delays early.',
+      zh: '言出必行，遇事预先预警并对最终成果负责。',
     },
     keywords: {
       ru: 'НАДЁЖНОСТЬ · ОТВЕТСТВЕННОСТЬ',
@@ -495,11 +510,13 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Опираемся на факты',
       uz: 'Dalillarga tayanamiz',
       en: 'We rely on facts',
+      zh: '实事求是',
     },
     summary: {
       ru: 'Проверяем данные, прежде чем принять решение.',
       uz: 'Qaror qabul qilishdan oldin maʼlumotlarni tekshiramiz.',
       en: 'We check the evidence before making decisions.',
+      zh: '以事实和数据为依据做出客观决策。',
     },
     keywords: {
       ru: 'ПРОФЕССИОНАЛИЗМ',
@@ -550,11 +567,13 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Доводим до конца',
       uz: 'Oxirigacha yetkazamiz',
       en: 'We see it through',
+      zh: '全力以赴',
     },
     summary: {
       ru: 'Сопровождаем задачу до результата, о котором договорились.',
       uz: 'Har bir ishni kelishilgan natijaga yetkazamiz.',
       en: 'We follow each task through to the agreed outcome.',
+      zh: '紧扣既定目标推进到底，确保成果切实落地。',
     },
     keywords: {
       ru: 'ЦЕЛЕУСТРЕМЛЁННОСТЬ',
@@ -605,11 +624,13 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Видим дальше',
       uz: 'Uzoqni koʻramiz',
       en: 'We look further',
+      zh: '远见卓识',
     },
     summary: {
       ru: 'Ищем решения, которые понадобятся партнёрам завтра.',
       uz: 'Hamkorlarimizga ertaga kerak boʻladigan yechimlarni izlaymiz.',
       en: 'We look ahead to what our partners will need next.',
+      zh: '提前洞察行业变革，探索长效创新的战略解法。',
     },
     keywords: {
       ru: 'ИННОВАЦИИ',
@@ -660,11 +681,13 @@ export const CORE_VALUES: CoreValueItem[] = [
       ru: 'Ценим людей',
       uz: 'Insonni qadrlaymiz',
       en: 'We value people',
+      zh: '以人为本',
     },
     summary: {
       ru: 'Слушаем коллег и поддерживаем их развитие.',
       uz: 'Hamkasblarimizni tinglaymiz va ularning rivojlanishini qoʻllab-quvvatlaymiz.',
       en: 'We listen to colleagues and support their growth.',
+      zh: '真诚倾听每一位伙伴，支持团队的持续发展。',
     },
     keywords: {
       ru: 'УВАЖЕНИЕ',

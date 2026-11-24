@@ -115,6 +115,8 @@ export function InsoOrbitalMark({
             ? 'GDP-Дистрибуция'
             : lang === 'uz'
             ? 'GDP Distribyutsiya'
+            : lang === 'zh'
+            ? 'GDP医药分销'
             : 'GDP Distribution',
         positionClass: '-top-3 -left-2 sm:top-0 sm:-left-8',
         delay: 0,
@@ -133,6 +135,8 @@ export function InsoOrbitalMark({
             ? 'Госпитальный сегмент'
             : lang === 'uz'
             ? 'Gospital segment'
+            : lang === 'zh'
+            ? '重症医院管线'
             : 'Hospital Care',
         positionClass: '-top-3 -right-2 sm:top-0 sm:-right-8',
         delay: 0.35,
@@ -151,6 +155,8 @@ export function InsoOrbitalMark({
             ? 'Rx, OTC и БАД'
             : lang === 'uz'
             ? 'Rx, OTC va BFQ'
+            : lang === 'zh'
+            ? '处方药、OTC与膳食补充剂'
             : 'Rx, OTC & Supplements',
         positionClass: 'top-[34%] -left-3 sm:top-[35%] sm:-left-12',
         delay: 0.7,
@@ -169,6 +175,8 @@ export function InsoOrbitalMark({
             ? 'Кардио и стационары'
             : lang === 'uz'
             ? 'Kardio va shifoxonalar'
+            : lang === 'zh'
+            ? '心血管与住院临床'
             : 'Cardio & ICU',
         positionClass: 'top-[34%] -right-3 sm:top-[35%] sm:-right-12',
         delay: 1.05,
@@ -187,6 +195,8 @@ export function InsoOrbitalMark({
             ? 'Vitaprotein® США'
             : lang === 'uz'
             ? 'Vitaprotein® AQSh'
+            : lang === 'zh'
+            ? 'Vitaprotein® 美国'
             : 'Vitaprotein® US',
         positionClass: 'bottom-26 -left-2 sm:bottom-28 sm:-left-8',
         delay: 1.4,
@@ -205,6 +215,8 @@ export function InsoOrbitalMark({
             ? 'CTD и Консалтинг'
             : lang === 'uz'
             ? 'CTD va Konsalting'
+            : lang === 'zh'
+            ? 'CTD申报与注册咨询'
             : 'CTD & Consulting',
         positionClass: 'bottom-26 -right-2 sm:bottom-28 sm:-right-8',
         delay: 1.75,
@@ -547,7 +559,7 @@ export function ProductPackageVisual({
     <div className="relative w-full h-48 rounded-xl bg-slate-900 border border-slate-200/80 overflow-hidden flex items-end justify-center p-3.5 group-hover:border-[#0B3B60]/40 transition-colors">
       <Image
         src={getProductStudioImage()}
-        alt={product.name[lang]}
+        alt={product.name[lang] || product.name.en || product.name.ru}
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         referrerPolicy="no-referrer"

@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 export default async function HomePage({ searchParams }: { searchParams: Promise<{ lang?: string; hero?: string }> }) {
   const { lang, hero } = await searchParams;
   const mode = hero === 'animated' || hero === 'static' ? hero : process.env.INSO_HERO_MODE;
-  const initialLang = lang === 'en' || lang === 'uz' ? lang : 'ru';
+  const initialLang = lang === 'en' || lang === 'uz' || lang === 'zh' ? lang : 'ru';
   return (
     <>
       <InsoHomeLoader lang={initialLang} />

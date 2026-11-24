@@ -27,8 +27,8 @@ export default function InsoCareers({ lang }: { lang: Language }) {
             className="h-10 sm:h-12 md:h-[50px] w-auto object-contain"
           />
         </Link>
-        <nav aria-label={{ ru: 'Язык', uz: 'Til', en: 'Language' }[lang]} className="flex items-center gap-5 text-[16px] font-semibold text-slate-800">
-          {(['ru', 'uz', 'en'] as const).map(code => (
+        <nav aria-label={{ ru: 'Язык', uz: 'Til', en: 'Language', zh: '语言' }[lang]} className="flex items-center gap-5 text-[16px] font-semibold text-slate-800">
+          {(['ru', 'uz', 'en', 'zh'] as const).map(code => (
             <Link
               href={`/career?lang=${code}`}
               key={code}
@@ -97,7 +97,7 @@ export default function InsoCareers({ lang }: { lang: Language }) {
                 </p>
                 <button
                   type="button"
-                  onClick={() => handleApplyCareerTrack({ ru: 'Резюме', uz: 'Rezyume', en: 'CV' }[lang])}
+                  onClick={() => handleApplyCareerTrack({ ru: 'Резюме', uz: 'Rezyume', en: 'CV', zh: '简历' }[lang])}
                   className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#0B3B60] hover:bg-[#082B47] text-xs font-bold text-white transition-colors cursor-pointer"
                 >
                   <span>
@@ -232,16 +232,16 @@ export default function InsoCareers({ lang }: { lang: Language }) {
                         {val.number}
                       </span>
                       <span className="text-[10px] font-extrabold text-[#0D9488] uppercase tracking-wider text-right">
-                        {val.keywords[lang]}
+                        {val.keywords[lang] || val.keywords.en}
                       </span>
                     </div>
 
                     <h3 className="mt-3.5 text-base sm:text-lg font-extrabold text-slate-900">
-                      {val.title[lang]}
+                      {val.title[lang] || val.title.en}
                     </h3>
 
                     <p className="mt-1.5 text-xs text-slate-600 leading-relaxed">
-                      {val.description[lang]}
+                      {val.description[lang] || val.description.en}
                     </p>
                   </div>
 
@@ -251,9 +251,11 @@ export default function InsoCareers({ lang }: { lang: Language }) {
                         ? 'Как это работает у нас:'
                         : lang === 'uz'
                         ? 'Bizda bu qanday ishlaydi:'
+                        : lang === 'zh'
+                        ? '我们的实践方式：'
                         : 'How we practice this:'}
                     </div>
-                    {val.weDo[lang].slice(0, 2).map((rule, i) => (
+                    {(val.weDo[lang] || val.weDo.en || val.weDo.ru).slice(0, 2).map((rule, i) => (
                       <div key={i} className="flex items-start gap-1.5 text-xs text-slate-700">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#0D9488] shrink-0 mt-0.5" />
                         <span>{rule}</span>

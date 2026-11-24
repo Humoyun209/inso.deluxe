@@ -27,11 +27,13 @@ const portraits: Portrait[] = [
       ru: 'Генеральный директор INSO Group (CEO)',
       uz: 'INSO Group bosh direktori (CEO)',
       en: 'CEO & General Director, INSO Group',
+      zh: 'INSO Group 总经理兼首席执行官 (CEO)',
     },
     bio: {
       ru: 'Стратегическое лидерство, масштабирование бизнеса и реализация видения холдинга на рынках Центральной Азии.',
       uz: 'Strategik yetakchilik, biznesni kengaytirish va Markaziy Osiyo bozorlarida xolding maqsadlarini amalga oshirish.',
       en: 'Strategic leadership, business scaling, and executing the group’s vision across Central Asian markets.',
+      zh: '制定集团长期发展战略，推动商业规模化扩张，深化中亚医药市场的战略布局与落地。',
     },
   },
   {
@@ -43,11 +45,13 @@ const portraits: Portrait[] = [
       ru: 'Директор по персоналу (Director of HR)',
       uz: 'Inson resurslari direktori (Director of HR)',
       en: 'Director of HR',
+      zh: '人力资源总监 (Director of HR)',
     },
     bio: {
       ru: 'Формирование экспертной команды, развитие талантов и поддержание корпоративной культуры роста.',
       uz: 'Kuchli jamoani shakllantirish, iqtidorlarni rivojlantirish va ishonch madaniyati.',
       en: 'Building high-impact teams, talent nurturing, and fostering an organizational culture of trust.',
+      zh: '吸纳与培养行业高精尖医药人才，建设卓越团队与充满信任的现代企业组织文化。',
     },
   },
   {
@@ -59,11 +63,13 @@ const portraits: Portrait[] = [
       ru: 'Директор направления INSO Consulting',
       uz: 'INSO Consulting yoʻnalishi direktori',
       en: 'Director, INSO Consulting',
+      zh: 'INSO Consulting 咨询板块总监',
     },
     bio: {
       ru: 'Экспертное сопровождение регистрации лекарственных средств, регуляторный консалтинг и стратегическое лицензирование фармпроизводителей.',
       uz: 'Dori vositalarini roʻyxatdan oʻtkazish boʻyicha ekspert koʻmagi, regulyator konsalting va farmatsevtika litsenziyalash.',
       en: 'Expert regulatory affairs, pharmaceutical product registration, and strategic licensing for international manufacturers.',
+      zh: '医药产品国家注册准入专家服务、法规事务顾问及国际制药企业战略授权与合规辅导。',
     },
   },
 ];
@@ -89,6 +95,13 @@ const copy = {
     sectionLead: 'Combining strategic vision, technology leadership, and institutional discipline.',
     previous: 'Previous portrait',
     next: 'Next portrait',
+  },
+  zh: {
+    sectionBadge: '06 · 集团管理团队',
+    sectionTitle: '引领INSO前行的领导集体',
+    sectionLead: '融合战略前瞻力、医药专业深耕与现代化企业管理体系。',
+    previous: '上一个',
+    next: '下一个',
   },
 };
 

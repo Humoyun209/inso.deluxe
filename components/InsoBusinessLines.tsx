@@ -9,31 +9,37 @@ const role: Record<SubbrandId, Record<Language, string>> = {
     ru: 'Рецептурные и безрецептурные препараты для аптек и стационаров, а также нутрицевтическая линейка.',
     uz: 'Dorixonalar va shifoxonalar uchun retseptli hamda retseptsiz dorilar, shuningdek nutritsevtik vositalar.',
     en: 'Prescription and OTC medicines for community pharmacies and hospitals, plus nutraceutical lines.',
+    zh: '面向药房与医疗机构的处方药与非处方药（OTC），以及专业营养素产品线。',
   },
   hb: {
     ru: 'Оригинальные препараты для кардиологии, неврологии и парентерального питания.',
     uz: 'Kardiologiya, nevrologiya va parenteral oziqlantirish uchun original preparatlar.',
     en: 'Original formulations for cardiology, neurology, and clinical parenteral nutrition.',
+    zh: '心血管、神经内科及临床肠外营养治疗的原研创新药产品。',
   },
   lps: {
     ru: 'Госпитальные антибиотики, инъекционные и инфузионные растворы для отделений реанимации.',
     uz: 'Reanimatsiya va shifoxonalar uchun gospital antibiotiklar, inyeksiya va infuzion eritmalar.',
     en: 'Hospital-grade antibiotics, critical care injectables, and advanced infusion solutions.',
+    zh: '重症监护及急救医疗用高等级抗生素、注射剂与输液制剂系统。',
   },
   greenwell: {
     ru: 'Премиальная американская линейка биологически активных добавок с технологией Vitaprotein®.',
     uz: 'Vitaprotein® texnologiyasiga ega AQShda ishlab chiqarilgan premium BFQ biologik faol qoʻshimchalari.',
     en: 'Premium US dietary supplements manufactured with patented Vitaprotein® absorption technology.',
+    zh: '源自美国、采用Vitaprotein®高效吸收专利技术的高端膳食营养补充剂。',
   },
   nl: {
     ru: 'Оптовый импорт, лицензированное GDP-хранение и экспресс-доставка по 13 регионам Узбекистана.',
     uz: 'Ulgurji import, litsenziyalangan GDP omborxonalari va 13 ta hudud boʻylab tezkor taʼminot.',
     en: 'Licensed wholesale import, GDP cold-chain warehousing, and rapid dispatch across 13 regions.',
+    zh: '高标准医药批量进口、合规GDP仓储及乌兹别克斯坦13个行政大区高效专线配送。',
   },
   service: {
     ru: 'Поиск перспективных молекул, разработка CTD-досье, клинические испытания и регистрация под ключ.',
     uz: 'Istiqbolli molekulalarni topish, CTD-hujjatlarni tayyorlash, klinik sinovlar va toʻliq roʻyxatdan oʻtkazish.',
     en: 'Target molecule sourcing, CTD dossier authoring, clinical trials coordination, and turnkey registration.',
+    zh: '优势药品筛选、CTD格式申报注册卷宗撰写、临床试验协调及全流程准入获批。',
   },
 };
 
@@ -67,6 +73,16 @@ const copy = {
     catalog: 'Brand catalog',
     delivery: 'Discuss distribution',
     registration: 'Discuss registration',
+  },
+  zh: {
+    badge: '04 · 业务架构与子品牌',
+    titleMain: '六大专业化',
+    titleAccent: '核心业务板块',
+    subtitle:
+      '构建完整闭环医药生态：涵盖全球潜力分子筛选、乌兹别克斯坦注册获批、合规学术推广及全境医药冷链分销。',
+    catalog: '品牌产品目录',
+    delivery: '洽谈供货配送',
+    registration: '洽谈产品注册',
   },
 };
 

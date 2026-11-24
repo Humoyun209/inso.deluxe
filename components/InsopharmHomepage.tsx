@@ -110,6 +110,26 @@ const UI_COPY = {
       'We support registration, promotion and delivery to pharmacies and clinics across Uzbekistan.',
     heroPartnerBtn: 'Discuss a partnership',
   },
+  zh: {
+    serviceContact: '洽谈产品注册',
+    navCatalogShort: '产品目录',
+    navAbout: '关于我们',
+    navNews: '新闻动态',
+    navBrands: '控股品牌',
+    navCareer: '加入我们',
+    navCatalog: '药品产品目录',
+    navFaq: '常见问答',
+    navContacts: '联系我们',
+    ctaContact: '商务合作',
+    menuOpen: '菜单',
+    menuClose: '关闭',
+    sinceBadge: 'INSO Group · 始于2017年',
+    heroHeadline: '助力优质医药产品',
+    heroHeadlineAccent: '深耕乌兹别克斯坦市场',
+    heroDescription:
+      '提供从注册审批、合规准入、专业学术推广到覆盖全国的医院及药房终端分销全流程服务。',
+    heroPartnerBtn: '洽谈商务合作',
+  },
 };
 
 // 6 Key Holding Sub-brands showcased in Hero Brand Strip
@@ -125,28 +145,12 @@ const HERO_BRAND_ITEMS = [
 // Verified Company Licenses & Regulatory Documents
 interface CompanyLicenseDoc {
   id: string;
-  title: {
-    ru: string;
-    uz: string;
-    en: string;
-  };
-  authority: {
-    ru: string;
-    uz: string;
-    en: string;
-  };
-  details: {
-    ru: string;
-    uz: string;
-    en: string;
-  };
+  title: Record<Language, string>;
+  authority: Record<Language, string>;
+  details: Record<Language, string>;
   fileUrl?: string;
   fileSize?: string;
-  statusLabel?: {
-    ru: string;
-    uz: string;
-    en: string;
-  };
+  statusLabel?: Record<Language, string>;
 }
 
 const COMPANY_LICENSES: CompanyLicenseDoc[] = [
@@ -156,16 +160,19 @@ const COMPANY_LICENSES: CompanyLicenseDoc[] = [
       ru: 'Сертификат соответствия стандартам GDP',
       uz: 'GDP standartlariga muvofiqlik sertifikati',
       en: 'GDP Compliance Certificate',
+      zh: '符合国际标准的 GDP 优良分销规范认证',
     },
     authority: {
       ru: 'Надлежащая дистрибьюторская практика · Фарминспекция',
       uz: 'Tegishli distribyutorlik amaliyoti · Farminspeksiya',
       en: 'Good Distribution Practice (GDP)',
+      zh: '药品优良分销规范（GDP）· 国家药监检验局',
     },
     details: {
       ru: 'Фармацевтический складской комплекс 10 000 м² (г. Ташкент), валидированная холодовая цепь (+2…+8 °C и +15…+25 °C), сертифицированный спецтранспорт.',
       uz: '10 000 m² farmatsevtika ombor majmuasi (Toshkent), tasdiqlangan sovuqlik zanjiri (+2…+8 °C va +15…+25 °C), maxsus refrijerator transporti.',
       en: 'Pharmaceutical warehouse complex 10,000 m² (Tashkent), validated cold chain (+2…+8 °C & +15…+25 °C) and certified refrigerated transport.',
+      zh: '位于塔什干的10,000 m²现代化甲级医药仓储综合体，验证全程冷链（+2…+8 °C 及 +15…+25 °C），专业恒温特种车队。',
     },
     fileUrl: '/license/inso_gdp.pdf',
     fileSize: 'PDF · 230 КБ',
@@ -173,6 +180,7 @@ const COMPANY_LICENSES: CompanyLicenseDoc[] = [
       ru: 'Действующий сертификат',
       uz: 'Amaldagi sertifikat',
       en: 'Active Certificate',
+      zh: '现行有效认证',
     },
   },
   {
@@ -181,21 +189,25 @@ const COMPANY_LICENSES: CompanyLicenseDoc[] = [
       ru: 'Лицензия Минздрава РУз на фармацевтическую деятельность',
       uz: 'OʻzR SSV farmatsevtik faoliyat litsenziyasi',
       en: 'MoH Uzbekistan Pharmaceutical Activity License',
+      zh: '乌兹别克斯坦卫生部正式医药经营许可',
     },
     authority: {
       ru: 'Министерство здравоохранения Республики Узбекистан · Фармкомитет',
       uz: 'Oʻzbekiston Respublikasi Sogʻliqni saqlash vazirligi · Farmkomitet',
       en: 'Ministry of Health of the Republic of Uzbekistan · Pharma Committee',
+      zh: '乌兹别克斯坦共和国卫生部 · 国家药品与医疗器械委员会',
     },
     details: {
       ru: 'Официальный допуск на оптовую реализацию, хранение и прямой импорт лекарственных средств и изделий медицинского назначения.',
       uz: 'Dori vositalari va tibbiy buyumlarni ulgurji sotish, saqlash va toʻgʻridan-toʻgʻri import qilish uchun rasmiy ruxsatnoma.',
       en: 'State authorization for wholesale distribution, storage and direct pharmaceutical import.',
+      zh: '获国家正式批准开展药品与医疗器械的批发经销、专业合规仓储及直接进口业务。',
     },
     statusLabel: {
       ru: 'Бессрочная лицензия',
       uz: 'Muddatsiz litsenziya',
       en: 'Permanent License',
+      zh: '永久有效执照',
     },
   },
   {
@@ -204,21 +216,25 @@ const COMPANY_LICENSES: CompanyLicenseDoc[] = [
       ru: 'Сертификаты GMP & WHO-GMP заводов-производителей',
       uz: 'Ishlab chiqaruvchi zavodlarning GMP & WHO-GMP sertifikatlari',
       en: 'Manufacturer GMP & WHO-GMP Partner Certificates',
+      zh: '生产药企 GMP 及 WHO-GMP 国际质量认证',
     },
     authority: {
       ru: 'Прямые контракты с фармзаводами Китая 🇨🇳 и Индии 🇮🇳',
       uz: 'Xitoy 🇨🇳 va Hindiston 🇮🇳 zavodlari bilan toʻgʻridan-toʻgʻri shartnomalar',
       en: 'Direct factory supply contracts · China 🇨🇳 & India 🇮🇳',
+      zh: '与中国 🇨🇳 及印度 🇮🇳 知名大型制药工厂直接签署战略供应协议',
     },
     details: {
       ru: 'Официальные серии препаратов с подтверждённым контролем качества по международным стандартам ВОЗ (70+ наименований в каталоге).',
       uz: 'JSST xalqaro standartlari boʻyicha tasdiqlangan sifat nazoratiga ega rasmiy dori partiyalari (katalogda 70+ mahsulot).',
       en: 'Original batches manufactured under strict WHO-GMP compliance with verified quality control (70+ SKUs).',
+      zh: '正规批号药品，质量标准全面符合世界卫生组织（WHO）国际标准（目录内拥有70+品种）。',
     },
     statusLabel: {
       ru: 'Стандарты ВОЗ',
       uz: 'JSST standartlari',
       en: 'WHO Standards',
+      zh: '世卫组织 WHO 标准',
     },
   },
 ];
@@ -238,11 +254,13 @@ const INSO_MILESTONES: MilestoneItem[] = [
       ru: 'Старт в Ташкенте',
       uz: 'Toshkentda start',
       en: 'Operations in Tashkent',
+      zh: '在塔什干扬帆起航',
     },
     desc: {
       ru: 'Регистрация компании, первые прямые контракты с производителями и запуск оптовой фармдистрибуции.',
       uz: 'Kompaniya roʻyxatdan oʻtkazildi, zavodlar bilan ilk shartnomalar va ulgurji distribyutsiya yoʻlga qoʻyildi.',
       en: 'Foundation in Tashkent, securing initial direct manufacturer contracts and launching wholesale supply.',
+      zh: '集团正式成立，与首批国际制药工厂建立直接直签合作，开启全国性正规医药批发分销业务。',
     },
   },
   {
@@ -251,11 +269,13 @@ const INSO_MILESTONES: MilestoneItem[] = [
       ru: '13 регионов Узбекистана',
       uz: '13 ta hududiy vakolatxona',
       en: '13 Regional Offices',
+      zh: '进驻乌兹别克斯坦13个大区',
     },
     desc: {
       ru: 'Формирование собственной сети медицинских представителей во всех вилоятах страны и регулярные поставки в аптеки.',
       uz: 'Respublikaning barcha hududlarida tibbiy vakillar jamoalari va dorixonalar bilan muntazam taʼminot yoʻlga qoʻyildi.',
       en: 'Proprietary field medical rep teams deployed across all 13 regions with direct pharmacy fulfillment.',
+      zh: '在全国所有行政区域设立专职医药学术推广团队与办事处，实现向终端连锁药房的定期直供。',
     },
   },
   {
@@ -264,11 +284,13 @@ const INSO_MILESTONES: MilestoneItem[] = [
       ru: 'GDP-комплекс 10 000 м²',
       uz: '10 000 m² GDP ombor',
       en: '10,000 m² GDP Hub',
+      zh: '10,000 m² 现代化 GDP 仓储综合体',
     },
     desc: {
       ru: 'Запуск собственного логистического комплекса класса «А» с валидированной холодовой цепью (+2…+8 °C).',
       uz: '+2…+8 °C validatsiyalangan sovuqlik zanjiriga ega «A» toifali zamonaviy logistika xabi ishga tushirildi.',
       en: 'Commissioning of a Class-A warehouse complex with continuous cold chain (+2…+8 °C).',
+      zh: '自建甲级（Class A）现代化医药仓储物流园区，配备全程验证的不间断数字冷链系统（+2…+8 °C）。',
     },
   },
   {
@@ -278,11 +300,13 @@ const INSO_MILESTONES: MilestoneItem[] = [
       ru: '6 специализированных суббрендов',
       uz: '6 ta ixtisoslashgan sub-brend',
       en: '6 Dedicated Sub-brands',
+      zh: '六大高度专业化子品牌',
     },
     desc: {
       ru: 'Полный цикл: дистрибуция, медпромоция, маркетинг и регистрация. Портфель 70+ SKU (Китай, Индия, ЕС).',
       uz: 'Toʻliq sikl: distribyutsiya, medpromotsiya, marketing va registratsiya. 70+ SKU portfeli (Xitoy, Hindiston, YeI).',
       en: 'Full-cycle holding: distribution, medical promotion, regulatory affairs. 70+ SKU portfolio (China, India, EU).',
+      zh: '打造医药全闭环生态：集分销、学术推广、市场运营与注册准入为一体，管理70+核心SKU品规（中国、印度、欧盟）。',
     },
   },
   {
@@ -292,11 +316,13 @@ const INSO_MILESTONES: MilestoneItem[] = [
       ru: 'Выход на рынки Центральной Азии',
       uz: 'Markaziy Osiyoga chiqish',
       en: 'Central Asia Expansion',
+      zh: '向中亚区域全面拓展',
     },
     desc: {
       ru: 'Масштабирование дистрибьюторской сети в страны Центральной Азии с единым регуляторным стандартом качества GDP.',
       uz: 'Markaziy Osiyo mamlakatlariga yagona GDP sifat standarti bilan distribyutsiya tarmogʻini kengaytirish.',
       en: 'Scaling distribution network into Central Asian markets under unified GDP international quality standards.',
+      zh: '以统一的国际高标准 GDP 质量管理体系为基石，将成熟的分销网络延伸拓展至更广阔的中亚国家市场。',
     },
   },
 ];
@@ -371,6 +397,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
     { code: 'ru', label: 'Русский', short: 'RU' },
     { code: 'uz', label: 'O‘zbekcha', short: 'UZ' },
     { code: 'en', label: 'English', short: 'EN' },
+    { code: 'zh', label: '中文', short: 'ZH' },
   ];
 
   const t = UI_COPY[lang];
@@ -678,6 +705,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                       ? 'Наши бренды'
                       : lang === 'uz'
                       ? 'Bizning brendlar'
+                      : lang === 'zh'
+                      ? '旗下品牌'
                       : 'Our Brands'}
                   </span>
                 </div>
@@ -755,7 +784,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                                   type="button"
                                   onClick={() => setActiveBrandPopover(null)}
                                   className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-                                  aria-label={lang === 'ru' ? 'Закрыть' : 'Close'}
+                                  aria-label={lang === 'ru' ? 'Закрыть' : lang === 'zh' ? '关闭' : 'Close'}
                                 >
                                   <X className="w-4 h-4" />
                                 </button>
@@ -778,6 +807,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                                       ? 'В портфель бренда'
                                       : lang === 'uz'
                                       ? 'Brend portfeli'
+                                      : lang === 'zh'
+                                      ? '进入品牌目录'
                                       : 'Brand Portfolio'}
                                   </span>
                                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
@@ -806,6 +837,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                     ? 'Бренды холдинга · 6'
                     : lang === 'uz'
                     ? 'Xolding brendlari · 6'
+                    : lang === 'zh'
+                    ? '控股品牌 · 6'
                     : 'Holding Brands · 6'}
                 </span>
                 <ChevronUp className="w-3.5 h-3.5 text-current" />
@@ -846,6 +879,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                       ? 'Бренды холдинга INSO'
                       : lang === 'uz'
                       ? 'INSO xolding brendlari'
+                      : lang === 'zh'
+                      ? 'INSO 集团控股品牌'
                       : 'INSO Holding Brands'}
                   </h3>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-teal-400/10 text-teal-300 border border-teal-400/20 font-[family-name:var(--font-mono)]">
@@ -856,7 +891,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   type="button"
                   onClick={() => setMobileBrandsDrawerOpen(false)}
                   className="p-1.5 rounded-xl bg-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer"
-                  aria-label={lang === 'ru' ? 'Закрыть' : 'Close'}
+                  aria-label={lang === 'ru' ? 'Закрыть' : lang === 'zh' ? '关闭' : 'Close'}
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -1139,6 +1174,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                     ? '03 · ИСТОРИЯ INSO'
                     : lang === 'uz'
                     ? '03 · INSO TARIXI'
+                    : lang === 'zh'
+                    ? '03 · INSO 发展历程'
                     : '03 · INSO HISTORY'}
                 </span>
               </div>
@@ -1158,6 +1195,13 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                       milliy farmxoldinggacha
                     </em>
                   </>
+                ) : lang === 'zh' ? (
+                  <>
+                    从首份直签合同到{' '}
+                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
+                      国家级医药控股集团
+                    </em>
+                  </>
                 ) : (
                   <>
                     From First Contract to a{' '}
@@ -1173,6 +1217,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   ? 'В 2017 году мы начали поставлять лекарства в Ташкенте по прямым контрактам с производителями. Сегодня INSO Group объединяет шесть специализированных суббрендов.'
                   : lang === 'uz'
                   ? '2017-yilda Toshkentda ishlab chiqaruvchilar bilan bevosita shartnomalar asosida dori yetkazib berishni boshladik. Bugun INSO Group oltita ixtisoslashgan sub-brendni birlashtiradi.'
+                  : lang === 'zh'
+                  ? '2017年，我们以与国际制药厂商直接签署供货协议为起点在塔什干开启业务。如今，INSO Group已凝聚六大高度专业化的子品牌业务线。'
                   : 'We began supplying medicines in Tashkent in 2017 through direct contracts with manufacturers. Today, INSO Group brings together six specialist brands.'}
               </p>
             </div>
@@ -1187,6 +1233,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                       ? 'Главный офис и запуск первых прямых поставок'
                       : lang === 'uz'
                       ? 'Bosh ofis va ilk toʻgʻridan-toʻgʻri taʼminot yoʻlga qoʻyilishi'
+                      : lang === 'zh'
+                      ? '总部大厦与首批直供业务启动'
                       : 'Main headquarters and initial direct supply contracts'
                   }
                   fill
@@ -1199,6 +1247,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   ? 'Главный офис и запуск первых прямых поставок'
                   : lang === 'uz'
                   ? 'Bosh ofis va ilk toʻgʻridan-toʻgʻri taʼminot yoʻlga qoʻyilishi'
+                  : lang === 'zh'
+                  ? '总部大厦与首批直供业务启动'
                   : 'Main headquarters and initial direct supply contracts'}
               </p>
             </div>

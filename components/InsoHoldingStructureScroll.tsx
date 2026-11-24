@@ -482,8 +482,9 @@ const SUBBRAND_EXTENDED_META: Record<
 };
 
 export function InsoHoldingStructureScroll({
-  lang,
+  lang: rawLang,
 }: InsoHoldingStructureScrollProps) {
+  const lang: 'ru' | 'uz' | 'en' = rawLang === 'zh' ? 'en' : rawLang;
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [activeDirection, setActiveDirection] =
     useState<DirectionKey>('distribution');
