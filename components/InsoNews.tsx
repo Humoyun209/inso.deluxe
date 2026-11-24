@@ -235,7 +235,7 @@ export default function InsoNews({ lang }: { lang: Language }) {
             1. SECTION HEADER (Consistent Swiss Editorial Typography)
            ================================================================= */}
         <div className="max-w-3xl space-y-3">
-          <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
+          <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em]">
             <span>{t.badge}</span>
           </div>
 
@@ -244,7 +244,7 @@ export default function InsoNews({ lang }: { lang: Language }) {
             className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance"
           >
             {t.titleMain}{' '}
-            <em className="font-serif italic font-normal text-[#26736f]">
+            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
               {t.titleAccent}
             </em>
           </h2>
@@ -281,7 +281,7 @@ export default function InsoNews({ lang }: { lang: Language }) {
 
                 {/* Meta: Category & Date */}
                 <div className="flex items-center justify-between text-xs gap-3">
-                  <span className="font-semibold text-[#185d53] uppercase tracking-wider text-[11px] truncate">
+                  <span className="font-semibold text-[var(--inso-badge-color)] uppercase tracking-wider text-[11px] truncate">
                     {item.category[lang]}
                   </span>
                   <div className="flex items-center gap-1.5 text-slate-400 font-normal shrink-0">
@@ -290,7 +290,7 @@ export default function InsoNews({ lang }: { lang: Language }) {
                 </div>
 
                 {/* Article Title */}
-                <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 tracking-tight leading-snug group-hover:text-[#185d53] transition-colors mt-2.5 line-clamp-2">
+                <h3 className="text-lg sm:text-[19px] font-bold text-slate-900 tracking-tight leading-snug group-hover:text-[var(--inso-primary)] transition-colors mt-2.5 line-clamp-2">
                   {item.title[lang]}
                 </h3>
 
@@ -304,7 +304,7 @@ export default function InsoNews({ lang }: { lang: Language }) {
               <div className="pt-4">
                 <button
                   type="button"
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#185d53] group-hover:text-[#0f3d36] transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[var(--inso-primary)] group-hover:underline transition-colors cursor-pointer"
                 >
                   <span>{t.readMore}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -342,7 +342,7 @@ export default function InsoNews({ lang }: { lang: Language }) {
 
             {/* Modal Category & Date */}
             <div className="flex items-center gap-3 text-xs mb-3">
-              <span className="font-semibold text-[#185d53] uppercase tracking-wider text-[11px]">
+              <span className="font-semibold text-[var(--inso-badge-color)] uppercase tracking-wider text-[11px]">
                 {activeArticle.category[lang]}
               </span>
               <span className="text-slate-300">·</span>

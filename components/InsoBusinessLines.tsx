@@ -83,7 +83,7 @@ export default function InsoBusinessLines({ lang }: { lang: Language }) {
       <div className="max-w-[1360px] w-full mx-auto px-4 sm:px-6 lg:px-8 space-y-10 lg:space-y-14">
         {/* Section Header (Swiss Editorial Typography) */}
         <div className="max-w-3xl space-y-3">
-          <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
+          <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em]">
             <span>{t.badge}</span>
           </div>
 
@@ -92,7 +92,7 @@ export default function InsoBusinessLines({ lang }: { lang: Language }) {
             className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance"
           >
             {t.titleMain}{' '}
-            <em className="font-serif italic font-normal text-[#26736f]">
+            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
               {t.titleAccent}
             </em>
           </h2>
@@ -113,7 +113,7 @@ export default function InsoBusinessLines({ lang }: { lang: Language }) {
               >
                 <div>
                   <div className="flex items-center justify-between text-xs mb-2">
-                    <span className="font-semibold text-[#185d53]/70 tabular-nums">
+                    <span className="font-semibold text-[var(--inso-primary)]/80 tabular-nums">
                       {num}
                     </span>
                     <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
@@ -134,7 +134,7 @@ export default function InsoBusinessLines({ lang }: { lang: Language }) {
                   {brand.id !== 'service' && (
                     <Link
                       href={`/portfolio?subbrand=${brand.id}&lang=${lang}`}
-                      className="inline-flex items-center gap-1 text-[#185d53] hover:text-[#0f3d36] transition-colors"
+                      className="inline-flex items-center gap-1 text-[var(--inso-primary)] hover:underline transition-colors"
                     >
                       <span>{t.catalog}</span>
                       <ArrowUpRight className="w-3.5 h-3.5" />

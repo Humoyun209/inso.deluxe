@@ -60,7 +60,7 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
             - Чистый гротеск uppercase tracking-widest (без font-mono)
             - 100% чистая фотография без HUD-наложений и плашек
            ================================================================= */}
-        <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#12393b] via-[#1a4e4c] to-[#25665a] grid grid-cols-1 md:grid-cols-12 items-stretch border border-slate-200/40 shadow-xs relative isolate">
+        <div className="rounded-2xl overflow-hidden inso-vision-banner grid grid-cols-1 md:grid-cols-12 items-stretch border border-slate-200/40 shadow-xs relative isolate">
           {/* Subtle brand emblem watermark behind vision text */}
           <div
             aria-hidden="true"
@@ -80,8 +80,8 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
           <div className="relative z-10 md:col-span-6 p-7 sm:p-9 lg:p-12 flex flex-col justify-between min-h-[300px] sm:min-h-[340px] lg:min-h-[380px]">
             {/* Верхний лейбл: гротеск в верхнем регистре с увеличенным трекингом */}
             <div>
-              <div className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-[#a8dfcd]">
-                <span aria-hidden="true" className="h-px w-6 bg-[#6ec4ab]" />
+              <div className="inline-flex items-center gap-2.5 text-xs font-semibold uppercase tracking-widest text-[var(--inso-dark-accent)]">
+                <span aria-hidden="true" className="h-px w-6 bg-[var(--inso-dark-accent)]" />
                 <span>{copy.label}</span>
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
                 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] leading-[1.2] font-medium tracking-tight text-white text-balance"
               >
                 {copy.lead}{' '}
-                <em className="font-serif italic font-normal text-[#9ce2ce]">
+                <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
                   {copy.region}
                 </em>
                 {copy.end}
@@ -125,7 +125,7 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
         <div className="space-y-8 lg:space-y-10">
           {/* Заголовок секции ценностей */}
           <div className="max-w-3xl space-y-3">
-            <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
+            <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em]">
               <span>{copy.valuesBadge}</span>
             </div>
             <h3
@@ -133,7 +133,7 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
               className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12]"
             >
               {copy.valuesMain}{' '}
-              <em className="font-serif italic font-normal text-[#26736f]">
+              <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                 {copy.valuesAccent}
               </em>
             </h3>
@@ -151,7 +151,7 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
               >
                 {/* Нумерация и заголовок на одной строке */}
                 <div className="flex items-baseline gap-3 mb-2.5">
-                  <span className="text-xs sm:text-sm font-semibold text-[#185d53]/70 tabular-nums shrink-0">
+                  <span className="text-xs sm:text-sm font-semibold text-[var(--inso-primary)]/80 tabular-nums shrink-0">
                     {value.number}
                   </span>
                   <h4 className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 leading-snug">

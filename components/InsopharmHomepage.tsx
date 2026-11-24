@@ -309,6 +309,30 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
   const [mobileBrandsDrawerOpen, setMobileBrandsDrawerOpen] = useState<boolean>(false);
   const [mobileAccordionBrand, setMobileAccordionBrand] = useState<string | null>('inom');
   const [licensesModalOpen, setLicensesModalOpen] = useState<boolean>(false);
+  const [palette, setPalette] = useState<'indigo' | 'emerald'>('indigo');
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem('inso_palette');
+      if (saved === 'emerald') {
+        document.documentElement.setAttribute('data-palette', 'emerald');
+        requestAnimationFrame(() => {
+          setPalette('emerald');
+        });
+      }
+    } catch {}
+  }, []);
+
+  const togglePalette = useCallback(() => {
+    setPalette((prev) => {
+      const next = prev === 'indigo' ? 'emerald' : 'indigo';
+      document.documentElement.setAttribute('data-palette', next);
+      try {
+        window.localStorage.setItem('inso_palette', next);
+      } catch {}
+      return next;
+    });
+  }, []);
   const closeBrands = useCallback(() => {
     setActiveBrandPopover(null);
     setMobileBrandsDrawerOpen(false);
@@ -352,7 +376,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
   const t = UI_COPY[lang];
 
   return (
-    <div id="inso-home" className="inso-home min-h-screen flex flex-col bg-[#F8FAFC] text-[#0F172A] font-sans">
+    <div id="inso-home" className="inso-home min-h-screen flex flex-col bg-[var(--inso-bg-surface,#F7F4EE)] text-[var(--inso-body-text,#2B3440)] font-sans">
       {/* =====================================================================
           1. STICKY HEADER (Main Menu: About Us · Subbrands · News · Career)
          ===================================================================== */}
@@ -417,15 +441,15 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 onClick={() => setLangDropdownOpen((prev) => !prev)}
                 aria-expanded={langDropdownOpen}
                 aria-label="Select language"
-                className="inline-flex items-center gap-2 h-10 px-3.5 rounded-full bg-white/50 hover:bg-white/80 backdrop-blur-md border border-[#185d53]/25 hover:border-[#185d53]/50 transition-all cursor-pointer shadow-2xs group"
+                className="inline-flex items-center gap-2 h-10 px-3.5 rounded-full bg-white/60 hover:bg-white/90 backdrop-blur-md border border-[var(--inso-border-subtle)] hover:border-[var(--inso-primary)]/40 transition-all cursor-pointer shadow-2xs group"
               >
-                <Globe className="w-4 h-4 text-[#185d53] group-hover:scale-105 transition-transform" />
-                <span className="font-[family-name:var(--font-mono)] text-xs font-bold uppercase tracking-wider text-[#185d53]">
+                <Globe className="w-4 h-4 text-[var(--inso-primary)] group-hover:scale-105 transition-transform" />
+                <span className="text-xs font-bold uppercase tracking-wider text-[var(--inso-primary)]">
                   {lang.toUpperCase()}
                 </span>
                 <ChevronDown
-                  className={`w-3.5 h-3.5 text-[#185d53]/70 transition-transform duration-200 ${
-                    langDropdownOpen ? 'rotate-180 text-[#185d53]' : ''
+                  className={`w-3.5 h-3.5 text-[var(--inso-primary)]/70 transition-transform duration-200 ${
+                    langDropdownOpen ? 'rotate-180 text-[var(--inso-primary)]' : ''
                   }`}
                 />
               </button>
@@ -442,7 +466,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 4, scale: 0.96 }}
                       transition={{ duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute right-0 mt-2 w-44 rounded-2xl bg-white/95 backdrop-blur-xl border border-teal-800/15 shadow-[0_16px_36px_-10px_rgba(20,83,75,0.18)] p-1.5 z-30"
+                      className="absolute right-0 mt-2 w-44 rounded-2xl bg-white/95 backdrop-blur-xl border border-[var(--inso-border-subtle)] shadow-[0_16px_36px_-10px_rgba(17,36,77,0.18)] p-1.5 z-30"
                     >
                       {languageOptions.map((item) => {
                         const active = lang === item.code;
@@ -456,16 +480,16 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                             }}
                             className={`w-full px-2.5 py-2 rounded-xl flex items-center justify-between gap-2.5 text-left transition-colors cursor-pointer ${
                               active
-                                ? 'bg-[#185d53] text-white'
-                                : 'text-slate-700 hover:bg-emerald-50/70'
+                                ? 'bg-[var(--inso-primary)] text-white'
+                                : 'text-slate-700 hover:bg-[var(--inso-bg-surface)]'
                             }`}
                           >
                             <div className="flex items-center gap-2.5">
                               <span
-                                className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
+                                className={`text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
                                   active
                                     ? 'bg-white/20 text-white'
-                                    : 'bg-teal-50 text-[#185d53] border border-teal-200/60'
+                                    : 'bg-[var(--inso-primary)]/10 text-[var(--inso-primary)] border border-[var(--inso-border-subtle)]'
                                 }`}
                               >
                                 {item.code.toUpperCase()}
@@ -475,7 +499,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                               </span>
                             </div>
                             {active && (
-                              <Check className="w-3.5 h-3.5 text-teal-300 shrink-0" />
+                              <Check className="w-3.5 h-3.5 text-white shrink-0" />
                             )}
                           </button>
                         );
@@ -486,12 +510,13 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
               </AnimatePresence>
             </div>
 
-            {/* Desktop Primary CTA */}
+            {/* Desktop Primary CTA: Temporarily toggles between Indigo & Emerald and scrolls to #contacts */}
             <a
               href="#contacts"
-              className="inso-action hidden sm:inline-flex items-center gap-2 h-10 sm:h-11 px-5 text-[15px] sm:text-[16px] font-semibold rounded-full whitespace-nowrap shrink-0"
+              onClick={togglePalette}
+              className="inso-action hidden sm:inline-flex items-center gap-2 h-10 sm:h-11 px-5 text-[15px] sm:text-[16px] font-semibold rounded-full whitespace-nowrap shrink-0 cursor-pointer"
             >
-              <Phone className="w-3.5 h-3.5 text-teal-300" />
+              <Phone className="w-3.5 h-3.5 text-current opacity-80" />
               <span>{t.ctaContact}</span>
             </a>
 
@@ -551,15 +576,15 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                           onClick={() => handleSetLang(item.code)}
                           className={`px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
                             active
-                              ? 'bg-[#185d53] text-white border-[#185d53] shadow-xs'
+                              ? 'bg-[var(--inso-primary)] text-white border-[var(--inso-primary)] shadow-xs'
                               : 'bg-slate-50 text-slate-700 border-slate-200/80 hover:bg-slate-100'
                           }`}
                         >
                           <span
-                            className={`font-[family-name:var(--font-mono)] text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
+                            className={`text-[11px] font-bold px-1.5 py-0.5 rounded uppercase ${
                               active
                                 ? 'bg-white/20 text-white'
-                                : 'bg-teal-50 text-[#185d53]'
+                                : 'bg-[var(--inso-primary)]/10 text-[var(--inso-primary)]'
                             }`}
                           >
                             {item.code}
@@ -583,7 +608,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                           key={navItem.href}
                           href={navItem.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="flex items-center justify-between px-3.5 py-3 rounded-xl border border-slate-200/80 bg-white hover:border-[#185d53]/40 text-xs sm:text-sm font-bold text-slate-900 transition-colors"
+                          className="flex items-center justify-between px-3.5 py-3 rounded-xl border border-slate-200/80 bg-white hover:border-[var(--inso-primary)]/40 text-xs sm:text-sm font-bold text-slate-900 transition-colors"
                         >
                           <span className="truncate">{navItem.label}</span>
                           <ArrowRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -594,16 +619,16 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                     <Link
                       href={`/portfolio?lang=${lang}`}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-bold text-[#0B3B60] transition-colors"
+                      className="flex items-center justify-between px-4 py-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs sm:text-sm font-bold text-[var(--inso-primary)] transition-colors"
                     >
                       <span className="inline-flex items-center gap-2">
-                        <Pill className="w-4 h-4 text-[#0D9488]" />
+                        <Pill className="w-4 h-4 text-[var(--inso-primary)]" />
                         <span>{t.navCatalog}</span>
-                        <span className="font-[family-name:var(--font-mono)] text-xs text-slate-400">
+                        <span className="text-xs text-slate-400">
                           ({PRODUCTS.length})
                         </span>
                       </span>
-                      <ArrowRight className="w-4 h-4 text-[#0D9488]" />
+                      <ArrowRight className="w-4 h-4 text-[var(--inso-primary)]" />
                     </Link>
                   </nav>
 
@@ -611,18 +636,21 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   <div className="pt-2 border-t border-slate-100 grid grid-cols-2 gap-2.5">
                     <a
                       href="tel:+998935056552"
-                      className="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-xs font-bold text-[#0B3B60] font-[family-name:var(--font-mono)] transition-colors"
+                      className="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-slate-100 hover:bg-slate-200/80 text-xs font-bold text-[var(--inso-primary)] transition-colors"
                     >
-                      <Phone className="w-3.5 h-3.5 text-[#0D9488]" />
+                      <Phone className="w-3.5 h-3.5 text-[var(--inso-primary)]" />
                       <span>+998 93 505 65 52</span>
                     </a>
 
                     <a
                       href="#contacts"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-[#0B3B60] hover:bg-[#082B47] text-xs font-bold text-white shadow-xs transition-colors"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        togglePalette();
+                      }}
+                      className="inso-action flex items-center justify-center gap-2 w-full py-3.5 rounded-full text-sm font-semibold shadow-sm cursor-pointer"
                     >
-                      <Send className="w-3.5 h-3.5 text-teal-300" />
+                      <Send className="w-3.5 h-3.5 text-current opacity-80" />
                       <span>{t.ctaContact}</span>
                     </a>
                   </div>
@@ -953,8 +981,8 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
               {/* Modal Header */}
               <div className="flex items-start justify-between gap-4 pb-4 border-b border-white/10 shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-2xl bg-teal-400/10 border border-teal-400/30 flex items-center justify-center shrink-0">
-                    <FileText className="w-5 h-5 text-teal-300" />
+                  <div className="w-10 h-10 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center shrink-0">
+                    <FileText className="w-5 h-5 text-[var(--inso-dark-accent)]" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-lg font-bold text-white tracking-normal">
@@ -989,7 +1017,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 {COMPANY_LICENSES.map((doc) => (
                   <div
                     key={doc.id}
-                    className="pt-3.5 first:pt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-teal-400/30 transition-all"
+                    className="pt-3.5 first:pt-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3.5 p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 hover:border-white/30 transition-all"
                   >
                     <div className="space-y-1 min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-2">
@@ -1105,7 +1133,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
             {/* Left Column: Heading & Narrative */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
+              <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em]">
                 <span>
                   {lang === 'ru'
                     ? '03 · ИСТОРИЯ INSO'
@@ -1119,21 +1147,21 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 {lang === 'ru' ? (
                   <>
                     От первого контракта до{' '}
-                    <em className="font-serif italic font-normal text-[#26736f]">
+                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                       национального холдинга
                     </em>
                   </>
                 ) : lang === 'uz' ? (
                   <>
                     Ilk distribyutsiya shartnomasidan{' '}
-                    <em className="font-serif italic font-normal text-[#26736f]">
+                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                       milliy farmxoldinggacha
                     </em>
                   </>
                 ) : (
                   <>
                     From First Contract to a{' '}
-                    <em className="font-serif italic font-normal text-[#26736f]">
+                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                       Nationwide Pharma Holding
                     </em>
                   </>
@@ -1184,7 +1212,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                   <div
                     className={`text-2xl sm:text-3xl lg:text-[34px] tracking-tight leading-none ${
                       milestone.isCurrent
-                        ? 'font-extrabold text-[#185d53]'
+                        ? 'font-extrabold text-[var(--inso-primary)]'
                         : milestone.isFuture
                         ? 'font-medium text-slate-400'
                         : 'font-bold text-slate-900'
@@ -1248,8 +1276,38 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
       <InsoPartnerContact lang={lang} directMail={directMail} />
 
       {/* FOOTER */}
-      <InsoFooter lang={lang} onDocuments={() => setLicensesModalOpen(true)} />
+      <InsoFooter
+        lang={lang}
+        onDocuments={() => setLicensesModalOpen(true)}
+        onContactClick={togglePalette}
+      />
       </InsoScrollPalette>
+
+      {/* Floating Palette Switcher for Live Comparison */}
+      <aside
+        aria-label="Color Palette Switcher"
+        className="fixed bottom-4 left-4 z-40 flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-slate-300/80 shadow-lg text-xs font-medium text-slate-800 hover:bg-white transition-all select-none"
+      >
+        <button
+          type="button"
+          onClick={togglePalette}
+          className="flex items-center gap-2 cursor-pointer focus:outline-none"
+          title="Нажмите для переключения между палитрами Indigo и Emerald"
+        >
+          <span
+            className={`size-2.5 rounded-full transition-colors ${
+              palette === 'indigo' ? 'bg-[#11244D]' : 'bg-[#16494a]'
+            }`}
+          />
+          <span className="text-slate-500 font-normal">Палитра:</span>
+          <span className="font-semibold text-slate-900">
+            {palette === 'indigo' ? 'Indigo (Brandbook)' : 'Emerald (Текущая)'}
+          </span>
+          <span className="ml-1 text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded-full border border-slate-200">
+            ⇄ переключить
+          </span>
+        </button>
+      </aside>
     </div>
   );
 }

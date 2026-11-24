@@ -1,6 +1,17 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 
-const tones: Record<string, string> = {
+const indigoTones: Record<string, string> = {
+  credentials: '#F7F4EE',
+  about: '#F5F2EA',
+  values: '#F7F4EE',
+  leadership: '#F6F3EC',
+  subbrands: '#F7F4EE',
+  news: '#F5F2EA',
+  faq: '#F7F4EE',
+  contacts: '#F5F2EA',
+};
+
+const emeraldTones: Record<string, string> = {
   credentials: '#daf0ea',
   about: '#eef5f3',
   values: '#e2eff0',
@@ -9,6 +20,7 @@ const tones: Record<string, string> = {
   faq: '#e2eff4',
   contacts: '#e3f0ec',
 };
+
 const clamp = (value: number) => Math.min(1, Math.max(0, value));
 
 function layoutTop(element: HTMLElement) {
@@ -82,9 +94,12 @@ export default function InsoScrollPalette({ children, animatedHero }: { children
           stage.style.setProperty('--exit-inset', heroInset + 'px');
         }
       }
+      const isEmerald = document.documentElement.getAttribute('data-palette') === 'emerald';
+      const tones = isEmerald ? emeraldTones : indigoTones;
+      const washInitial = isEmerald ? '#edf4f3' : '#F7F4EE';
       chapters = [
-        { top: layoutTop(surface) - window.innerHeight * 0.65, tone: '#edf4f3' },
-        ...sections.map(section => ({ top: layoutTop(section), tone: tones[section.id] ?? '#d8e7dc' })),
+        { top: layoutTop(surface) - window.innerHeight * 0.65, tone: washInitial },
+        ...sections.map(section => ({ top: layoutTop(section), tone: tones[section.id] ?? washInitial })),
       ];
       let lastTop = -Infinity;
       let column = 0;
@@ -99,12 +114,24 @@ export default function InsoScrollPalette({ children, animatedHero }: { children
     const observer = new ResizeObserver(measure);
     [surface, ...sections, ...elements].forEach(el => observer.observe(el));
     if (hero) observer.observe(hero);
+
+    const attrObserver = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        if (m.attributeName === 'data-palette') {
+          measure();
+          paint();
+        }
+      }
+    });
+    attrObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-palette'] });
+
     measure();
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', measure);
     preference.addEventListener('change', schedule);
     return () => {
       observer.disconnect();
+      attrObserver.disconnect();
       window.cancelAnimationFrame(ticket);
       window.removeEventListener('scroll', schedule);
       window.removeEventListener('resize', measure);

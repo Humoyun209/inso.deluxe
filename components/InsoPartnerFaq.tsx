@@ -353,7 +353,7 @@ export default function InsoPartnerFaq({
             1. SECTION HEADER (Swiss Editorial Typography)
            ================================================================= */}
         <div className="max-w-3xl space-y-3">
-          <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
+          <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em]">
             <span>{t.badge}</span>
           </div>
 
@@ -362,7 +362,7 @@ export default function InsoPartnerFaq({
             className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance"
           >
             {t.titleMain}{' '}
-            <em className="font-serif italic font-normal text-[#26736f]">
+            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
               {t.titleAccent}
             </em>
           </h2>
@@ -398,7 +398,7 @@ export default function InsoPartnerFaq({
                 onClick={() => setSelectedCategory(catKey)}
                 className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer whitespace-nowrap inline-flex items-center gap-2 ${
                   active
-                    ? 'bg-[#185d53] text-white shadow-xs'
+                    ? 'bg-[var(--inso-primary)] text-white shadow-xs'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900'
                 }`}
               >
@@ -432,10 +432,10 @@ export default function InsoPartnerFaq({
                   className="w-full text-left flex items-start justify-between gap-4 sm:gap-6 group cursor-pointer focus:outline-none"
                 >
                   <div className="flex items-start gap-3 sm:gap-4 min-w-0">
-                    <span className="text-xs sm:text-sm font-semibold text-[#185d53]/70 tabular-nums shrink-0 mt-0.5">
+                    <span className="text-xs sm:text-sm font-semibold text-[var(--inso-primary)]/80 tabular-nums shrink-0 mt-0.5">
                       {numStr}
                     </span>
-                    <h3 className="text-base sm:text-lg lg:text-[19px] font-bold text-slate-900 tracking-tight leading-snug group-hover:text-[#185d53] transition-colors">
+                    <h3 className="text-base sm:text-lg lg:text-[19px] font-bold text-slate-900 tracking-tight leading-snug group-hover:text-[var(--inso-primary)] transition-colors">
                       {item.question[lang]}
                     </h3>
                   </div>
@@ -443,7 +443,7 @@ export default function InsoPartnerFaq({
                   <span
                     className={`size-8 rounded-full border border-slate-200 flex items-center justify-center shrink-0 text-slate-600 transition-all duration-200 ${
                       isOpen
-                        ? 'bg-[#185d53] text-white border-[#185d53] rotate-45'
+                        ? 'bg-[var(--inso-primary)] text-white border-[var(--inso-primary)] rotate-45'
                         : 'bg-slate-50 group-hover:bg-slate-100'
                     }`}
                   >
@@ -464,7 +464,7 @@ export default function InsoPartnerFaq({
                           <a
                             href="#inquiry-form"
                             onClick={() => onRequest(item.topic!)}
-                            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#185d53] hover:text-[#0f3d36] transition-colors"
+                            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[var(--inso-primary)] hover:underline transition-colors"
                           >
                             <span>
                               {item.actionText

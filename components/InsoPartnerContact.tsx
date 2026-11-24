@@ -40,7 +40,7 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
   const attempt = useRef<{ payload: string; id: string } | null>(null);
   const department = inquiryTopics[topic];
   const nameInput = useRef<HTMLInputElement>(null);
-  const field = 'mt-1.5 block w-full rounded-xl border border-[#b8cdc7] bg-white px-3.5 py-3 text-base font-normal text-slate-900 focus:outline-teal-700';
+  const field = 'mt-1.5 block w-full rounded-xl border border-[var(--inso-border-subtle)] bg-white px-3.5 py-3 text-base font-normal text-slate-900 focus:outline-[var(--inso-primary)]';
 
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -77,37 +77,37 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
         nameInput.current?.focus({ preventScroll: true });
       }} />
       <section id="contacts" aria-labelledby="partner-contact-title" className="scroll-mt-18 px-4 pb-12 sm:px-6 lg:px-8 lg:pb-20">
-        <div className="mx-auto grid max-w-[1216px] items-center gap-6 border-t border-[#b9d0c7] pt-10 text-[#193f41] lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:pt-14">
+        <div className="mx-auto grid max-w-[1216px] items-center gap-6 border-t border-[var(--inso-border-subtle)] pt-10 text-[var(--inso-heading-text)] lg:grid-cols-[0.95fr_1.05fr] lg:gap-16 lg:pt-14">
           <div className="min-w-0">
-            <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em] mb-3">
+            <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em] mb-3">
               <span>{t.badge}</span>
             </div>
             <h2 id="partner-contact-title" className="text-balance text-3xl sm:text-4xl lg:text-[38px] font-medium leading-[1.08] tracking-tight">{t.title}</h2>
             <div className="mt-6 flex items-start gap-3">
-              <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#34766a]" />
-              <div><p className="mb-1 text-[12px] text-[#47675e]">{t.phone}</p>
+              <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-teal)]" />
+              <div><p className="mb-1 text-[12px] text-[var(--inso-muted-text)]">{t.phone}</p>
                 <a className="block w-fit text-xl font-semibold hover:underline" href="tel:+998935056552">+998 93 505 65 52</a>
                 <a className="mt-1 block w-fit text-[15px] sm:text-[16px] hover:underline" href="tel:+998712006552">+998 71 200 65 52</a>
               </div>
             </div>
-            <a className="mt-4 inline-flex items-center gap-3 text-[16px] sm:text-[17px] hover:underline" href="mailto:sales@inso.uz"><Mail aria-hidden="true" className="size-4 text-[#34766a]" />sales@inso.uz</a>
-            <div id="map" className="mt-4 flex scroll-mt-24 items-start gap-3 border-t border-[#b9d0c7] pt-4">
-              <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-[#34766a]" />
+            <a className="mt-4 inline-flex items-center gap-3 text-[16px] sm:text-[17px] hover:underline" href="mailto:sales@inso.uz"><Mail aria-hidden="true" className="size-4 text-[var(--inso-teal)]" />sales@inso.uz</a>
+            <div id="map" className="mt-4 flex scroll-mt-24 items-start gap-3 border-t border-[var(--inso-border-subtle)] pt-4">
+              <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-teal)]" />
               <div><p className="text-[16px] sm:text-[17px]">{t.address}</p>
-                <a className="mt-1.5 inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-semibold text-[#27675b] hover:underline" href="https://www.google.com/maps/dir/?api=1&destination=160+Bogishamol+Street%2C+Yunusabad%2C+Tashkent%2C+Uzbekistan" target="_blank" rel="noreferrer">{t.route}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
+                <a className="mt-1.5 inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-semibold text-[var(--inso-teal)] hover:underline" href="https://www.google.com/maps/dir/?api=1&destination=160+Bogishamol+Street%2C+Yunusabad%2C+Tashkent%2C+Uzbekistan" target="_blank" rel="noreferrer">{t.route}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
               </div>
             </div>
 
           </div>
           <form id="inquiry-form" onSubmit={submit} onChange={() => { if (status !== 'pending') setStatus('idle'); }}
-            className="partner-form relative overflow-hidden isolate min-w-0 scroll-mt-24 rounded-3xl p-5 text-[#234d4b] sm:p-8">
+            className="partner-form relative overflow-hidden isolate min-w-0 scroll-mt-24 rounded-3xl p-5 text-[var(--inso-heading-text)] sm:p-8">
             {/* Subtle brand watermark on contact form */}
             <div
               aria-hidden="true"
               className="pointer-events-none select-none absolute -bottom-24 -right-24 sm:-bottom-28 sm:-right-24 w-[340px] h-[340px] opacity-[0.04] -z-10"
             >
               <Image
-                src="/photos/bg-element-teal.svg"
+                src="/photos/bg-element-indigo.svg"
                 alt=""
                 width={340}
                 height={340}
@@ -116,7 +116,7 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
               />
             </div>
             <h3 className="relative z-10 mb-5 text-xl sm:text-[22px] lg:text-[24px] font-semibold tracking-tight">{t.formTitle}</h3>
-              <fieldset disabled={status === 'pending'} className="relative z-10 grid gap-4 text-sm font-semibold text-[#284e4c]">
+              <fieldset disabled={status === 'pending'} className="relative z-10 grid gap-4 text-sm font-semibold text-[var(--inso-heading-text)]">
                 <label>{t.name}<input ref={nameInput} name="name" required maxLength={120} autoComplete="name" className={field} /></label>
                 <label>{t.contact}<input name="contact" required maxLength={160} className={field} /></label>
                 <InsoTopicSelect label={t.topic} lang={lang} value={topic} onChange={next => { setTopic(next); setStatus('idle'); }} />

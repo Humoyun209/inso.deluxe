@@ -93,7 +93,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
             1. SECTION HEADER (Editorial serif-italic alignment matching Hero)
            ================================================================= */}
         <div className="max-w-3xl space-y-3">
-          <div className="hero-eyebrow text-xs font-semibold text-[#30665e] uppercase tracking-[0.16em]">
+          <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em]">
             <span>{t.badge}</span>
           </div>
           <h2
@@ -103,7 +103,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
             {lang === 'ru' ? (
               <>
                 Как устроена{' '}
-                <em className="font-serif italic font-normal text-[#26736f]">
+                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                   дистрибуция
                 </em>{' '}
                 INSO Group
@@ -111,7 +111,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
             ) : lang === 'uz' ? (
               <>
                 INSO Group{' '}
-                <em className="font-serif italic font-normal text-[#26736f]">
+                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                   distribyutsiyasi
                 </em>{' '}
                 qanday ishlaydi
@@ -119,7 +119,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
             ) : (
               <>
                 How{' '}
-                <em className="font-serif italic font-normal text-[#26736f]">
+                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
                   Distribution
                 </em>{' '}
                 Works at INSO Group
@@ -151,7 +151,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
               <span>{t.photoCaption}</span>
               <a
                 href="#about"
-                className="inline-flex items-center gap-1 font-semibold text-[#185d53] hover:text-[#0f3d36] transition-colors"
+                className="inline-flex items-center gap-1 font-semibold text-[var(--inso-teal)] hover:underline transition-colors"
               >
                 <span>{t.photoLink}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -207,7 +207,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
               <div className="pt-1">
                 <a
                   href="mailto:sales@inso.uz?subject=Regional%20Supply%20Inquiry"
-                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[#185d53] hover:text-[#0f3d36] transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-[var(--inso-primary)] hover:underline transition-colors"
                 >
                   <span>{t.deliveryAction}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

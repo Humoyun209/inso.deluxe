@@ -81,9 +81,11 @@ const labels = {
 export default function InsoFooter({
   lang,
   onDocuments,
+  onContactClick,
 }: {
   lang: Language;
   onDocuments: () => void;
+  onContactClick?: () => void;
 }) {
   const t = labels[lang];
 
@@ -111,13 +113,14 @@ export default function InsoFooter({
         <div className="border-b border-white/10 pb-10 mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
           <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-medium tracking-tight text-white leading-tight">
             {t.ctaLead}{' '}
-            <em className="font-serif italic font-normal text-[#9ce2ce]">
+            <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
               {t.ctaLeadAccent}
             </em>
           </h2>
           <a
             href="#contacts"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[#16494a] px-6 py-3 text-sm font-semibold hover:bg-[#eef7f4] transition-all shadow-sm shrink-0 w-fit group"
+            onClick={onContactClick}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-white text-[var(--inso-primary)] px-6 py-3 text-sm font-semibold hover:bg-[var(--inso-bg-surface)] transition-all shadow-sm shrink-0 w-fit group"
           >
             <span>{t.ctaButton}</span>
             <ArrowUpRight
@@ -137,7 +140,7 @@ export default function InsoFooter({
               <a
                 href="#top"
                 aria-label={`INSO Group — ${t.top}`}
-                className="group inline-flex w-fit items-center self-start rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b6e6d3]"
+                className="group inline-flex w-fit items-center self-start rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/50"
               >
                 <Image
                   src="/logos/INSO-Group_A_GROUP_horizontal_white.png"

@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Onest, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const onest = Onest({
   subsets: ['latin', 'cyrillic'],
   variable: '--font-sans',
   display: 'swap',
@@ -40,10 +40,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+    <html lang="ru" data-palette="indigo" className={`${onest.variable} ${jetbrainsMono.variable} scroll-smooth`}>
       <body
         suppressHydrationWarning
-        className="font-sans antialiased bg-[#F8FAFC] text-[#0F172A] selection:bg-[#0B4F6C] selection:text-white"
+        className="font-sans antialiased bg-[var(--inso-bg-surface,#F7F4EE)] text-[var(--inso-body-text,#2B3440)] selection:bg-[#11244D] selection:text-white"
       >
         {children}
       </body>

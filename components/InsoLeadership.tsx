@@ -158,15 +158,15 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
       <div className="mx-auto max-w-[1360px] w-full px-4 sm:px-6 lg:px-8">
         {/* Section Header (Native light styling matching the page) */}
         <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-8">
-          <p className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[#286e65] mb-2 flex items-center justify-center gap-2.5">
-            <span className="w-6 h-px bg-[#286e65]/50" />
+          <p className="text-[12px] font-semibold tracking-[0.18em] uppercase text-[var(--inso-badge-color)] mb-2 flex items-center justify-center gap-2.5">
+            <span className="w-6 h-px bg-[var(--inso-badge-color)]/50" />
             {t.sectionBadge}
-            <span className="w-6 h-px bg-[#286e65]/50" />
+            <span className="w-6 h-px bg-[var(--inso-badge-color)]/50" />
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[38px] font-medium tracking-tight text-[#183f48] mb-2 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-[38px] font-medium tracking-tight text-[var(--inso-heading-text)] mb-2 leading-tight">
             {t.sectionTitle}
           </h2>
-          <p className="text-[16px] sm:text-[17px] text-[#456b63] font-light max-w-xl mx-auto leading-relaxed">
+          <p className="text-[16px] sm:text-[17px] text-[var(--inso-muted-text)] font-light max-w-xl mx-auto leading-relaxed">
             {t.sectionLead}
           </p>
         </div>
@@ -224,10 +224,10 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
                 >
                   {/* Large Hero Card */}
                   <div
-                    className={`relative w-[280px] sm:w-[325px] md:w-[350px] h-[450px] sm:h-[490px] md:h-[510px] rounded-3xl overflow-hidden bg-[#102422] transition-all duration-300 ${
+                    className={`relative w-[280px] sm:w-[325px] md:w-[350px] h-[450px] sm:h-[490px] md:h-[510px] rounded-3xl overflow-hidden bg-[var(--inso-footer-bg)] transition-all duration-300 ${
                       isActive
-                        ? 'shadow-[0_24px_55px_-10px_rgba(20,60,54,0.38)] ring-2 ring-[#287e70]/50'
-                        : 'shadow-[0_12px_30px_rgba(20,60,54,0.18)] opacity-95'
+                        ? 'shadow-[0_24px_55px_-10px_rgba(17,36,77,0.38)] ring-2 ring-[var(--inso-primary)]/50'
+                        : 'shadow-[0_12px_30px_rgba(17,36,77,0.18)] opacity-95'
                     }`}
                   >
                     {/* Portrait Image */}
@@ -242,25 +242,25 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
 
                     {/* Top Role Badge */}
                     <div className="absolute top-0 inset-x-0 p-4 z-20 flex justify-between items-center bg-gradient-to-b from-black/60 to-transparent">
-                      <span className="text-[11px] font-semibold tracking-wider text-emerald-300 uppercase px-3 py-1 rounded-full bg-black/40 border border-emerald-400/30 backdrop-blur-md">
+                      <span className="text-[11px] font-semibold tracking-wider text-[var(--inso-dark-accent)] uppercase px-3 py-1 rounded-full bg-black/40 border border-[var(--inso-dark-accent)]/30 backdrop-blur-md">
                         {localize(person.role, lang)}
                       </span>
                     </div>
 
                     {/* Bottom Info Overlay directly inside the card */}
-                    <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 z-20 bg-gradient-to-t from-[#081817]/95 via-[#081817]/80 via-50% to-transparent flex flex-col justify-end text-left text-white">
+                    <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 z-20 bg-gradient-to-t from-[#0A1930]/95 via-[#0A1930]/80 via-50% to-transparent flex flex-col justify-end text-left text-white">
                       {/* Name with Georgia serif accent */}
                       <h3 className="text-xl sm:text-[22px] lg:text-[24px] font-medium tracking-tight leading-snug">
                         {firstName}{' '}
                         {lastName && (
-                          <em className="font-serif italic font-normal text-emerald-300">
+                          <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
                             {lastName}
                           </em>
                         )}
                       </h3>
 
                       {/* Full Role */}
-                      <p className="text-xs sm:text-sm text-emerald-100/90 mt-1 font-light line-clamp-1">
+                      <p className="text-xs sm:text-sm text-slate-200 mt-1 font-light line-clamp-1">
                         {person.fullRole[lang]}
                       </p>
 
@@ -286,14 +286,14 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
           </div>
 
           {/* Bottom Controls Bar (Counter + Indicator dots + Arrows) */}
-          <div className="relative z-20 flex items-center justify-between w-full max-w-lg mt-6 pt-4 border-t border-[#9fb6a7]/60">
+          <div className="relative z-20 flex items-center justify-between w-full max-w-lg mt-6 pt-4 border-t border-[var(--inso-border-subtle)]">
             {/* Counter */}
             <div className="flex items-center gap-2">
-              <span className="font-semibold text-sm tabular-nums text-[#183f48]">
+              <span className="font-semibold text-sm tabular-nums text-[var(--inso-heading-text)]">
                 {String(index + 1).padStart(2, '0')}
               </span>
               <span className="text-slate-400 text-sm tabular-nums">/ {String(total).padStart(2, '0')}</span>
-              <span className="text-xs text-[#286e65] font-medium ml-2 hidden sm:inline">
+              <span className="text-xs text-[var(--inso-muted-text)] font-medium ml-2 hidden sm:inline">
                 {localize(portraits[index].name, lang)}
               </span>
             </div>
@@ -307,8 +307,8 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
                   onClick={() => setIndex(dotIdx)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     dotIdx === index
-                      ? 'w-7 bg-[#235e55]'
-                      : 'w-1.5 bg-[#82a699]/40 hover:bg-[#82a699]'
+                      ? 'w-7 bg-[var(--inso-primary)]'
+                      : 'w-1.5 bg-[var(--inso-border-subtle)] hover:bg-[var(--inso-muted-text)]'
                   }`}
                   aria-label={`Slide ${dotIdx + 1}`}
                 />
@@ -320,7 +320,7 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
               <button
                 type="button"
                 onClick={() => step(-1)}
-                className="size-9 rounded-full flex items-center justify-center border border-[#82a699] text-[#183f48] hover:bg-[#235e55] hover:text-white hover:border-[#235e55] transition-all duration-200 active:scale-95 shadow-sm"
+                className="size-9 rounded-full flex items-center justify-center border border-[var(--inso-border-subtle)] text-[var(--inso-heading-text)] hover:bg-[var(--inso-primary)] hover:text-white hover:border-[var(--inso-primary)] transition-all duration-200 active:scale-95 shadow-sm cursor-pointer"
                 aria-label={t.previous}
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -328,7 +328,7 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
               <button
                 type="button"
                 onClick={() => step(1)}
-                className="size-9 rounded-full flex items-center justify-center border border-[#82a699] text-[#183f48] hover:bg-[#235e55] hover:text-white hover:border-[#235e55] transition-all duration-200 active:scale-95 shadow-sm"
+                className="size-9 rounded-full flex items-center justify-center border border-[var(--inso-border-subtle)] text-[var(--inso-heading-text)] hover:bg-[var(--inso-primary)] hover:text-white hover:border-[var(--inso-primary)] transition-all duration-200 active:scale-95 shadow-sm cursor-pointer"
                 aria-label={t.next}
               >
                 <ArrowRight className="w-4 h-4" />
