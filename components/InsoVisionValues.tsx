@@ -102,13 +102,11 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
             <div className="mt-8 md:mt-0">
               <h2
                 id="vision-title"
-                className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] leading-[1.2] font-medium tracking-tight text-white text-balance"
+                className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] leading-[1.2] font-normal tracking-tight text-white text-balance font-serif italic"
               >
-                {copy.lead}{' '}
                 <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
-                  {copy.region}
+                  {copy.lead} {copy.region}{copy.end}
                 </em>
-                {copy.end}
               </h2>
             </div>
           </div>
@@ -142,11 +140,10 @@ export default function InsoVisionValues({ lang }: { lang: Language }) {
             </div>
             <h3
               id="values-title"
-              className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12]"
+              className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.12] font-serif italic text-[var(--inso-accent-italic)]"
             >
-              {copy.valuesMain}{' '}
               <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                {copy.valuesAccent}
+                {copy.valuesMain} {copy.valuesAccent}
               </em>
             </h3>
             <p className="text-base sm:text-[17px] text-slate-600 font-normal leading-relaxed max-w-2xl">

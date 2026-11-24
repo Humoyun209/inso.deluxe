@@ -1180,36 +1180,16 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
                 </span>
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance">
-                {lang === 'ru' ? (
-                  <>
-                    От первого контракта до{' '}
-                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                      национального холдинга
-                    </em>
-                  </>
-                ) : lang === 'uz' ? (
-                  <>
-                    Ilk distribyutsiya shartnomasidan{' '}
-                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                      milliy farmxoldinggacha
-                    </em>
-                  </>
-                ) : lang === 'zh' ? (
-                  <>
-                    从首份直签合同到{' '}
-                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                      国家级医药控股集团
-                    </em>
-                  </>
-                ) : (
-                  <>
-                    From First Contract to a{' '}
-                    <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                      Nationwide Pharma Holding
-                    </em>
-                  </>
-                )}
+              <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.12] text-balance font-serif italic text-[var(--inso-accent-italic)]">
+                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
+                  {lang === 'ru'
+                    ? 'От первого контракта до национального холдинга'
+                    : lang === 'uz'
+                    ? 'Ilk distribyutsiya shartnomasidan milliy farmxoldinggacha'
+                    : lang === 'zh'
+                    ? '从首份直签合同到国家级医药控股集团'
+                    : 'From First Contract to a Nationwide Pharma Holding'}
+                </em>
               </h2>
 
               <p className="text-base sm:text-[17px] text-slate-600 font-normal leading-relaxed max-w-xl">

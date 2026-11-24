@@ -777,12 +777,16 @@ export function InsoHoldingStructureScroll({
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-slate-900 text-balance leading-[1.15]">
-              {lang === 'ru'
-                ? 'Экосистема субрендов INSO Group: от завода до пациента'
-                : lang === 'uz'
-                ? 'INSO Group sub-brendlari ekotizimi: zavoddan bemorgacha'
-                : 'INSO Group Sub-Brand Ecosystem: From Factory to Patient'}
+            <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.15] text-balance font-serif italic text-[var(--inso-accent-italic)]">
+              <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
+                {rawLang === 'zh'
+                  ? 'INSO Group 子品牌生态系统：从药厂到患者'
+                  : lang === 'ru'
+                  ? 'Экосистема субрендов INSO Group: от завода до пациента'
+                  : lang === 'uz'
+                  ? 'INSO Group sub-brendlari ekotizimi: zavoddan bemorgacha'
+                  : 'INSO Group Sub-Brand Ecosystem: From Factory to Patient'}
+              </em>
             </h2>
 
             <p className="mt-3 text-[16px] sm:text-[17px] text-slate-600 leading-relaxed">

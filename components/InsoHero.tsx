@@ -31,7 +31,12 @@ function HeroHeading({ copy, overlay = false }: { copy: HeroCopy; overlay?: bool
   return (
     <>
       <p className="hero-eyebrow">{copy.sinceBadge}</p>
-      <Title className="hero-headline">{copy.heroHeadline}{' '}<em>{copy.heroHeadlineAccent}</em></Title>
+      <Title className="hero-headline font-serif italic font-normal text-[var(--inso-accent-italic)]">
+        <em className="font-serif italic font-normal text-inherit">
+          {copy.heroHeadline}{' '}
+          <span className="block font-serif italic font-normal text-inherit">{copy.heroHeadlineAccent}</span>
+        </em>
+      </Title>
     </>
   );
 }

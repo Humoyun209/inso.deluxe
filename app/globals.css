@@ -409,23 +409,26 @@ nextjs-portal,
 .hero-eyebrow::before { content: ''; height: 1px; width: 2rem; background: currentColor; }
 .hero-headline {
   max-width: 23ch;
-  font-weight: 500;
+  font-family: Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
   font-size: clamp(2.2rem, 3.8vw, 3.875rem);
   line-height: 1.06;
-  letter-spacing: -.045em;
-  color: var(--inso-heading-text);
+  letter-spacing: -.03em;
+  color: var(--inso-accent-italic);
   text-wrap: balance;
   transition: color .4s ease;
 }
-.hero-headline em {
+.hero-headline em,
+.hero-headline span {
   display: block;
-  font-family: Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2.3rem, 4vw, 4.0625rem);
+  font-family: Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  font-size: inherit;
   line-height: 1.08;
-  letter-spacing: -.04em;
-  color: var(--inso-accent-italic);
+  letter-spacing: inherit;
+  color: inherit;
   transition: color .4s ease;
 }
 .hero-detail { display: grid; gap: 1rem; margin-top: clamp(1rem, 2.7svh, 1.8rem); }

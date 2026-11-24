@@ -89,7 +89,9 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
             <div className="hero-eyebrow text-xs font-semibold text-[var(--inso-badge-color)] uppercase tracking-[0.16em] mb-3">
               <span>{t.badge}</span>
             </div>
-            <h2 id="partner-contact-title" className="text-balance text-3xl sm:text-4xl lg:text-[38px] font-medium leading-[1.08] tracking-tight">{t.title}</h2>
+            <h2 id="partner-contact-title" className="text-balance text-3xl sm:text-4xl lg:text-[38px] font-normal leading-[1.08] tracking-tight font-serif italic text-[var(--inso-accent-italic)]">
+              <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">{t.title}</em>
+            </h2>
             <div className="mt-6 flex items-start gap-3">
               <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-teal)]" />
               <div><p className="mb-1 text-[12px] text-[var(--inso-muted-text)]">{t.phone}</p>

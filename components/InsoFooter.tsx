@@ -135,10 +135,9 @@ export default function InsoFooter({
             1. ВЕРХНЯЯ ЧАСТЬ: МИНИМАЛИСТИЧНАЯ СТРОКА CTA
            ================================================================= */}
         <div className="border-b border-white/10 pb-10 mb-12 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-medium tracking-tight text-white leading-tight">
-            {t.ctaLead}{' '}
+          <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-normal tracking-tight text-white leading-tight font-serif italic">
             <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
-              {t.ctaLeadAccent}
+              {t.ctaLead} {t.ctaLeadAccent}
             </em>
           </h2>
           <a

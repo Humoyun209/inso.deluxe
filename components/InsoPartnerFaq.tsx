@@ -406,11 +406,10 @@ export default function InsoPartnerFaq({
 
           <h2
             id="partner-faq-title"
-            className="text-2xl sm:text-3xl lg:text-[38px] font-medium tracking-tight text-slate-900 leading-[1.12] text-balance"
+            className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.12] text-balance font-serif italic text-[var(--inso-accent-italic)]"
           >
-            {t.titleMain}{' '}
             <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-              {t.titleAccent}
+              {t.titleMain} {t.titleAccent}
             </em>
           </h2>
 

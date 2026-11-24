@@ -176,8 +176,8 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
             {t.sectionBadge}
             <span className="w-6 h-px bg-[var(--inso-badge-color)]/50" />
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-[38px] font-medium tracking-tight text-[var(--inso-heading-text)] mb-2 leading-tight">
-            {t.sectionTitle}
+          <h2 className="text-3xl sm:text-4xl lg:text-[38px] font-normal tracking-tight text-[var(--inso-accent-italic)] mb-2 leading-tight font-serif italic">
+            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">{t.sectionTitle}</em>
           </h2>
           <p className="text-[16px] sm:text-[17px] text-[var(--inso-muted-text)] font-light max-w-xl mx-auto leading-relaxed">
             {t.sectionLead}
@@ -199,10 +199,6 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
               const scale = isActive ? 1 : 0.88;
               const opacity = isActive ? 1 : isMobile ? 0.35 : 0.55;
               const zIndex = isActive ? 20 : 10;
-
-              const nameParts = localize(person.name, lang).split(' ');
-              const firstName = nameParts[0] || '';
-              const lastName = nameParts.slice(1).join(' ');
 
               return (
                 <motion.div
@@ -262,14 +258,11 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
 
                     {/* Bottom Info Overlay directly inside the card */}
                     <div className="absolute bottom-0 inset-x-0 p-5 sm:p-6 z-20 bg-gradient-to-t from-[#0A1930]/95 via-[#0A1930]/80 via-50% to-transparent flex flex-col justify-end text-left text-white">
-                      {/* Name with Georgia serif accent */}
-                      <h3 className="text-xl sm:text-[22px] lg:text-[24px] font-medium tracking-tight leading-snug">
-                        {firstName}{' '}
-                        {lastName && (
-                          <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
-                            {lastName}
-                          </em>
-                        )}
+                      {/* Full Name in Georgia serif italic */}
+                      <h3 className="text-xl sm:text-[22px] lg:text-[24px] font-normal tracking-tight leading-snug font-serif italic text-white">
+                        <em className="font-serif italic font-normal text-[var(--inso-dark-accent)]">
+                          {localize(person.name, lang)}
+                        </em>
                       </h3>
 
                       {/* Full Role */}
