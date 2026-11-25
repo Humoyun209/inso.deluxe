@@ -24,6 +24,7 @@ import {
   SUBBRANDS,
   Language,
 } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 import InsoHero from '@/components/InsoHero';
 import InsoNews from '@/components/InsoNews';
 import InsoVisionValues from '@/components/InsoVisionValues';
@@ -48,89 +49,6 @@ function LanguageBadge({ code, active = false }: { code: Language; active?: bool
     </span>
   );
 }
-
-const UI_COPY = {
-  ru: {
-    serviceContact: 'Обсудить регистрацию',
-    navCatalogShort: 'Каталог',
-    navAbout: 'О нас',
-    navNews: 'Новости',
-    navBrands: 'Бренды',
-    navCareer: 'Карьера',
-    navCatalog: 'Каталог препаратов',
-    navFaq: 'FAQ',
-    navContacts: 'Контакты',
-    ctaContact: 'Связаться с нами',
-    menuOpen: 'Меню',
-    menuClose: 'Закрыть',
-    sinceBadge: 'INSO Group · С 2017 года',
-    heroHeadline: 'Помогаем вывести препараты',
-    heroHeadlineAccent: 'на рынок Узбекистана',
-    heroDescription:
-      'Сопровождаем регистрацию, продвижение и поставки в аптеки и клиники по всей стране.',
-    heroPartnerBtn: 'Обсудить сотрудничество',
-  },
-  uz: {
-    serviceContact: 'Roʻyxatdan oʻtkazishni muhokama qilish',
-    navCatalogShort: 'Katalog',
-    navAbout: 'Biz haqimizda',
-    navNews: 'Yangiliklar',
-    navBrands: 'Brendlar',
-    navCareer: 'Karyera',
-    navCatalog: 'Dori vositalari katalogi',
-    navFaq: 'FAQ',
-    navContacts: 'Aloqa',
-    ctaContact: 'Bog‘lanish',
-    menuOpen: 'Menyu',
-    menuClose: 'Yopish',
-    sinceBadge: 'INSO Group · 2017-yildan beri',
-    heroHeadline: 'Dori vositalarini',
-    heroHeadlineAccent: 'Oʻzbekiston bozoriga olib chiqamiz',
-    heroDescription:
-      'Roʻyxatdan oʻtkazish, targʻib qilish va butun mamlakat boʻylab dorixona hamda klinikalarga yetkazib berishda koʻmaklashamiz.',
-    heroPartnerBtn: 'Hamkorlikni muhokama qilish',
-  },
-  en: {
-    serviceContact: 'Discuss registration',
-    navCatalogShort: 'Catalog',
-    navAbout: 'About Us',
-    navNews: 'News',
-    navBrands: 'Brands',
-    navCareer: 'Career',
-    navCatalog: 'Product Portfolio',
-    navFaq: 'FAQ',
-    navContacts: 'Contacts',
-    ctaContact: 'Partner With Us',
-    menuOpen: 'Menu',
-    menuClose: 'Close',
-    sinceBadge: 'INSO Group · Since 2017',
-    heroHeadline: 'Bringing medicines',
-    heroHeadlineAccent: 'to the Uzbek market',
-    heroDescription:
-      'We support registration, promotion and delivery to pharmacies and clinics across Uzbekistan.',
-    heroPartnerBtn: 'Discuss a partnership',
-  },
-  zh: {
-    serviceContact: '洽谈产品注册',
-    navCatalogShort: '产品目录',
-    navAbout: '关于我们',
-    navNews: '新闻动态',
-    navBrands: '控股品牌',
-    navCareer: '加入我们',
-    navCatalog: '药品产品目录',
-    navFaq: '常见问答',
-    navContacts: '联系我们',
-    ctaContact: '商务合作',
-    menuOpen: '菜单',
-    menuClose: '关闭',
-    sinceBadge: 'INSO Group · 始于2017年',
-    heroHeadline: '助力优质医药产品',
-    heroHeadlineAccent: '深耕乌兹别克斯坦市场',
-    heroDescription:
-      '提供从注册审批、合规准入、专业学术推广到覆盖全国的医院及药房终端分销全流程服务。',
-    heroPartnerBtn: '洽谈商务合作',
-  },
-};
 
 // 6 Key Holding Sub-brands showcased in Hero Brand Strip
 const HERO_BRAND_ITEMS = [
@@ -400,7 +318,20 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
     { code: 'zh', label: '中文', short: 'ZH' },
   ];
 
-  const t = UI_COPY[lang];
+  const dict = getDictionary(lang);
+  const t = {
+    ...dict.common.nav,
+    navAbout: dict.common.nav.about,
+    navNews: dict.common.nav.news,
+    navBrands: dict.common.nav.brands,
+    navCareer: dict.common.nav.career,
+    navCatalog: dict.common.nav.catalog,
+    navCatalogShort: dict.common.nav.catalogShort,
+    ctaContact: dict.common.nav.contactCta,
+    menuOpen: dict.common.nav.menuOpen,
+    menuClose: dict.common.nav.menuClose,
+    serviceContact: dict.common.nav.serviceContact,
+  };
 
   return (
     <div id="inso-home" className="inso-home min-h-screen flex flex-col bg-[var(--inso-bg-surface,#F7F4EE)] text-[var(--inso-body-text,#2B3440)] font-sans">
@@ -692,7 +623,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
           2. MAIN HERO SECTION (Synthon-Inspired Minimalist Elegance & Smooth Transitions)
          ===================================================================== */}
       <section id="top" className="relative isolate bg-[#fafaf6] text-[#183f48]">
-        <InsoHero key={animatedHero ? 'animated' : 'static'} animated={animatedHero} copy={t} lang={lang} onDocuments={() => setLicensesModalOpen(true)} onBrandsHidden={closeBrands}>
+        <InsoHero key={animatedHero ? 'animated' : 'static'} animated={animatedHero} copy={dict.hero} lang={lang} onDocuments={() => setLicensesModalOpen(true)} onBrandsHidden={closeBrands}>
         <div className="inso-brand-strip relative z-30 border-t border-[var(--brand-rule)]">
           <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
             {/* Desktop View (>= 1024px): "Наши бренды" + 6 clickable names in one row */}
@@ -1181,15 +1112,7 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
               </div>
 
               <h2 className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.12] text-balance font-serif italic text-[var(--inso-accent-italic)]">
-                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-                  {lang === 'ru'
-                    ? 'От первого контракта до национального холдинга'
-                    : lang === 'uz'
-                    ? 'Ilk distribyutsiya shartnomasidan milliy farmxoldinggacha'
-                    : lang === 'zh'
-                    ? '从首份直签合同到国家级医药控股集团'
-                    : 'From First Contract to a Nationwide Pharma Holding'}
-                </em>
+                <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">{dict.about.title}</em>
               </h2>
 
               <p className="text-base sm:text-[17px] text-slate-600 font-normal leading-relaxed max-w-xl">
@@ -1312,32 +1235,6 @@ export default function InsopharmHomepage({ initialLang, directMail, animatedHer
         onContactClick={togglePalette}
       />
       </InsoScrollPalette>
-
-      {/* Floating Palette Switcher for Live Comparison */}
-      <aside
-        aria-label="Color Palette Switcher"
-        className="fixed bottom-4 left-4 z-40 flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md border border-slate-300/80 shadow-lg text-xs font-medium text-slate-800 hover:bg-white transition-all select-none"
-      >
-        <button
-          type="button"
-          onClick={togglePalette}
-          className="flex items-center gap-2 cursor-pointer focus:outline-none"
-          title="Нажмите для переключения между палитрами Indigo и Emerald"
-        >
-          <span
-            className={`size-2.5 rounded-full transition-colors ${
-              palette === 'indigo' ? 'bg-[#11244D]' : 'bg-[#16494a]'
-            }`}
-          />
-          <span className="text-slate-500 font-normal">Палитра:</span>
-          <span className="font-semibold text-slate-900">
-            {palette === 'indigo' ? 'Indigo (Brandbook)' : 'Emerald (Текущая)'}
-          </span>
-          <span className="ml-1 text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded-full border border-slate-200">
-            ⇄ переключить
-          </span>
-        </button>
-      </aside>
     </div>
   );
 }

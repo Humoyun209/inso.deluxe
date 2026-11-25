@@ -3,108 +3,10 @@
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import type { Language } from '@/lib/insopharm-data';
-
-const content = {
-  ru: {
-    badge: '02 · ИНФРАСТРУКТУРА И ЛОГИСТИКА',
-    subtitle:
-      'Собственный фармацевтический складской комплекс класса «А», валидированная холодовая цепь и 13 региональных филиалов для экспресс-снабжения клиник и аптек.',
-    photoCaption: 'Центральный складской комплекс в Ташкенте, класс «А»',
-    photoLink: 'Параметры комплекса',
-    metric1Val: '+2…+8 °C',
-    metric1Label: 'Валидированная холодовая цепь',
-    metric2Val: '10 000 м²',
-    metric2Label: 'Собственный склад класса «А»',
-    metric3Val: '100% WMS',
-    metric3Label: 'Цифровой партионный учёт и маркировка Asl Belgisi',
-    licenseTitle: 'Официальная оптовая реализация по стандарту GDP',
-    licenseDesc:
-      'Прямые контракты с производителями. Полное соответствие международным стандартам Good Distribution Practice и реестр Министерства здравоохранения Республики Узбекистан (Лицензия № 18563).',
-    pdfAction: 'Сертификат GDP (PDF)',
-    licenseAction: 'Запросить лицензионный пакет',
-    deliveryTitle: 'Доставка по всему Узбекистану',
-    deliveryDesc:
-      '13 региональных филиалов и распределительных центров обеспечивают регулярное снабжение клиник и аптечных сетей с регламентом отгрузки от 12 до 24 часов.',
-    deliveryCities:
-      'Ташкент, Самарканд, Фергана, Бухара, Андижан, Наманган и все регионы Республики Узбекистан.',
-    deliveryAction: 'Условия региональных поставок',
-  },
-  uz: {
-    badge: '02 · INFRATUZILMA VA LOGISTIKA',
-    subtitle:
-      '«A» toifali shaxsiy farmatsevtika ombor majmuasi, uzluksiz sovuqlik zanjiri va klinika hamda dorixonalarni tezkor taʼminlash uchun 13 ta hududiy filial.',
-    photoCaption: 'Toshkentdagi markaziy logistika majmuasi, «A» toifasi',
-    photoLink: 'Majmua parametrlari',
-    metric1Val: '+2…+8 °C',
-    metric1Label: 'Validatsiyalangan sovuqlik zanjiri',
-    metric2Val: '10 000 m²',
-    metric2Label: '«A» toifali shaxsiy ombor majmuasi',
-    metric3Val: '100% WMS',
-    metric3Label: 'Raqamli partiya nazorati va «Asl Belgisi» markirovkasi',
-    licenseTitle: 'GDP standarti boʻyicha rasmiy ulgurji distribyutsiya',
-    licenseDesc:
-      'Ishlab chiqaruvchilar bilan toʻgʻridan-toʻgʻri shartnomalar, xalqaro GDP qoidalariga toʻliq muvofiqlik va Oʻzbekiston Respublikasi Sogʻliqni saqlash vazirligi reyestri (Litsenziya № 18563).',
-    pdfAction: 'GDP sertifikati (PDF)',
-    licenseAction: 'Litsenziya toʻplamini soʻrash',
-    deliveryTitle: 'Butun Oʻzbekiston boʻylab yetkazib berish',
-    deliveryDesc:
-      '13 ta hududiy filial va taqsimlash markazlari klinika hamda dorixonalarni 12–24 soat ichida dori vositalari bilan uzluksiz taʼminlaydi.',
-    deliveryCities:
-      'Toshkent, Samarqand, Fargʻona, Buxoro, Andijon, Namangan va barcha viloyatlar.',
-    deliveryAction: 'Yetkazib berish shartlari',
-  },
-  en: {
-    badge: '02 · INFRASTRUCTURE & LOGISTICS',
-    subtitle:
-      'Proprietary Class-A pharmaceutical logistics complex, validated cold chain continuity, and 13 regional hubs for express supply to clinics and pharmacies.',
-    photoCaption: 'Central Logistics Complex in Tashkent, Class A Facility',
-    photoLink: 'Facility specifications',
-    metric1Val: '+2…+8 °C',
-    metric1Label: 'Validated continuous cold chain',
-    metric2Val: '10,000 m²',
-    metric2Label: 'Proprietary Class-A logistics complex',
-    metric3Val: '100% WMS',
-    metric3Label: 'Digital batch tracking & «Asl Belgisi» serialization',
-    licenseTitle: 'Licensed Wholesale Distribution under GDP Standards',
-    licenseDesc:
-      'Direct manufacturer supply agreements. Full compliance with international Good Distribution Practice standards and Ministry of Health of Uzbekistan regulatory register (Licence № 18563).',
-    pdfAction: 'GDP Certificate (PDF)',
-    licenseAction: 'Request licence package',
-    deliveryTitle: 'Nationwide Delivery Coverage',
-    deliveryDesc:
-      '13 regional branches and fulfillment centers supply hospitals, clinics, and pharmacy networks with 12 to 24 hour dispatch protocols.',
-    deliveryCities:
-      'Tashkent, Samarkand, Fergana, Bukhara, Andijan, Namangan, and all provinces.',
-    deliveryAction: 'Regional supply terms',
-  },
-  zh: {
-    badge: '02 · 基础设施与仓储物流',
-    subtitle:
-      '拥有符合国际标准的自有甲级（Class A）医药仓储物流综合体、全程验证冷链体系，以及覆盖乌兹别克斯坦全境的13个区域配送枢纽。',
-    photoCaption: '位于塔什干的中央甲级医药仓储物流综合体',
-    photoLink: '园区详细参数',
-    metric1Val: '+2…+8 °C',
-    metric1Label: '全程验证不间断冷链',
-    metric2Val: '10 000 m²',
-    metric2Label: '自建甲级现代化医药仓储',
-    metric3Val: '100% WMS',
-    metric3Label: '数字化批次追溯与Asl Belgisi赋码追溯',
-    licenseTitle: '符合WHO GDP标准的正规医药批发分销',
-    licenseDesc:
-      '与全球制药商直接签订分销协议。严格执行国际《药品优良分销规范》（GDP），获乌兹别克斯坦卫生部正式许可认证（执照编号 № 18563）。',
-    pdfAction: 'GDP资质认证 (PDF)',
-    licenseAction: '申请完整资质文件包',
-    deliveryTitle: '覆盖乌兹别克斯坦全境的配送网络',
-    deliveryDesc:
-      '13个区域分公司与现代仓储中心，实现12至24小时内向各级医院、诊所及连锁药房直供配送。',
-    deliveryCities:
-      '塔什干、撒马尔罕、费尔干纳、布哈拉、安集延、纳曼干及乌兹别克斯坦全部行政区。',
-    deliveryAction: '区域供货合作细则',
-  },
-};
+import { getDictionary } from '@/locales';
 
 export default function InsoCredentials({ lang }: { lang: Language }) {
-  const t = content[lang];
+  const t = getDictionary(lang).distribution;
 
   return (
     <section
@@ -124,17 +26,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
             id="credentials-title"
             className="text-2xl sm:text-3xl lg:text-[38px] font-normal tracking-tight leading-[1.12] text-balance"
           >
-            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">
-              {lang === 'ru' ? (
-                'Как устроена дистрибуция INSO Group'
-              ) : lang === 'uz' ? (
-                'INSO Group distribyutsiyasi qanday ishlaydi'
-              ) : lang === 'zh' ? (
-                'INSO集团的医药分销体系运作模式'
-              ) : (
-                'How Distribution Works at INSO Group'
-              )}
-            </em>
+            <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">{t.title}</em>
           </h2>
           <p className="text-base sm:text-[17px] text-slate-600 font-normal leading-relaxed max-w-2xl">
             {t.subtitle}
@@ -161,7 +53,7 @@ export default function InsoCredentials({ lang }: { lang: Language }) {
               <span>{t.photoCaption}</span>
               <a
                 href="#about"
-                className="inline-flex items-center gap-1 font-semibold text-[var(--inso-teal)] hover:underline transition-colors"
+                className="inline-flex items-center gap-1 font-semibold text-[var(--inso-primary)] hover:underline transition-colors"
               >
                 <span>{t.photoLink}</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -8,40 +8,10 @@ import { ArrowUpRight, MapPin, Phone, Mail } from 'lucide-react';
 import { sendInquiry } from '@/app/actions/send-inquiry';
 import { inquiryTopics, type InquiryTopic } from '@/lib/inquiries';
 import type { Language } from '@/lib/insopharm-data';
-
-const copy = {
-  ru: {
-    badge: '09 · СВЯЗАТЬСЯ С НАМИ',
-    title: 'Обсудим сотрудничество', name: 'Имя и организация', contact: 'Почта или телефон для ответа', topic: 'Тема обращения', message: 'Ваш запрос',
-    send: 'Отправить запрос', draft: 'Открыть в почте', hint: 'Письмо откроется в вашей почте. Проверьте текст и нажмите «Отправить».',
-    pending: 'Отправляем…', ok: 'Почтовый сервис принял письмо для отправки.', error: 'Отправить не удалось. Можно повторить попытку или написать отделу напрямую.',
-    address: 'Ташкент, Юнусабадский район, ул. Богишамол, 160', route: 'Построить маршрут', formTitle: 'Написать нам', phone: 'Телефон и фармаконадзор', invalid: 'Заполните имя, обратный контакт и сообщение.',
-  },
-  uz: {
-    badge: '09 · ALOQA VA HAMKORLIK',
-    title: 'Hamkorlikni muhokama qilaylik', name: 'Ism va tashkilot', contact: 'Javob uchun email yoki telefon', topic: 'Murojaat mavzusi', message: 'Xabaringiz',
-    send: 'Xabar yuborish', draft: 'Pochtada ochish', hint: 'Xat pochtangizda ochiladi. Matnni tekshiring va yuboring.',
-    pending: 'Yuborilmoqda…', ok: 'Pochta xizmati xatni yuborish uchun qabul qildi.', error: 'Xat yuborilmadi. Qayta urinib koʻring yoki boʻlimga bevosita yozing.',
-    address: 'Toshkent, Yunusobod tumani, Bogʻishamol koʻchasi, 160', route: 'Yoʻnalishni ochish', formTitle: 'Bizga yozing', phone: 'Telefon va farmakonazorat', invalid: 'Ism, aloqa maʼlumoti va xabarni kiriting.',
-  },
-  en: {
-    badge: '09 · CONTACT & PARTNERSHIP',
-    title: 'Discuss a partnership', name: 'Name and organisation', contact: 'Email or phone for a reply', topic: 'Enquiry topic', message: 'Your enquiry',
-    send: 'Send enquiry', draft: 'Open in email', hint: 'Your email app will open a draft. Review it and press Send.',
-    pending: 'Sending…', ok: 'The email service accepted your enquiry for delivery.', error: 'Sending failed. Please retry or email the department directly.',
-    address: '160 Bogishamol Street, Yunusabad, Tashkent', route: 'Get directions', formTitle: 'Write to us', phone: 'Phone and pharmacovigilance', invalid: 'Enter your name, contact details and message.',
-  },
-  zh: {
-    badge: '09 · 商务合作与联络',
-    title: '洽谈商务合作', name: '姓名与机构名称', contact: '回复邮箱或联系电话', topic: '咨询主题', message: '您的需求说明',
-    send: '提交合作需求', draft: '在邮件中打开', hint: '点击后将在您的邮件客户端中生成草稿，确认无误后发送即可。',
-    pending: '正在提交…', ok: '邮件系统已成功接收您的合作需求。', error: '发送失败，请重试或直接致信相关业务部门。',
-    address: '乌兹别克斯坦塔什干市尤努萨巴德区博吉沙莫尔街160号', route: '查看地图路线', formTitle: '在线致信', phone: '咨询热线与药物警戒', invalid: '请完整填写您的姓名、联系方式及需求内容。',
-  },
-};
+import { getDictionary } from '@/locales';
 
 export default function InsoPartnerContact({ lang, directMail }: { lang: Language; directMail: boolean }) {
-  const t = copy[lang];
+  const t = getDictionary(lang).contact;
   const [topic, setTopic] = useState<InquiryTopic>('distribution');
   const [status, setStatus] = useState<'idle' | 'pending' | 'ok' | 'error' | 'invalid'>('idle');
   const attempt = useRef<{ payload: string; id: string } | null>(null);
@@ -93,17 +63,17 @@ export default function InsoPartnerContact({ lang, directMail }: { lang: Languag
               <em className="font-serif italic font-normal text-[var(--inso-accent-italic)]">{t.title}</em>
             </h2>
             <div className="mt-6 flex items-start gap-3">
-              <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-teal)]" />
+              <Phone aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-primary)]" />
               <div><p className="mb-1 text-[12px] text-[var(--inso-muted-text)]">{t.phone}</p>
                 <a className="block w-fit text-xl font-semibold hover:underline" href="tel:+998935056552">+998 93 505 65 52</a>
                 <a className="mt-1 block w-fit text-[15px] sm:text-[16px] hover:underline" href="tel:+998712006552">+998 71 200 65 52</a>
               </div>
             </div>
-            <a className="mt-4 inline-flex items-center gap-3 text-[16px] sm:text-[17px] hover:underline" href="mailto:sales@inso.uz"><Mail aria-hidden="true" className="size-4 text-[var(--inso-teal)]" />sales@inso.uz</a>
+            <a className="mt-4 inline-flex items-center gap-3 text-[16px] sm:text-[17px] hover:underline" href="mailto:sales@inso.uz"><Mail aria-hidden="true" className="size-4 text-[var(--inso-primary)]" />sales@inso.uz</a>
             <div id="map" className="mt-4 flex scroll-mt-24 items-start gap-3 border-t border-[var(--inso-border-subtle)] pt-4">
-              <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-teal)]" />
+              <MapPin aria-hidden="true" className="mt-1 size-4 shrink-0 text-[var(--inso-primary)]" />
               <div><p className="text-[16px] sm:text-[17px]">{t.address}</p>
-                <a className="mt-1.5 inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-semibold text-[var(--inso-teal)] hover:underline" href="https://www.google.com/maps/dir/?api=1&destination=160+Bogishamol+Street%2C+Yunusabad%2C+Tashkent%2C+Uzbekistan" target="_blank" rel="noreferrer">{t.route}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
+                <a className="mt-1.5 inline-flex items-center gap-1 text-[15px] sm:text-[16px] font-semibold text-[var(--inso-primary)] hover:underline" href="https://www.google.com/maps/dir/?api=1&destination=160+Bogishamol+Street%2C+Yunusabad%2C+Tashkent%2C+Uzbekistan" target="_blank" rel="noreferrer">{t.route}<ArrowUpRight aria-hidden="true" className="size-4" /></a>
               </div>
             </div>
 

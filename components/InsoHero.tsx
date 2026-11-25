@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowUpRight, ClipboardCheck, Cross, FileText, Pause, Play } from 'lucide-react';
 import type { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
 type HeroCopy = {
   sinceBadge: string;
@@ -12,19 +13,7 @@ type HeroCopy = {
   navCatalog: string;
 };
 
-const labels = {
-  ru: { docs: 'Лицензии компании', next: 'Как устроена дистрибуция', play: 'Воспроизвести видео', pause: 'Приостановить видео' },
-  en: { docs: 'Company licences', next: 'How INSO distributes medicines', play: 'Play video', pause: 'Pause video' },
-  uz: { docs: 'Kompaniya litsenziyalari', next: 'INSO distribyutsiyasi qanday ishlaydi', play: 'Videoni ijro etish', pause: 'Videoni toʻxtatish' },
-  zh: { docs: '公司资质证书', next: 'INSO药品分销网络', play: '播放视频', pause: '暂停视频' },
-};
 
-const introLine = {
-  ru: ['От регистрации препарата', 'до поставки в аптеку'],
-  en: ['From product registration', 'to pharmacy delivery'],
-  uz: ['Dorini roʻyxatdan oʻtkazishdan', 'dorixonaga yetkazib berishgacha'],
-  zh: ['从药品注册申报', '到终端药房配送'],
-};
 
 function HeroHeading({ copy, overlay = false }: { copy: HeroCopy; overlay?: boolean }) {
   const Title = overlay ? 'div' : 'h1';
@@ -56,7 +45,7 @@ export default function InsoHero({ animated, copy, lang, onDocuments, onBrandsHi
   const brandsRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
-  const t = labels[lang];
+  const t = getDictionary(lang).hero;
 
   useEffect(() => {
     const track = trackRef.current;
@@ -151,9 +140,9 @@ export default function InsoHero({ animated, copy, lang, onDocuments, onBrandsHi
           <HeroHeading copy={copy} />
           <div className="hero-detail">
             <p className="hero-line">
-              <span className="hero-route-stop"><ClipboardCheck aria-hidden="true" />{introLine[lang][0]}</span>{' '}
+              <span className="hero-route-stop"><ClipboardCheck aria-hidden="true" />{t.routeStops[0]}</span>{' '}
               <span className="hero-route-path" aria-hidden="true" />
-              <span className="hero-route-stop"><Cross aria-hidden="true" />{introLine[lang][1]}</span>
+              <span className="hero-route-stop"><Cross aria-hidden="true" />{t.routeStops[1]}</span>
             </p>
             <div className="hero-actions" ref={actionsRef}>
               <a href="#contacts" className="inso-action">{copy.heroPartnerBtn}<ArrowUpRight /></a>

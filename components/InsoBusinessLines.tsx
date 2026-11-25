@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { SUBBRANDS, type Language, type SubbrandId } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
 const role: Record<SubbrandId, Record<Language, string>> = {
   inom: {
@@ -43,51 +44,8 @@ const role: Record<SubbrandId, Record<Language, string>> = {
   },
 };
 
-const copy = {
-  ru: {
-    badge: '04 · НАПРАВЛЕНИЯ И СУББРЕНДЫ',
-    titleMain: 'Шесть специализированных',
-    titleAccent: 'направлений',
-    subtitle:
-      'Полный замкнутый цикл: от поиска молекул и государственной регистрации до полевой медпромоции и дистрибуции.',
-    catalog: 'Каталог бренда',
-    delivery: 'Обсудить поставки',
-    registration: 'Обсудить регистрацию',
-  },
-  uz: {
-    badge: '04 · YOʻNALISHLAR VA SUB-BRENDLAR',
-    titleMain: 'Oltita ixtisoslashgan',
-    titleAccent: 'yoʻnalish',
-    subtitle:
-      'Toʻliq yopiq sikl: molekula izlash va davlat roʻyxatidan oʻtkazishdan tortib, tibbiy targʻibot va distribyutsiyagacha.',
-    catalog: 'Brend katalogi',
-    delivery: 'Yetkazishni muhokama qilish',
-    registration: 'Roʻyxatdan oʻtkazishni muhokama qilish',
-  },
-  en: {
-    badge: '04 · BUSINESS LINES & SUB-BRANDS',
-    titleMain: 'Six Dedicated',
-    titleAccent: 'Business Lines',
-    subtitle:
-      'A complete integrated pharma ecosystem: from molecule scouting and market authorization to ethical promotion and logistics.',
-    catalog: 'Brand catalog',
-    delivery: 'Discuss distribution',
-    registration: 'Discuss registration',
-  },
-  zh: {
-    badge: '04 · 业务架构与子品牌',
-    titleMain: '六大专业化',
-    titleAccent: '核心业务板块',
-    subtitle:
-      '构建完整闭环医药生态：涵盖全球潜力分子筛选、乌兹别克斯坦注册获批、合规学术推广及全境医药冷链分销。',
-    catalog: '品牌产品目录',
-    delivery: '洽谈供货配送',
-    registration: '洽谈产品注册',
-  },
-};
-
 export default function InsoBusinessLines({ lang }: { lang: Language }) {
-  const t = copy[lang];
+  const t = getDictionary(lang).businessLines;
 
   return (
     <section

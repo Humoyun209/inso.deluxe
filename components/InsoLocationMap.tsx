@@ -20,6 +20,7 @@ import {
   CheckCircle2,
 } from 'lucide-react';
 import { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
 // Tier 1 Global Quota & Auth Failure Tap for Demo Key (Section 8 Case A)
 if (typeof window !== 'undefined' && !(window as unknown as Record<string, boolean>).__gmpTapInstalled) {
@@ -46,73 +47,6 @@ interface LivePlaceResult {
   userRatingCount?: number | null;
   googleMapsURI?: string | null;
 }
-
-const MAP_COPY = {
-  ru: {
-    badge: 'Геолокация и дистрибуция · Google Maps Platform',
-    title: 'Интерактивная карта присутствия и фармацевтической инфраструктуры',
-    subtitle:
-      'Найдите локацию головного офиса, таможенного GDP-склада и партнерских аптек или клиник в Ташкенте в режиме реального времени через Google Places API.',
-    searchPlaceholder: 'Поиск улицы, аптеки или клиники в Ташкенте...',
-    searchBtn: 'Найти',
-    presetHub: 'Ул. Богишамол, Юнусабад',
-    presetPharmacies: 'Аптеки (Юнусабад, Ташкент)',
-    presetClinics: 'Клиники и больницы Ташкента',
-    resultsLabel: 'Найденные объекты Google Maps:',
-    loadingText: 'Загрузка геоданных из Google Places API...',
-    noResultsText: 'По данному запросу объекты не найдены. Попробуйте другой запрос.',
-    openInMaps: 'Открыть в Google Картах',
-    gdpNote: 'Прямая доставка по 14 регионам Республики Узбекистан (+2…+8 °C / +15…+25 °C)',
-  },
-  uz: {
-    badge: 'Geolokatsiya va logistika · Google Maps Platform',
-    title: 'Joylashuv va farmatsevtik infratuzilma interaktiv xaritasi',
-    subtitle:
-      'Google Places API orqali Toshkent shahridagi bosh ofis hududi, GDP-ombor yo‘nalishi hamda dorixona va klinikalarni real vaqt rejimida qidiring.',
-    searchPlaceholder: 'Toshkentdagi ko‘cha, dorixona yoki klinikani qidirish...',
-    searchBtn: 'Qidirish',
-    presetHub: 'Bog‘ishamol ko‘chasi, Yunusobod',
-    presetPharmacies: 'Dorixonalar (Yunusobod)',
-    presetClinics: 'Toshkent klinikalari',
-    resultsLabel: 'Google Maps orqali topilgan obyektlar:',
-    loadingText: 'Google Places API ma’lumotlari yuklanmoqda...',
-    noResultsText: 'So‘rov bo‘yicha natija topilmadi. Boshqa so‘rov kiriting.',
-    openInMaps: 'Google Xaritalarda ochish',
-    gdpNote: 'O‘zbekistonning barcha 14 viloyatiga to‘g‘ridan-to‘g‘ri yetkazib berish (+2…+8 °C)',
-  },
-  en: {
-    badge: 'Geolocation & Distribution · Google Maps Platform',
-    title: 'Interactive Location & Healthcare Infrastructure Map',
-    subtitle:
-      'Explore our Yunusabad district corridor, GDP logistics routes, and nearby partner pharmacies and medical centers in Tashkent powered live by Google Places API.',
-    searchPlaceholder: 'Search street, pharmacy, or medical center in Tashkent...',
-    searchBtn: 'Search',
-    presetHub: 'Bogishamol St, Yunusabad',
-    presetPharmacies: 'Pharmacies in Yunusabad',
-    presetClinics: 'Medical Centers in Tashkent',
-    resultsLabel: 'Live Google Maps Places Results:',
-    loadingText: 'Fetching live place data from Google Places API...',
-    noResultsText: 'No places matched your search query. Try another search term.',
-    openInMaps: 'Open in Google Maps',
-    gdpNote: 'Direct GDP cold-chain delivery across all 14 regions of Uzbekistan (+2…+8 °C)',
-  },
-  zh: {
-    badge: '地理位置与供应链物流 · Google Maps Platform',
-    title: '医药基础设施与业务网络互动地图',
-    subtitle:
-      '通过 Google Places API 实时了解位于塔什干的总部大楼、GDP保税仓储中心及周边合作连锁药房与医疗机构。',
-    searchPlaceholder: '在塔什干检索街道、药房或医疗中心...',
-    searchBtn: '搜索',
-    presetHub: '尤努萨巴德区博吉沙莫尔街',
-    presetPharmacies: '尤努萨巴德区药房',
-    presetClinics: '塔什干各大医院与专科门诊',
-    resultsLabel: 'Google Maps 搜索结果：',
-    loadingText: '正在从 Google Places API 加载地理位置数据...',
-    noResultsText: '未检索到相关地点，请尝试其他关键词。',
-    openInMaps: '在 Google 地图中打开',
-    gdpNote: '覆盖乌兹别克斯坦全境各省市的直发冷链配送网络（+2…+8 °C / +15…+25 °C）',
-  },
-};
 
 function PlacesMapController({
   activeQuery,
@@ -221,7 +155,7 @@ export default function InsoLocationMap({
   apiKey: string;
   lang: Language;
 }) {
-  const copy = MAP_COPY[lang];
+  const copy = getDictionary(lang).map;
   const [searchInput, setSearchInput] = useState('Bogishamol Street, Yunusabad, Tashkent');
   const [activeQuery, setActiveQuery] = useState('Bogishamol Street, Yunusabad, Tashkent');
   const [places, setPlaces] = useState<LivePlaceResult[]>([]);

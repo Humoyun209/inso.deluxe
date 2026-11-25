@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ArrowRight, X, Clock } from 'lucide-react';
 import type { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
 export interface NewsItem {
   id: string;
@@ -206,48 +207,9 @@ export const INSO_NEWS: NewsItem[] = [
   },
 ];
 
-const copy = {
-  ru: {
-    badge: '07 · НОВОСТИ И ПРЕСС-ЦЕНТР',
-    titleMain: 'События и развитие',
-    titleAccent: 'холдинга',
-    subtitle:
-      'Актуальная информация о расширении инфраструктуры, новых международных соглашениях и регуляторных аудитах INSO Group.',
-    readMore: 'Читать полностью',
-    closeModal: 'Закрыть',
-  },
-  uz: {
-    badge: '07 · YANGILIKLAR VA MATBUOT MARKAZI',
-    titleMain: 'Xoldingning muhim voqealari va',
-    titleAccent: 'rivojlanishi',
-    subtitle:
-      'INSO Group infratuzilmasini kengaytirish, yangi xalqaro shartnomalar va sifat auditi boʻyicha rasmiy yangiliklar.',
-    readMore: 'Batafsil oʻqish',
-    closeModal: 'Yopish',
-  },
-  en: {
-    badge: '07 · NEWS & MEDIA CENTER',
-    titleMain: 'Corporate News &',
-    titleAccent: 'Milestones',
-    subtitle:
-      'Official updates on infrastructure expansion, global manufacturer agreements, and regulatory audits across INSO Group.',
-    readMore: 'Read Full Story',
-    closeModal: 'Close',
-  },
-  zh: {
-    badge: '07 · 新闻与动态',
-    titleMain: '集团新闻与',
-    titleAccent: '里程碑事件',
-    subtitle:
-      '掌握INSO Group在基础设施扩建、国际厂商合作及医药法规质量认证方面的最新动态与官方资讯。',
-    readMore: '阅读全文',
-    closeModal: '关闭',
-  },
-};
-
 export default function InsoNews({ lang }: { lang: Language }) {
   const [activeArticle, setActiveArticle] = useState<NewsItem | null>(null);
-  const t = copy[lang];
+  const t = getDictionary(lang).news;
 
   // Close modal on Escape
   useEffect(() => {

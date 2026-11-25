@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import type { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
 const loading = { ru: 'Загрузка', en: 'Loading', uz: 'Yuklanmoqda', zh: '加载中' };
 
@@ -72,7 +73,7 @@ export default function InsoHomeLoader({ lang }: { lang: Language }) {
         />
       </div>
       <div className="inso-loader-rail" aria-hidden="true" />
-      <span className="inso-loader-label">{loading[lang]}</span>
+      <span className="inso-loader-label">{getDictionary(lang).common.loader.loading}</span>
     </div>
   );
 }

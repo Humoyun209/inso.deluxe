@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { ArrowUpRight, Plus, FileText, Send } from 'lucide-react';
 import type { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 import type { InquiryTopic } from '@/lib/inquiries';
 
 export interface FAQItemData {
@@ -283,12 +284,6 @@ export const COMPREHENSIVE_FAQ: FAQItemData[] = [
 ];
 
 const categories = {
-  all: {
-    ru: 'Все вопросы',
-    uz: 'Barcha savollar',
-    en: 'All Questions',
-    zh: '全部问答',
-  },
   logistics: {
     ru: 'Логистика и GDP-склад',
     uz: 'Logistika va GDP ombor',
@@ -315,49 +310,6 @@ const categories = {
   },
 };
 
-const copy = {
-  ru: {
-    badge: '08 · ВОПРОСЫ И ОТВЕТЫ (FAQ)',
-    titleMain: 'Часто задаваемые',
-    titleAccent: 'вопросы',
-    subtitle:
-      'Исчерпывающая информация о логистике, холодовой цепи, регистрации лекарственных средств и оптовых поставках по Узбекистану.',
-    askQuestion: 'Задать свой вопрос в отдел продаж',
-    needConsult: 'Не нашли ответ на свой вопрос?',
-    contactTeam: 'Напишите нам — коммерческий отдел ответит в течение 2 рабочих часов.',
-  },
-  uz: {
-    badge: '08 · KOʻP SOʻRALADIGAN SAVOLLAR (FAQ)',
-    titleMain: 'Hamkorlar uchun muhim',
-    titleAccent: 'savollar',
-    subtitle:
-      'Logistika, sovuqlik zanjiri, dori vositalarini roʻyxatdan oʻtkazish va butun Oʻzbekiston boʻylab ulgurji taʼminot haqida batafsil maʼlumot.',
-    askQuestion: 'Savdo boʻlimiga savol berish',
-    needConsult: 'Savolingizga javob topmadingizmi?',
-    contactTeam: 'Bizga yozing — tijorat boʻlimi 2 ish soati ichida javob beradi.',
-  },
-  en: {
-    badge: '08 · FREQUENTLY ASKED QUESTIONS (FAQ)',
-    titleMain: 'Frequently Asked',
-    titleAccent: 'Questions',
-    subtitle:
-      'Comprehensive information regarding pharmaceutical logistics, cold chain validation, market authorization, and nationwide wholesale supply.',
-    askQuestion: 'Submit an inquiry to our sales team',
-    needConsult: 'Have a specific question not covered here?',
-    contactTeam: 'Contact our commercial team — we will reply within 2 business hours.',
-  },
-  zh: {
-    badge: '08 · 常见问题解答 (FAQ)',
-    titleMain: '合作伙伴',
-    titleAccent: '常见问题',
-    subtitle:
-      '为您详细解答关于冷链物流、GDP合规仓储、药品注册准入及乌兹别克斯坦全境批发供应的各项核心疑问。',
-    askQuestion: '向商务拓展部提出您的需求',
-    needConsult: '没有找到您关心的解答？',
-    contactTeam: '随时联系我们 — 商务团队将在2个工作小时内为您回复。',
-  },
-};
-
 export default function InsoPartnerFaq({
   lang,
   onRequest,
@@ -365,17 +317,16 @@ export default function InsoPartnerFaq({
   lang: Language;
   onRequest: (topic: InquiryTopic) => void;
 }) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('logistics');
   const [openIds, setOpenIds] = useState<Set<string>>(
     new Set(['faq-delivery-time', 'faq-registration-turnkey'])
   );
 
-  const t = copy[lang];
+  const t = getDictionary(lang).faq;
 
-  const filteredItems =
-    selectedCategory === 'all'
-      ? COMPREHENSIVE_FAQ
-      : COMPREHENSIVE_FAQ.filter((item) => item.category === selectedCategory);
+  const filteredItems = COMPREHENSIVE_FAQ.filter(
+    (item) => item.category === selectedCategory
+  );
 
   const toggleItem = (id: string) => {
     setOpenIds((prev) => {
@@ -424,7 +375,6 @@ export default function InsoPartnerFaq({
         <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-slate-200">
           {(
             [
-              'all',
               'logistics',
               'manufacturers',
               'pharmacies',
@@ -432,10 +382,9 @@ export default function InsoPartnerFaq({
             ] as const
           ).map((catKey) => {
             const active = selectedCategory === catKey;
-            const count =
-              catKey === 'all'
-                ? COMPREHENSIVE_FAQ.length
-                : COMPREHENSIVE_FAQ.filter((item) => item.category === catKey).length;
+            const count = COMPREHENSIVE_FAQ.filter(
+              (item) => item.category === catKey
+            ).length;
 
             return (
               <button

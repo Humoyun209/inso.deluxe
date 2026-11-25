@@ -2,60 +2,10 @@
 
 import Image from 'next/image';
 import { CORE_VALUES, type Language } from '@/lib/insopharm-data';
-
-const vision = {
-  ru: {
-    label: 'НАШЕ ВИДЕНИЕ • 2029',
-    lead: 'Стать главным партнёром для фармпроизводителей в',
-    region: 'Центральной Азии',
-    end: '.',
-    valuesBadge: '05 · КОРПОРАТИВНЫЕ ЦЕННОСТИ',
-    valuesMain: 'Наши',
-    valuesAccent: 'ценности',
-    valuesDesc:
-      'Шесть фундаментальных правил, на которых строится ежедневная работа, партнёрские отношения и строгие стандарты качества каждого подразделения INSO Group.',
-    photoAlt: 'Сотрудницы фармацевтического направления INSO Group у стеллажей с продукцией',
-  },
-  uz: {
-    label: 'MAQSADIMIZ • 2029',
-    lead: 'Dori vositalarini olib chiqayotgan farmishlab chiqaruvchilar uchun asosiy hamkor boʻlish —',
-    region: 'Markaziy Osiyoda',
-    end: '.',
-    valuesBadge: '05 · KORPORATIV QADRIYATLAR',
-    valuesMain: 'Bizning',
-    valuesAccent: 'qadriyatlarimiz',
-    valuesDesc:
-      'Qarorlarimiz, hamkorlik munosabatlarimiz va INSO Group sifat standartlarining mustahkam poydevori boʻlgan oltita asosiy qoida.',
-    photoAlt: 'INSO Group xodimalari ombor javonlari yonida',
-  },
-  en: {
-    label: 'OUR VISION • 2029',
-    lead: 'To become the primary partner of choice for pharmaceutical manufacturers across',
-    region: 'Central Asia',
-    end: '.',
-    valuesBadge: '05 · CORPORATE VALUES',
-    valuesMain: 'Our',
-    valuesAccent: 'Values',
-    valuesDesc:
-      'Six foundational principles that govern daily decisions, quality benchmarks, and long-term partnerships across INSO Group.',
-    photoAlt: 'INSO Group specialists beside pharmaceutical warehouse storage racks',
-  },
-  zh: {
-    label: '集团愿景 • 2029',
-    lead: '成为国际制药企业开拓中亚市场的',
-    region: '首选核心战略伙伴',
-    end: '。',
-    valuesBadge: '05 · 企业核心价值观',
-    valuesMain: '我们的',
-    valuesAccent: '核心价值',
-    valuesDesc:
-      '指引INSO集团各部门日常运营决策、质量把控与长久商业伙伴关系的六大基本准则。',
-    photoAlt: 'INSO集团医药专家与现代仓储货架',
-  },
-};
+import { getDictionary } from '@/locales';
 
 export default function InsoVisionValues({ lang }: { lang: Language }) {
-  const copy = vision[lang];
+  const copy = getDictionary(lang).visionValues;
 
   return (
     <section

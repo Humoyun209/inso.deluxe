@@ -2,105 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUp, ArrowUpRight } from 'lucide-react';
 import type { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
-const labels = {
-  ru: {
-    ctaLead: 'Готовы обсудить',
-    ctaLeadAccent: 'сотрудничество?',
-    ctaButton: 'Связаться с нами',
-    descriptor: 'Фармацевтический холдинг полного цикла в Узбекистане',
-    license: 'Лицензия Минздрава РУз № 18563 · GDP',
-    company: 'Компания',
-    history: 'История',
-    values: 'Видение и ценности',
-    brands: 'Направления холдинга',
-    careers: 'Карьера в INSO',
-    partners: 'Партнёрам',
-    catalog: 'Каталог препаратов',
-    logistics: 'Дистрибуция',
-    docs: 'Лицензии и сертификаты',
-    faq: 'Вопросы партнёров',
-    office: 'Офис в Ташкенте',
-    address: 'ул. Богишамол, 160',
-    telegram: 'Telegram',
-    linkedin: 'LinkedIn',
-    copyright: '© 2017–2026 INSO Group',
-    privacy: 'Политика конфиденциальности',
-    top: 'К началу',
-  },
-  uz: {
-    ctaLead: 'Hamkorlikni muhokama qilishga',
-    ctaLeadAccent: 'tayyormisiz?',
-    ctaButton: 'Bogʻlanish',
-    descriptor: 'Oʻzbekistonda toʻliq siklli farmatsevtika xoldingi',
-    license: 'OʻzR SSV litsenziyasi № 18563 · GDP',
-    company: 'Kompaniya',
-    history: 'Tarix',
-    values: 'Maqsad va qadriyatlar',
-    brands: 'Xolding yoʻnalishlari',
-    careers: 'INSO’da karyera',
-    partners: 'Hamkorlarga',
-    catalog: 'Dori vositalari katalogi',
-    logistics: 'Distribyutsiya',
-    docs: 'Litsenziya va sertifikatlar',
-    faq: 'Hamkorlar savollari',
-    office: 'Toshkentdagi ofis',
-    address: 'Bogʻishamol koʻchasi, 160',
-    telegram: 'Telegram',
-    linkedin: 'LinkedIn',
-    copyright: '© 2017–2026 INSO Group',
-    privacy: 'Maxfiylik siyosati',
-    top: 'Sahifa boshiga',
-  },
-  en: {
-    ctaLead: 'Ready to discuss',
-    ctaLeadAccent: 'a partnership?',
-    ctaButton: 'Contact Us',
-    descriptor: 'Full-cycle pharmaceutical holding in Uzbekistan',
-    license: 'MoH Uzbekistan Licence № 18563 · GDP',
-    company: 'Company',
-    history: 'Our history',
-    values: 'Vision and values',
-    brands: 'Business lines',
-    careers: 'Careers at INSO',
-    partners: 'For partners',
-    catalog: 'Product catalogue',
-    logistics: 'Distribution',
-    docs: 'Licences and certificates',
-    faq: 'Partner questions',
-    office: 'Tashkent Office',
-    address: '160 Bogishamol Street',
-    telegram: 'Telegram',
-    linkedin: 'LinkedIn',
-    copyright: '© 2017–2026 INSO Group',
-    privacy: 'Privacy Policy',
-    top: 'Back to top',
-  },
-  zh: {
-    ctaLead: '准备好开启',
-    ctaLeadAccent: '商务合作？',
-    ctaButton: '联系我们',
-    descriptor: '乌兹别克斯坦全产业链综合性医药控股集团',
-    license: '乌兹别克斯坦卫生部执照 № 18563 · GDP',
-    company: '关于集团',
-    history: '发展历程',
-    values: '愿景与价值观',
-    brands: '控股业务板块',
-    careers: '招贤纳士',
-    partners: '合作伙伴',
-    catalog: '药品目录',
-    logistics: '物流与仓储',
-    docs: '资质与认证',
-    faq: '常见问答',
-    office: '塔什干总部',
-    address: '博吉沙莫尔街160号',
-    telegram: 'Telegram',
-    linkedin: 'LinkedIn',
-    copyright: '© 2017–2026 INSO Group',
-    privacy: '隐私政策',
-    top: '返回顶部',
-  },
-};
+
 
 export default function InsoFooter({
   lang,
@@ -111,7 +15,7 @@ export default function InsoFooter({
   onDocuments: () => void;
   onContactClick?: () => void;
 }) {
-  const t = labels[lang];
+  const t = getDictionary(lang).footer;
 
   return (
     <footer id="footer" className="inso-footer relative overflow-hidden isolate">

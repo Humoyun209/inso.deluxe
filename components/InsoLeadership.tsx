@@ -5,6 +5,7 @@ import { useRef, useState, useEffect, useCallback, type KeyboardEvent } from 're
 import { motion, AnimatePresence, type PanInfo } from 'motion/react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Language } from '@/lib/insopharm-data';
+import { getDictionary } from '@/locales';
 
 type Label = string | Record<Language, string>;
 
@@ -74,37 +75,6 @@ const portraits: Portrait[] = [
   },
 ];
 
-const copy = {
-  ru: {
-    sectionBadge: '06 · РУКОВОДСТВО ХОЛДИНГА',
-    sectionTitle: 'Команда, которая ведёт INSO вперёд',
-    sectionLead: 'Сочетание стратегической визионерности, технологической экспертизы и системного управления.',
-    previous: 'Предыдущий портрет',
-    next: 'Следующий портрет',
-  },
-  uz: {
-    sectionBadge: '06 · XOLDING RAHBARIYATI',
-    sectionTitle: 'INSO guruhini olg‘a yetaklayotgan jamoa',
-    sectionLead: 'Strategik qarash, texnologik tajriba va tizimli boshqaruv uyg‘unligi.',
-    previous: 'Oldingi portret',
-    next: 'Keyingi portret',
-  },
-  en: {
-    sectionBadge: '06 · EXECUTIVE LEADERSHIP',
-    sectionTitle: 'The Team Driving INSO Forward',
-    sectionLead: 'Combining strategic vision, technology leadership, and institutional discipline.',
-    previous: 'Previous portrait',
-    next: 'Next portrait',
-  },
-  zh: {
-    sectionBadge: '06 · 集团管理团队',
-    sectionTitle: '引领INSO前行的领导集体',
-    sectionLead: '融合战略前瞻力、医药专业深耕与现代化企业管理体系。',
-    previous: '上一个',
-    next: '下一个',
-  },
-};
-
 const localize = (label: Label, lang: Language): string =>
   typeof label === 'string' ? label : label[lang];
 
@@ -119,7 +89,7 @@ export default function InsoLeadership({ lang }: { lang: Language }) {
   const [index, setIndex] = useState(0);
   const [windowWidth, setWindowWidth] = useState(1024);
   const containerRef = useRef<HTMLDivElement>(null);
-  const t = copy[lang];
+  const t = getDictionary(lang).leadership;
   const total = portraits.length;
 
   useEffect(() => {
